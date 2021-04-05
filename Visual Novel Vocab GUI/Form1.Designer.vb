@@ -42,6 +42,7 @@ Partial Class Form1
         Me.RightToolStripPanel = New System.Windows.Forms.ToolStripPanel()
         Me.LeftToolStripPanel = New System.Windows.Forms.ToolStripPanel()
         Me.ContentPanel = New System.Windows.Forms.ToolStripContentPanel()
+        Me.lbOutput = New System.Windows.Forms.ListBox()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -75,6 +76,7 @@ Partial Class Form1
         '
         resources.ApplyResources(Me.lbResults, "lbResults")
         Me.lbResults.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.lbResults.Cursor = System.Windows.Forms.Cursors.Default
         Me.lbResults.ForeColor = System.Drawing.SystemColors.InactiveBorder
         Me.lbResults.FormattingEnabled = True
         Me.lbResults.Name = "lbResults"
@@ -110,6 +112,7 @@ Partial Class Form1
         'pbProgress
         '
         resources.ApplyResources(Me.pbProgress, "pbProgress")
+        Me.pbProgress.ForeColor = System.Drawing.SystemColors.Control
         Me.pbProgress.MarqueeAnimationSpeed = 0
         Me.pbProgress.Maximum = 50
         Me.pbProgress.Name = "pbProgress"
@@ -117,6 +120,8 @@ Partial Class Form1
         '
         'cbbFilterType
         '
+        Me.cbbFilterType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cbbFilterType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbbFilterType.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         resources.ApplyResources(Me.cbbFilterType, "cbbFilterType")
         Me.cbbFilterType.ForeColor = System.Drawing.SystemColors.InactiveBorder
@@ -141,11 +146,14 @@ Partial Class Form1
         '
         'cbbMediaType
         '
+        Me.cbbMediaType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cbbMediaType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbbMediaType.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.cbbMediaType.Cursor = System.Windows.Forms.Cursors.Default
         resources.ApplyResources(Me.cbbMediaType, "cbbMediaType")
         Me.cbbMediaType.ForeColor = System.Drawing.SystemColors.InactiveBorder
         Me.cbbMediaType.FormattingEnabled = True
-        Me.cbbMediaType.Items.AddRange(New Object() {resources.GetString("cbbMediaType.Items"), resources.GetString("cbbMediaType.Items1"), resources.GetString("cbbMediaType.Items2"), resources.GetString("cbbMediaType.Items3"), resources.GetString("cbbMediaType.Items4"), resources.GetString("cbbMediaType.Items5"), resources.GetString("cbbMediaType.Items6")})
+        Me.cbbMediaType.Items.AddRange(New Object() {resources.GetString("cbbMediaType.Items"), resources.GetString("cbbMediaType.Items1"), resources.GetString("cbbMediaType.Items2"), resources.GetString("cbbMediaType.Items3"), resources.GetString("cbbMediaType.Items4"), resources.GetString("cbbMediaType.Items5"), resources.GetString("cbbMediaType.Items6"), resources.GetString("cbbMediaType.Items7")})
         Me.cbbMediaType.Name = "cbbMediaType"
         '
         'lblResultCount
@@ -185,6 +193,15 @@ Partial Class Form1
         '
         resources.ApplyResources(Me.ContentPanel, "ContentPanel")
         '
+        'lbOutput
+        '
+        resources.ApplyResources(Me.lbOutput, "lbOutput")
+        Me.lbOutput.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.lbOutput.Cursor = System.Windows.Forms.Cursors.Default
+        Me.lbOutput.ForeColor = System.Drawing.SystemColors.InactiveBorder
+        Me.lbOutput.FormattingEnabled = True
+        Me.lbOutput.Name = "lbOutput"
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -192,13 +209,14 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Controls.Add(Me.pbProgress)
+        Me.Controls.Add(Me.lbOutput)
         Me.Controls.Add(Me.lblResultCount)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cbbMediaType)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cbbFilterType)
-        Me.Controls.Add(Me.pbProgress)
         Me.Controls.Add(Me.nbPageEnd)
         Me.Controls.Add(Me.lblTo)
         Me.Controls.Add(Me.nbPageStart)
@@ -235,4 +253,5 @@ Partial Class Form1
     Friend WithEvents RightToolStripPanel As ToolStripPanel
     Friend WithEvents LeftToolStripPanel As ToolStripPanel
     Friend WithEvents ContentPanel As ToolStripContentPanel
+    Friend WithEvents lbOutput As ListBox
 End Class

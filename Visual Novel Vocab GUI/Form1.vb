@@ -4,13 +4,20 @@ Imports System.Net
 Public Class Form1
     Dim SearchType As String = "Words"
     Dim Reverse As Boolean = False
-    Private Sub cbbSearchType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbSearchType.SelectedIndexChanged
-        Select Case cbbSearchType.SelectedItem
-            Case "Words"
-                SearchType = "Words"
-            Case "Kanji"
-                SearchType = "Kanji"
-        End Select
+    Class Content
+        Dim Name As String = ""
+        Dim ContentType As String = "Anime"
+        Dim WordLength As Integer = 0
+        Dim UniqueWords As Integer = 0
+        Dim UniquePercent As Integer = 50
+        Dim UniqueKanji As Integer = 0
+        Dim Difficulty As String = "/10"
+    End Class
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        pbProgress.Hide()
+        lblResultCount.Hide()
+        lblResultCount.Text = ""
     End Sub
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim PageStart As Integer = nbPageStart.Value
@@ -145,6 +152,7 @@ Public Class Form1
                 If WordTemp.Contains(">") = False And WordTemp.Contains("<") = False And WordTemp.Contains("=") = False And WordTemp.Contains("-") = False Then
                     Try
                         WordIDs.Add(WordTemp)
+                        lbOutput.Items.Add(WordTemp)
                     Catch ex As Exception
                         Continue Do
                     End Try
@@ -166,6 +174,8 @@ Public Class Form1
         Debug.WriteLine("Unique Words: " & WordIDs.Count)
         If cbbSearchType.Text = "Kanji" Then
             ExtractKanji(WordIDs)
+            pbProgress.Hide()
+            Return
         End If
 
         If WordIDs.Count > 1 Then
@@ -183,13 +193,21 @@ Public Class Form1
             Case vbYes
                 SaveToTXT(WordIDs, "downloads", NovelName)
         End Select
+        pbProgress.Hide()
     End Sub
     Sub SearchDecks()
         pbProgress.Hide()
+        Const QUOTE = """"
         Dim Client As New WebClient
         Client.Encoding = System.Text.Encoding.UTF8
         Dim HTML As String = ""
         Dim SnipIndex As Integer = -1
+
+        cbbMediaType.Text = Strings.Left(cbbMediaType.Text, 1) & Strings.Mid(cbbMediaType.Text, 2)
+
+        If cbbMediaType.Text.ToLower <> "anime" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "light novel" And cbbMediaType.Text.ToLower <> "web novel" And cbbMediaType.Text.ToLower <> "j-drama" And cbbMediaType.Text.ToLower <> "textbook" And cbbMediaType.Text.ToLower <> "vocabulary list" Then
+            cbbMediaType.Text = "All"
+        End If
 
         Dim MediaType As String = "All"
         MediaType = cbbMediaType.Text.Replace(" ", "-").ToLower.Replace("j-drama", "drama")
@@ -211,8 +229,12 @@ Public Class Form1
 
         Dim URLList As New List(Of String) From {}
         Dim SnipTemp As String
+        Dim NewContent As New Content
 
         Do Until HTML.Contains("margin-top: 0.5rem;") = False Or URLList.Count > 49
+            SnipIndex = HTML.IndexOf("<div style=" & QUOTE & "opacity: 0.5" & QUOTE & ">") + 25
+            HTML = Mid(HTML, SnipIndex)
+
             SnipIndex = HTML.IndexOf("top: 0.5rem;") + 25
             HTML = Mid(HTML, SnipIndex)
             SnipTemp = HTML
@@ -235,6 +257,7 @@ Public Class Form1
             End If
 
         Loop
+        lblResultCount.Show()
         lblResultCount.Text = "Results: " & lbResults.Items.Count
     End Sub
     Function LinkGet(ByVal NovelLink)
@@ -342,13 +365,10 @@ Public Class Form1
             KanjiIds.Add(Character)
         Next
 
-        Select Case MsgBox("Finished scraping words" & vbNewLine & vbNewLine & "Would you like to save the results to the downloads folder?", vbQuestion + vbYesNo + vbDefaultButton2, "Successfully scraped words")
+        Select Case MsgBox("Successfully Scraped " & WordIDs.Count & " kanji with the " & cbbFilterType.Text & " filter" & vbNewLine & vbNewLine & "Would you like to save the results to the downloads folder?", vbQuestion + vbYesNo + vbDefaultButton2, "Successful scraped kanji")
             Case vbYes
                 SaveToTXT(KanjiIds, "downloads", "kanji")
         End Select
-    End Sub
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        pbProgress.Hide()
     End Sub
     Private Sub lbResults_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbResults.SelectedIndexChanged
         Try
@@ -357,17 +377,16 @@ Public Class Form1
             Debug.WriteLine("Selected nothing")
         End Try
     End Sub
-    Private Sub tbxSearchBox_MouseClick(sender As Object, e As MouseEventArgs) Handles tbxSearchBox.MouseClick
-        pbProgress.Hide()
-    End Sub
     Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
-        pbProgress.Hide()
+        If Me.Size.Width < 500 Then
+            lblResultCount.Hide()
+        Else
+            lblResultCount.Show()
+        End If
     End Sub
-
     Private Sub cbbMediaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbMediaType.SelectedIndexChanged
         SearchDecks()
     End Sub
-
     Private Sub tbxSearchBox_TextChanged(sender As Object, e As EventArgs) Handles tbxSearchBox.TextChanged
         If tbxSearchBox.Text.Contains("https://") Then
             btnSearch.Text = "Scrape"
@@ -375,28 +394,70 @@ Public Class Form1
             btnSearch.Text = "Search"
         End If
     End Sub
+    Private Sub cbbSearchType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbSearchType.SelectedIndexChanged
+        Select Case cbbSearchType.SelectedItem
+            Case "Words"
+                SearchType = "Words"
+            Case "Kanji"
+                SearchType = "Kanji"
+        End Select
+    End Sub
+    Private Sub cbbMediaType_TextUpdate(sender As Object, e As EventArgs) Handles cbbMediaType.TextUpdate
+        If Strings.Left(cbbMediaType.Text.ToLower, 1) <> "a" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "v" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "l" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "w" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "j" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "t" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "n" Then
+            cbbMediaType.Text = ""
+        End If
 
-    Private Sub nbPageStart_ValueChanged(sender As Object, e As EventArgs) Handles nbPageStart.ValueChanged
+        If cbbMediaType.Text.ToLower = "n" Then
+            cbbMediaType.Text = "Visual Novel"
+            Me.lbResults.Focus()
+        ElseIf cbbMediaType.Text.ToLower = "vi" Then
+            cbbMediaType.Text = "Visual Novel"
+            Me.lbResults.Focus()
+        ElseIf cbbMediaType.Text.ToLower = "an" Then
+            cbbMediaType.Text = "Anime"
+            Me.lbResults.Focus()
+        ElseIf cbbMediaType.Text.ToLower = "l" Then
+            cbbMediaType.Text = "Light Novel"
+            Me.lbResults.Focus()
+        ElseIf cbbMediaType.Text.ToLower = "w" Then
+            cbbMediaType.Text = "web novel"
+            Me.lbResults.Focus()
+        ElseIf cbbMediaType.Text.ToLower = "j" Then
+            cbbMediaType.Text = "J-Drama"
+            Me.lbResults.Focus()
+        ElseIf cbbMediaType.Text.ToLower = "t" Then
+            cbbMediaType.Text = "Textbook"
+            Me.lbResults.Focus()
+        ElseIf cbbMediaType.Text.ToLower = "vo" Then
+            cbbMediaType.Text = "Vocabulary List"
+            Me.lbResults.Focus()
+        ElseIf cbbMediaType.Text.Length = 5 Then
+            cbbMediaType.Text = ""
+        End If
 
     End Sub
-
-    Private Sub cbbFilterType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbFilterType.SelectedIndexChanged
-
+    Private Sub cbbMediaType_Leave(sender As Object, e As EventArgs) Handles cbbMediaType.Leave
+        If cbbMediaType.Text.ToLower <> "anime" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "light novel" And cbbMediaType.Text.ToLower <> "web novel" And cbbMediaType.Text.ToLower <> "j-drama" And cbbMediaType.Text.ToLower <> "textbook" And cbbMediaType.Text.ToLower <> "vocabulary list" Then
+            cbbMediaType.Text = "All"
+        End If
     End Sub
-
-    Private Sub lblResultCount_Click(sender As Object, e As EventArgs) Handles lblResultCount.Click
-
+    Private Sub cbbSearchType_TextUpdate(sender As Object, e As EventArgs) Handles cbbSearchType.TextUpdate
+        If cbbSearchType.Text.ToLower.Contains("k") Then
+            cbbSearchType.Text = "Kanji"
+            Me.lbResults.Focus()
+        Else
+            cbbSearchType.Text = "Words"
+        End If
     End Sub
-
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
-
-    End Sub
-
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
+    Private Sub cbbFilterType_TextUpdate(sender As Object, e As EventArgs) Handles cbbFilterType.TextUpdate
+        If cbbFilterType.Text.ToLower.Contains("g") Then
+            cbbFilterType.Text = "DeckGlobal"
+            Me.lbResults.Focus()
+        ElseIf cbbFilterType.Text.ToLower.Contains("t") Then
+            cbbFilterType.Text = "Time"
+            Me.lbResults.Focus()
+        Else
+            cbbFilterType.Text = "DeckFreq"
+        End If
     End Sub
 End Class
