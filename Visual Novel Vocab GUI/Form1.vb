@@ -5,15 +5,19 @@ Public Class Form1
     Dim SearchType As String = "Words"
     Dim Reverse As Boolean = False
     Class Content
-        Dim Name As String = ""
-        Dim ContentType As String = "Anime"
-        Dim WordLength As Integer = 0
-        Dim UniqueWords As Integer = 0
-        Dim UniquePercent As Integer = 50
-        Dim UniqueKanji As Integer = 0
-        Dim Difficulty As String = "/10"
+        Public Name As String = ""
+        Public ContentType As String = "Anime"
+        Public WordLength As Integer = 0
+        Public UniqueWords As Integer = 0
+        Public UniqueWordsOnce As Integer = 0
+        Public OncePercentage As String = "50%"
+        Public UniqueKanji As Integer = 0
+        Public Difficulty As String = "/10"
+        Public DeckLink As String = ""
+        Public ImageURL As String = ""
     End Class
 
+    Dim ContentList As New List(Of Content) From {}
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         pbProgress.Hide()
         lblResultCount.Hide()
@@ -227,35 +231,97 @@ Public Class Form1
             End Try
         End Try
 
-        Dim URLList As New List(Of String) From {}
         Dim SnipTemp As String
         Dim NewContent As New Content
 
-        Do Until HTML.Contains("margin-top: 0.5rem;") = False Or URLList.Count > 49
-            SnipIndex = HTML.IndexOf("<div style=" & QUOTE & "opacity: 0.5" & QUOTE & ">") + 25
-            HTML = Mid(HTML, SnipIndex)
+        Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 49
+            Try
+                If HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") <> -1 Then
+                    'snipping image url:
+                    SnipIndex = HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") + 12
+                    HTML = Mid(HTML, SnipIndex)
+                    SnipTemp = HTML
+                    SnipIndex = SnipTemp.IndexOf(QUOTE)
+                    SnipTemp = "https://jpdb.io" & Strings.Left(HTML, SnipIndex)
+                    NewContent.ImageURL = Strings.Left(HTML, SnipIndex)
+                End If
 
-            SnipIndex = HTML.IndexOf("top: 0.5rem;") + 25
-            HTML = Mid(HTML, SnipIndex)
-            SnipTemp = HTML
+                'snipping content type:
+                SnipIndex = HTML.IndexOf("<div style=" & QUOTE & "opacity: 0.5" & QUOTE & ">") + 27
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.ContentType = Strings.Left(HTML, SnipIndex)
 
-            SnipIndex = SnipTemp.IndexOf("""")
-            SnipTemp = Strings.Left(HTML, SnipIndex)
+                'snipping content name:
+                SnipIndex = HTML.IndexOf("max-width: 30rem;" & QUOTE & ">") + 20
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                SnipTemp = Strings.Left(SnipTemp, SnipIndex)
+                SnipTemp = SnipTemp.Replace("&#39;", "'")
+                NewContent.Name = SnipTemp
 
-            If URLList.Count = 0 Then
+                'snipping "length (in words)":
+                SnipIndex = HTML.IndexOf("Length (in words)") + 27
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.WordLength = Strings.Left(HTML, SnipIndex)
+
+                'snipping "Unique words":
+                SnipIndex = HTML.IndexOf("Unique words") + 22
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.UniqueWords = Strings.Left(HTML, SnipIndex)
+
+                'snipping "Unique words (used once)":
+                SnipIndex = HTML.IndexOf("(used once)") + 21
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.UniqueWordsOnce = Strings.Left(HTML, SnipIndex)
+
+                'snipping "Unique kanji":
+                SnipIndex = HTML.IndexOf("(used once %)	") + 59
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.OncePercentage = Strings.Left(HTML, SnipIndex)
+
+                'snipping "Unique kanji":
+                SnipIndex = HTML.IndexOf("Unique kanji") + 22
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.UniqueKanji = Strings.Left(HTML, SnipIndex)
+
+                'snipping "difficulty":
+                SnipIndex = HTML.IndexOf("Difficulty</th>") + 20
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.Difficulty = Strings.Left(HTML, SnipIndex)
+
+                'snipping vocab deck link:
+                SnipIndex = HTML.IndexOf("top: 0.5rem;") + 25
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("""")
+                SnipTemp = Strings.Left(HTML, SnipIndex)
+                NewContent.DeckLink = "https://jpdb.io/" & SnipTemp
+            Catch ex As Exception
+                MsgBox("Something went wrong with getting information for some content, however the program will try to continue as normal" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical)
+                Continue Do
+            End Try
+
+            If ContentList.Count = 0 Then
                 lbResults.Items.Clear()
             End If
 
-            If MediaType = "all" Then
-                lbResults.Items.Add("https://jpdb.io/" & SnipTemp)
-                URLList.Add("https://jpdb.io/" & SnipTemp)
-            Else
-                If SnipTemp.Contains(MediaType & "/") = True Then
-                    lbResults.Items.Add("https://jpdb.io/" & SnipTemp)
-                    URLList.Add("https://jpdb.io/" & SnipTemp)
-                End If
-            End If
-
+            lbResults.Items.Add(NewContent.Name)
+            ContentList.Add(NewContent)
         Loop
         lblResultCount.Show()
         lblResultCount.Text = "Results: " & lbResults.Items.Count
@@ -372,7 +438,7 @@ Public Class Form1
     End Sub
     Private Sub lbResults_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbResults.SelectedIndexChanged
         Try
-            tbxSearchBox.Text = lbResults.Items(lbResults.SelectedIndex)
+            tbxSearchBox.Text = ContentList.Item(lbResults.SelectedIndex).DeckLink
         Catch ex As Exception
             Debug.WriteLine("Selected nothing")
         End Try
