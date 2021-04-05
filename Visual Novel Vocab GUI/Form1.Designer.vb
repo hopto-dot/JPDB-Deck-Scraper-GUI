@@ -43,8 +43,12 @@ Partial Class Form1
         Me.LeftToolStripPanel = New System.Windows.Forms.ToolStripPanel()
         Me.ContentPanel = New System.Windows.Forms.ToolStripContentPanel()
         Me.lbOutput = New System.Windows.Forms.ListBox()
+        Me.pbContentImage = New System.Windows.Forms.PictureBox()
+        Me.lblContentName = New System.Windows.Forms.Label()
+        Me.lblWordLength = New System.Windows.Forms.Label()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbxSearchBox
@@ -202,6 +206,22 @@ Partial Class Form1
         Me.lbOutput.FormattingEnabled = True
         Me.lbOutput.Name = "lbOutput"
         '
+        'pbContentImage
+        '
+        resources.ApplyResources(Me.pbContentImage, "pbContentImage")
+        Me.pbContentImage.Name = "pbContentImage"
+        Me.pbContentImage.TabStop = False
+        '
+        'lblContentName
+        '
+        resources.ApplyResources(Me.lblContentName, "lblContentName")
+        Me.lblContentName.Name = "lblContentName"
+        '
+        'lblWordLength
+        '
+        resources.ApplyResources(Me.lblWordLength, "lblWordLength")
+        Me.lblWordLength.Name = "lblWordLength"
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -209,6 +229,9 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Controls.Add(Me.lblWordLength)
+        Me.Controls.Add(Me.lblContentName)
+        Me.Controls.Add(Me.pbContentImage)
         Me.Controls.Add(Me.pbProgress)
         Me.Controls.Add(Me.lbOutput)
         Me.Controls.Add(Me.lblResultCount)
@@ -229,6 +252,7 @@ Partial Class Form1
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -254,4 +278,7 @@ Partial Class Form1
     Friend WithEvents LeftToolStripPanel As ToolStripPanel
     Friend WithEvents ContentPanel As ToolStripContentPanel
     Friend WithEvents lbOutput As ListBox
+    Friend WithEvents pbContentImage As PictureBox
+    Friend WithEvents lblContentName As Label
+    Friend WithEvents lblWordLength As Label
 End Class

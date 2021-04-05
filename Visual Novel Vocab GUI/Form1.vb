@@ -207,7 +207,12 @@ Public Class Form1
         Dim HTML As String = ""
         Dim SnipIndex As Integer = -1
 
+
+
         cbbMediaType.Text = Strings.Left(cbbMediaType.Text, 1) & Strings.Mid(cbbMediaType.Text, 2)
+
+        ContentList.Clear()
+        lbResults.Items.Clear()
 
         If cbbMediaType.Text.ToLower <> "anime" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "light novel" And cbbMediaType.Text.ToLower <> "web novel" And cbbMediaType.Text.ToLower <> "j-drama" And cbbMediaType.Text.ToLower <> "textbook" And cbbMediaType.Text.ToLower <> "vocabulary list" Then
             cbbMediaType.Text = "All"
@@ -232,9 +237,9 @@ Public Class Form1
         End Try
 
         Dim SnipTemp As String
-        Dim NewContent As New Content
 
         Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 49
+            Dim NewContent As New Content
             Try
                 If HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") <> -1 Then
                     'snipping image url:
@@ -243,7 +248,7 @@ Public Class Form1
                     SnipTemp = HTML
                     SnipIndex = SnipTemp.IndexOf(QUOTE)
                     SnipTemp = "https://jpdb.io" & Strings.Left(HTML, SnipIndex)
-                    NewContent.ImageURL = Strings.Left(HTML, SnipIndex)
+                    NewContent.ImageURL = SnipTemp
                 End If
 
                 'snipping content type:
@@ -439,6 +444,7 @@ Public Class Form1
     Private Sub lbResults_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbResults.SelectedIndexChanged
         Try
             tbxSearchBox.Text = ContentList.Item(lbResults.SelectedIndex).DeckLink
+            pbContentImage.Load(ContentList.Item(lbResults.SelectedIndex).ImageURL)
         Catch ex As Exception
             Debug.WriteLine("Selected nothing")
         End Try

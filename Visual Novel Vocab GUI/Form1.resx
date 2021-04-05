@@ -136,13 +136,13 @@
     <value>300</value>
   </data>
   <data name="tbxSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>538, 26</value>
+    <value>598, 26</value>
   </data>
   <data name="tbxSearchBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="tbxSearchBox.Text" xml:space="preserve">
-    <value>sakura</value>
+    <value>Sakurasou</value>
   </data>
   <data name="&gt;&gt;tbxSearchBox.Name" xml:space="preserve">
     <value>tbxSearchBox</value>
@@ -154,7 +154,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tbxSearchBox.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="cbbSearchType.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -193,7 +193,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbSearchType.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="btnSearch.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -232,7 +232,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="lbResults.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -250,7 +250,7 @@
     <value>8, 107</value>
   </data>
   <data name="lbResults.Size" type="System.Drawing.Size, System.Drawing">
-    <value>463, 324</value>
+    <value>475, 406</value>
   </data>
   <data name="lbResults.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -265,7 +265,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbResults.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="nbPageStart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -274,7 +274,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="nbPageStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>625, 10</value>
+    <value>685, 10</value>
   </data>
   <data name="nbPageStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -298,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nbPageStart.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="lblTo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -307,7 +307,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="lblTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>693, 13</value>
+    <value>753, 13</value>
   </data>
   <data name="lblTo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -331,7 +331,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblTo.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="nbPageEnd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -340,7 +340,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="nbPageEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>719, 10</value>
+    <value>779, 10</value>
   </data>
   <data name="nbPageEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -361,7 +361,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nbPageEnd.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="pbProgress.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -370,13 +370,13 @@
     <value>NoControl</value>
   </data>
   <data name="pbProgress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>635, 85</value>
+    <value>733, 85</value>
   </data>
   <data name="pbProgress.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="pbProgress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 17</value>
+    <value>112, 17</value>
   </data>
   <data name="pbProgress.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -391,7 +391,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbProgress.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="cbbFilterType.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -433,7 +433,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbFilterType.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -466,7 +466,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -499,7 +499,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="Label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -532,7 +532,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Label3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="cbbMediaType.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -589,7 +589,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbMediaType.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="lblResultCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -625,7 +625,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblResultCount.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="BottomToolStripPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -697,10 +697,10 @@
     <value>20</value>
   </data>
   <data name="lbOutput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>635, 107</value>
+    <value>733, 107</value>
   </data>
   <data name="lbOutput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 324</value>
+    <value>112, 406</value>
   </data>
   <data name="lbOutput.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -715,7 +715,94 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbOutput.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="pbContentImage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="pbContentImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>502, 274</value>
+  </data>
+  <data name="pbContentImage.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>200, 200</value>
+  </data>
+  <data name="pbContentImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 239</value>
+  </data>
+  <data name="pbContentImage.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pbContentImage.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;pbContentImage.Name" xml:space="preserve">
+    <value>pbContentImage</value>
+  </data>
+  <data name="&gt;&gt;pbContentImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pbContentImage.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pbContentImage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblContentName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14.25pt</value>
+  </data>
+  <data name="lblContentName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>499, 107</value>
+  </data>
+  <data name="lblContentName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 23</value>
+  </data>
+  <data name="lblContentName.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="lblContentName.Text" xml:space="preserve">
+    <value>[content name]</value>
+  </data>
+  <data name="&gt;&gt;lblContentName.Name" xml:space="preserve">
+    <value>lblContentName</value>
+  </data>
+  <data name="&gt;&gt;lblContentName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblContentName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblContentName.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="lblWordLength.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="lblWordLength.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblWordLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>499, 139</value>
+  </data>
+  <data name="lblWordLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 23</value>
+  </data>
+  <data name="lblWordLength.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="lblWordLength.Text" xml:space="preserve">
+    <value>Word Length: [length]</value>
+  </data>
+  <data name="&gt;&gt;lblWordLength.Name" xml:space="preserve">
+    <value>lblWordLength</value>
+  </data>
+  <data name="&gt;&gt;lblWordLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblWordLength.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblWordLength.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -724,7 +811,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>793, 440</value>
+    <value>853, 522</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5065,7 +5152,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>418, 230</value>
+    <value>850, 230</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
