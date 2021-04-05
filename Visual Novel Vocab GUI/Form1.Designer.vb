@@ -46,6 +46,11 @@ Partial Class Form1
         Me.pbContentImage = New System.Windows.Forms.PictureBox()
         Me.lblContentName = New System.Windows.Forms.Label()
         Me.lblWordLength = New System.Windows.Forms.Label()
+        Me.lblUniqueWords = New System.Windows.Forms.Label()
+        Me.lblUsedOnce = New System.Windows.Forms.Label()
+        Me.lblUsedOncePcent = New System.Windows.Forms.Label()
+        Me.lblUniqueKanji = New System.Windows.Forms.Label()
+        Me.lblDifficulty = New System.Windows.Forms.Label()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,6 +227,31 @@ Partial Class Form1
         resources.ApplyResources(Me.lblWordLength, "lblWordLength")
         Me.lblWordLength.Name = "lblWordLength"
         '
+        'lblUniqueWords
+        '
+        resources.ApplyResources(Me.lblUniqueWords, "lblUniqueWords")
+        Me.lblUniqueWords.Name = "lblUniqueWords"
+        '
+        'lblUsedOnce
+        '
+        resources.ApplyResources(Me.lblUsedOnce, "lblUsedOnce")
+        Me.lblUsedOnce.Name = "lblUsedOnce"
+        '
+        'lblUsedOncePcent
+        '
+        resources.ApplyResources(Me.lblUsedOncePcent, "lblUsedOncePcent")
+        Me.lblUsedOncePcent.Name = "lblUsedOncePcent"
+        '
+        'lblUniqueKanji
+        '
+        resources.ApplyResources(Me.lblUniqueKanji, "lblUniqueKanji")
+        Me.lblUniqueKanji.Name = "lblUniqueKanji"
+        '
+        'lblDifficulty
+        '
+        resources.ApplyResources(Me.lblDifficulty, "lblDifficulty")
+        Me.lblDifficulty.Name = "lblDifficulty"
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -229,6 +259,11 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Controls.Add(Me.lblDifficulty)
+        Me.Controls.Add(Me.lblUniqueKanji)
+        Me.Controls.Add(Me.lblUsedOncePcent)
+        Me.Controls.Add(Me.lblUsedOnce)
+        Me.Controls.Add(Me.lblUniqueWords)
         Me.Controls.Add(Me.lblWordLength)
         Me.Controls.Add(Me.lblContentName)
         Me.Controls.Add(Me.pbContentImage)
@@ -281,4 +316,9 @@ Partial Class Form1
     Friend WithEvents pbContentImage As PictureBox
     Friend WithEvents lblContentName As Label
     Friend WithEvents lblWordLength As Label
+    Friend WithEvents lblUniqueWords As Label
+    Friend WithEvents lblUsedOnce As Label
+    Friend WithEvents lblUsedOncePcent As Label
+    Friend WithEvents lblUniqueKanji As Label
+    Friend WithEvents lblDifficulty As Label
 End Class

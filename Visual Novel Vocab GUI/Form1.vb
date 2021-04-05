@@ -444,7 +444,17 @@ Public Class Form1
     Private Sub lbResults_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbResults.SelectedIndexChanged
         Try
             tbxSearchBox.Text = ContentList.Item(lbResults.SelectedIndex).DeckLink
-            pbContentImage.Load(ContentList.Item(lbResults.SelectedIndex).ImageURL)
+            Try
+                pbContentImage.Load(ContentList.Item(lbResults.SelectedIndex).ImageURL)
+            Catch ex As Exception
+            End Try
+            lblContentName.Text = ContentList.Item(lbResults.SelectedIndex).Name
+            lblWordLength.Text = "Word Length: " & ContentList.Item(lbResults.SelectedIndex).WordLength
+            lblUniqueWords.Text = "Unique Words: " & ContentList.Item(lbResults.SelectedIndex).UniqueWords
+            lblUsedOnce.Text = "Used Once: " & ContentList.Item(lbResults.SelectedIndex).UniqueWordsOnce
+            lblUsedOncePcent.Text = "Used Once %: " & ContentList.Item(lbResults.SelectedIndex).OncePercentage
+            lblUniqueKanji.Text = "Unique Kanji: " & ContentList.Item(lbResults.SelectedIndex).UniqueKanji
+            lblDifficulty.Text = "Difficulty: " & ContentList.Item(lbResults.SelectedIndex).Difficulty
         Catch ex As Exception
             Debug.WriteLine("Selected nothing")
         End Try
