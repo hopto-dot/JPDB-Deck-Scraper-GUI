@@ -120,8 +120,8 @@ Partial Class Form1
         '
         'pbProgress
         '
-        resources.ApplyResources(Me.pbProgress, "pbProgress")
         Me.pbProgress.ForeColor = System.Drawing.SystemColors.Control
+        resources.ApplyResources(Me.pbProgress, "pbProgress")
         Me.pbProgress.MarqueeAnimationSpeed = 0
         Me.pbProgress.Maximum = 50
         Me.pbProgress.Name = "pbProgress"

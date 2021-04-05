@@ -22,6 +22,14 @@ Public Class Form1
         pbProgress.Hide()
         lblResultCount.Hide()
         lblResultCount.Text = ""
+
+        lblContentName.Text = "Name: "
+        lblWordLength.Text = "Word Length: "
+        lblUniqueWords.Text = "Unique Words: "
+        lblUsedOnce.Text = "Used Once: "
+        lblUsedOncePcent.Text = "Used Once (%): "
+        lblUniqueKanji.Text = "Unique Kanji: "
+        lblDifficulty.Text = "Difficulty: "
     End Sub
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim PageStart As Integer = nbPageStart.Value
@@ -443,18 +451,28 @@ Public Class Form1
     End Sub
     Private Sub lbResults_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbResults.SelectedIndexChanged
         Try
+            lblContentName.Cursor = Cursors.Hand
+            pbContentImage.Cursor = Cursors.Hand
             tbxSearchBox.Text = ContentList.Item(lbResults.SelectedIndex).DeckLink
             Try
                 pbContentImage.Load(ContentList.Item(lbResults.SelectedIndex).ImageURL)
             Catch ex As Exception
             End Try
+
             lblContentName.Text = ContentList.Item(lbResults.SelectedIndex).Name
             lblWordLength.Text = "Word Length: " & ContentList.Item(lbResults.SelectedIndex).WordLength
             lblUniqueWords.Text = "Unique Words: " & ContentList.Item(lbResults.SelectedIndex).UniqueWords
             lblUsedOnce.Text = "Used Once: " & ContentList.Item(lbResults.SelectedIndex).UniqueWordsOnce
-            lblUsedOncePcent.Text = "Used Once %: " & ContentList.Item(lbResults.SelectedIndex).OncePercentage
+            lblUsedOncePcent.Text = "Used Once (%): " & ContentList.Item(lbResults.SelectedIndex).OncePercentage
             lblUniqueKanji.Text = "Unique Kanji: " & ContentList.Item(lbResults.SelectedIndex).UniqueKanji
             lblDifficulty.Text = "Difficulty: " & ContentList.Item(lbResults.SelectedIndex).Difficulty
+
+            Dim CompareValue As Integer = ContentList.Item(lbResults.SelectedIndex).WordLength
+
+            If CompareValue < 35000 Then
+                lblWordLength.ForeColor = Color.Lime
+            End If
+
         Catch ex As Exception
             Debug.WriteLine("Selected nothing")
         End Try
@@ -541,5 +559,18 @@ Public Class Form1
         Else
             cbbFilterType.Text = "DeckFreq"
         End If
+    End Sub
+
+    Private Sub lblContentName_Click(sender As Object, e As EventArgs) Handles lblContentName.Click
+        Try
+            Process.Start(ContentList.Item(lbResults.SelectedIndex).DeckLink)
+        Catch ex As Exception
+        End Try
+    End Sub
+    Private Sub pbContentImage_Click(sender As Object, e As EventArgs) Handles pbContentImage.Click
+        Try
+            Process.Start("https://www.google.co.jp/search?q=" & ContentList.Item(lbResults.SelectedIndex).Name)
+        Catch ex As Exception
+        End Try
     End Sub
 End Class
