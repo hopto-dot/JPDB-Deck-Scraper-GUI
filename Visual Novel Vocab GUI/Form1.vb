@@ -6,13 +6,13 @@ Public Class Form1
     Dim Reverse As Boolean = False
     Class Content
         Public Name As String = ""
-        Public ContentType As String = "Anime"
+        Public ContentType As String = "?"
         Public WordLength As Integer = 0
         Public UniqueWords As Integer = 0
         Public UniqueWordsOnce As Integer = 0
-        Public OncePercentage As String = "50%"
+        Public OncePercentage As String = "?"
         Public UniqueKanji As Integer = 0
-        Public Difficulty As String = "/10"
+        Public Difficulty As String = "?"
         Public DeckLink As String = ""
         Public ImageURL As String = ""
     End Class
@@ -274,7 +274,7 @@ Public Class Form1
                 SnipTemp = HTML
                 SnipIndex = SnipTemp.IndexOf("<")
                 SnipTemp = Strings.Left(SnipTemp, SnipIndex)
-                SnipTemp = SnipTemp.Replace("&#39;", "'")
+                SnipTemp = SnipTemp.Replace("&#39;", "'").Replace("&quot;", QUOTE)
                 NewContent.Name = SnipTemp
 
                 'snipping "length (in words)":
@@ -310,7 +310,7 @@ Public Class Form1
                 End If
 
                 'snipping "Unique words (used once %)":
-                If HTML.IndexOf("(used once %)	") <> -1 Then
+                If HTML.IndexOf("(used once %)") <> -1 Then
                     SnipIndex = HTML.IndexOf("(used once %)	") + 59
                     HTML = Mid(HTML, SnipIndex)
                     SnipTemp = HTML
@@ -494,13 +494,13 @@ Public Class Form1
 
             Dim CompareValue As Integer = ContentList.Item(lbResults.SelectedIndex).WordLength
             If CompareValue < 20000 Then 'green 0-20,000
-                lblWordLength.ForeColor = Color.Lime
+                lblWordLength.ForeColor = Color.FromArgb(0, 179, 0)
             ElseIf CompareValue >= 20000 And CompareValue < 40000 Then 'light green 20,000-40,000
-                lblWordLength.ForeColor = Color.FromArgb(128, 255, 128)
+                lblWordLength.ForeColor = Color.FromArgb(153, 255, 102)
             ElseIf CompareValue >= 40000 And CompareValue < 70000 Then 'yellow 40,000-70,000
                 lblWordLength.ForeColor = Color.FromArgb(255, 255, 128)
             ElseIf CompareValue >= 70000 And CompareValue < 150000 Then 'orange 70,000-150,000
-                lblWordLength.ForeColor = Color.FromArgb(255, 192, 128)
+                lblWordLength.ForeColor = Color.FromArgb(255, 128, 0)
             ElseIf CompareValue >= 150000 And CompareValue < 400000 Then 'red 150,000-400,000
                 lblWordLength.ForeColor = Color.FromArgb(255, 128, 128)
             ElseIf CompareValue >= 400000 Then 'dark red 400,000+
@@ -511,13 +511,13 @@ Public Class Form1
 
             CompareValue = ContentList.Item(lbResults.SelectedIndex).UniqueWords
             If CompareValue < 1500 Then 'green 0-1500
-                lblUniqueWords.ForeColor = Color.Lime
+                lblUniqueWords.ForeColor = Color.FromArgb(0, 179, 0)
             ElseIf CompareValue >= 1500 And CompareValue < 6500 Then 'light green 1500-6500
-                lblUniqueWords.ForeColor = Color.FromArgb(128, 255, 128)
+                lblUniqueWords.ForeColor = Color.FromArgb(153, 255, 102)
             ElseIf CompareValue >= 6500 And CompareValue < 8000 Then 'yellow 6500-8000
                 lblUniqueWords.ForeColor = Color.FromArgb(255, 255, 128)
             ElseIf CompareValue >= 8000 And CompareValue < 10000 Then 'orange 8000-10,000
-                lblUniqueWords.ForeColor = Color.FromArgb(255, 192, 128)
+                lblUniqueWords.ForeColor = Color.FromArgb(255, 128, 0)
             ElseIf CompareValue >= 10000 And CompareValue < 15000 Then 'red 10,000-15,000
                 lblUniqueWords.ForeColor = Color.FromArgb(255, 128, 128)
             ElseIf CompareValue >= 15000 Then 'dark red 15,000+
@@ -526,21 +526,34 @@ Public Class Form1
                 lblUniqueWords.ForeColor = Color.White
             End If
 
+            CompareValue = ContentList.Item(lbResults.SelectedIndex).UniqueWordsOnce
+            If CompareValue < 1000 Then 'green 0-800
+                lblUsedOnce.ForeColor = Color.FromArgb(0, 179, 0)
+            ElseIf CompareValue >= 1000 And CompareValue < 1700 Then 'light green 1000-1700
+                lblUsedOnce.ForeColor = Color.FromArgb(153, 255, 102)
+            ElseIf CompareValue >= 1700 And CompareValue < 2300 Then 'yellow 1700-2300
+                lblUsedOnce.ForeColor = Color.FromArgb(255, 255, 128)
+            ElseIf CompareValue >= 2300 And CompareValue < 2700 Then 'orange 2300-2700
+                lblUsedOnce.ForeColor = Color.FromArgb(255, 128, 0)
+            ElseIf CompareValue >= 2700 And CompareValue < 3200 Then 'red 2700-3200
+                lblUsedOnce.ForeColor = Color.FromArgb(255, 128, 128)
+            ElseIf CompareValue >= 3200 Then '3200+
+                lblUsedOnce.ForeColor = Color.Red
+            Else
+                lblUsedOnce.ForeColor = Color.White
+            End If
+
+
             CompareValue = ContentList.Item(lbResults.SelectedIndex).OncePercentage.Replace("%", "")
             If CompareValue < 40 Then 'green 0-40
-                lblUsedOnce.ForeColor = Color.Lime
-                lblUsedOncePcent.ForeColor = Color.Lime
+                lblUsedOncePcent.ForeColor = Color.FromArgb(0, 179, 0)
             ElseIf CompareValue >= 40 And CompareValue < 55 Then 'light green 40-55
-                lblUsedOnce.ForeColor = Color.FromArgb(128, 255, 128)
-                lblUsedOncePcent.ForeColor = Color.FromArgb(128, 255, 128)
+                lblUsedOncePcent.ForeColor = Color.FromArgb(153, 255, 102)
             ElseIf CompareValue >= 55 And CompareValue < 58 Then 'yellow 55-58
-                lblUsedOnce.ForeColor = Color.FromArgb(255, 255, 128)
                 lblUsedOncePcent.ForeColor = Color.FromArgb(255, 255, 128)
             ElseIf CompareValue >= 58 And CompareValue < 63 Then 'orange 58-63
-                lblUsedOnce.ForeColor = Color.FromArgb(255, 192, 128)
-                lblUsedOncePcent.ForeColor = Color.FromArgb(255, 192, 128)
+                lblUsedOncePcent.ForeColor = Color.FromArgb(255, 128, 0)
             ElseIf CompareValue >= 63 And CompareValue < 66 Then 'red 63-66
-                lblUsedOnce.ForeColor = Color.FromArgb(255, 128, 128)
                 lblUsedOncePcent.ForeColor = Color.FromArgb(255, 128, 128)
             ElseIf CompareValue >= 66 Then '66+
                 lblUsedOncePcent.ForeColor = Color.Red
@@ -549,17 +562,17 @@ Public Class Form1
             End If
 
             CompareValue = ContentList.Item(lbResults.SelectedIndex).UniqueKanji
-            If CompareValue < 1000 Then 'green 0-1000
-                lblUniqueKanji.ForeColor = Color.Lime
-            ElseIf CompareValue >= 1000 And CompareValue < 1500 Then 'light green 1000-1500
-                lblUniqueKanji.ForeColor = Color.FromArgb(128, 255, 128)
-            ElseIf CompareValue >= 1500 And CompareValue < 1700 Then 'yellow 1500-1700
+            If CompareValue < 900 Then 'green 0-900
+                lblUniqueKanji.ForeColor = Color.FromArgb(0, 179, 0)
+            ElseIf CompareValue >= 900 And CompareValue < 1200 Then 'light green 900-1200
+                lblUniqueKanji.ForeColor = Color.FromArgb(153, 255, 102)
+            ElseIf CompareValue >= 1200 And CompareValue < 1500 Then 'yellow 1300-1500
                 lblUniqueKanji.ForeColor = Color.FromArgb(255, 255, 128)
-            ElseIf CompareValue >= 1700 And CompareValue < 2400 Then 'orange 1700-2400
-                lblUniqueKanji.ForeColor = Color.FromArgb(255, 192, 128)
-            ElseIf CompareValue >= 2400 And CompareValue < 2700 Then 'red 2400-2700
+            ElseIf CompareValue >= 1500 And CompareValue < 2200 Then 'orange 1500-2200
+                lblUniqueKanji.ForeColor = Color.FromArgb(255, 128, 0)
+            ElseIf CompareValue >= 2200 And CompareValue < 2500 Then 'red 2200-2500
                 lblUniqueKanji.ForeColor = Color.FromArgb(255, 128, 128)
-            ElseIf CompareValue >= 2700 Then 'dark red 2700+
+            ElseIf CompareValue >= 2500 Then 'dark red 2500+
                 lblUniqueKanji.ForeColor = Color.Red
             Else
                 lblUniqueWords.ForeColor = Color.White
@@ -567,13 +580,13 @@ Public Class Form1
 
             CompareValue = ContentList.Item(lbResults.SelectedIndex).Difficulty.Replace("/10", "")
             If CompareValue < 3 Then 'green 1-2
-                lblDifficulty.ForeColor = Color.Lime
+                lblDifficulty.ForeColor = Color.FromArgb(0, 179, 0)
             ElseIf CompareValue >= 3 And CompareValue < 5 Then 'light green 3-4
-                lblDifficulty.ForeColor = Color.FromArgb(128, 255, 128)
+                lblDifficulty.ForeColor = Color.FromArgb(153, 255, 102)
             ElseIf CompareValue >= 5 And CompareValue < 6 Then 'yellow 5
                 lblDifficulty.ForeColor = Color.FromArgb(255, 255, 128)
             ElseIf CompareValue >= 6 And CompareValue < 8 Then 'orange 6-7
-                lblDifficulty.ForeColor = Color.FromArgb(255, 192, 128)
+                lblDifficulty.ForeColor = Color.FromArgb(255, 128, 0)
             ElseIf CompareValue >= 8 And CompareValue < 11 Then 'red 8-10
                 lblDifficulty.ForeColor = Color.FromArgb(255, 128, 128)
             ElseIf CompareValue >= 11 Then 'dark red 11
@@ -669,7 +682,6 @@ Public Class Form1
             cbbFilterType.Text = "DeckFreq"
         End If
     End Sub
-
     Private Sub lblContentName_Click(sender As Object, e As EventArgs) Handles lblContentName.Click
         Try
             Process.Start(ContentList.Item(lbResults.SelectedIndex).DeckLink)
