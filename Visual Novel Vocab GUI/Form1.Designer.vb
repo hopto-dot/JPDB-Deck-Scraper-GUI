@@ -33,7 +33,6 @@ Partial Class Form1
         Me.pbProgress = New System.Windows.Forms.ProgressBar()
         Me.cbbFilterType = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cbbMediaType = New System.Windows.Forms.ComboBox()
         Me.lblResultCount = New System.Windows.Forms.Label()
@@ -53,6 +52,9 @@ Partial Class Form1
         Me.lblDifficulty = New System.Windows.Forms.Label()
         Me.btnCopy = New System.Windows.Forms.Button()
         Me.lblContentType = New System.Windows.Forms.Label()
+        Me.cbbSearchOrdering = New System.Windows.Forms.ComboBox()
+        Me.cbSearchReverse = New System.Windows.Forms.CheckBox()
+        Me.btnSaveOutput = New System.Windows.Forms.Button()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,11 +146,6 @@ Partial Class Form1
         '
         resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
-        '
-        'Label2
-        '
-        resources.ApplyResources(Me.Label2, "Label2")
-        Me.Label2.Name = "Label2"
         '
         'Label3
         '
@@ -266,6 +263,33 @@ Partial Class Form1
         resources.ApplyResources(Me.lblContentType, "lblContentType")
         Me.lblContentType.Name = "lblContentType"
         '
+        'cbbSearchOrdering
+        '
+        Me.cbbSearchOrdering.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cbbSearchOrdering.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbbSearchOrdering.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.cbbSearchOrdering.Cursor = System.Windows.Forms.Cursors.Default
+        resources.ApplyResources(Me.cbbSearchOrdering, "cbbSearchOrdering")
+        Me.cbbSearchOrdering.ForeColor = System.Drawing.SystemColors.InactiveBorder
+        Me.cbbSearchOrdering.FormattingEnabled = True
+        Me.cbbSearchOrdering.Items.AddRange(New Object() {resources.GetString("cbbSearchOrdering.Items"), resources.GetString("cbbSearchOrdering.Items1"), resources.GetString("cbbSearchOrdering.Items2"), resources.GetString("cbbSearchOrdering.Items3"), resources.GetString("cbbSearchOrdering.Items4")})
+        Me.cbbSearchOrdering.Name = "cbbSearchOrdering"
+        '
+        'cbSearchReverse
+        '
+        resources.ApplyResources(Me.cbSearchReverse, "cbSearchReverse")
+        Me.cbSearchReverse.Name = "cbSearchReverse"
+        Me.cbSearchReverse.UseVisualStyleBackColor = True
+        '
+        'btnSaveOutput
+        '
+        resources.ApplyResources(Me.btnSaveOutput, "btnSaveOutput")
+        Me.btnSaveOutput.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.btnSaveOutput.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSaveOutput.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnSaveOutput.Name = "btnSaveOutput"
+        Me.btnSaveOutput.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -273,6 +297,8 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Controls.Add(Me.btnSaveOutput)
+        Me.Controls.Add(Me.cbSearchReverse)
         Me.Controls.Add(Me.btnCopy)
         Me.Controls.Add(Me.lblDifficulty)
         Me.Controls.Add(Me.lblUniqueKanji)
@@ -287,8 +313,8 @@ Partial Class Form1
         Me.Controls.Add(Me.lbOutput)
         Me.Controls.Add(Me.lblResultCount)
         Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.cbbSearchOrdering)
         Me.Controls.Add(Me.cbbMediaType)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cbbFilterType)
         Me.Controls.Add(Me.nbPageEnd)
@@ -319,7 +345,6 @@ Partial Class Form1
     Friend WithEvents pbProgress As ProgressBar
     Friend WithEvents cbbFilterType As ComboBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents cbbMediaType As ComboBox
     Friend WithEvents lblResultCount As Label
@@ -339,4 +364,7 @@ Partial Class Form1
     Friend WithEvents lblDifficulty As Label
     Friend WithEvents btnCopy As Button
     Friend WithEvents lblContentType As Label
+    Friend WithEvents cbbSearchOrdering As ComboBox
+    Friend WithEvents cbSearchReverse As CheckBox
+    Friend WithEvents btnSaveOutput As Button
 End Class

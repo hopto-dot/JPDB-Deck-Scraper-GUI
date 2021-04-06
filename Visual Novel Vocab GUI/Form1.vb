@@ -18,6 +18,7 @@ Public Class Form1
     End Class
 
     Dim ContentList As New List(Of Content) From {}
+    Dim LastScrapeName As String = ""
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         pbProgress.Hide()
         lblResultCount.Hide()
@@ -37,6 +38,7 @@ Public Class Form1
         Dim PageEnd As Integer = nbPageEnd.Value
         Dim FilterType As String = cbbFilterType.Text
         Dim NovelLink As String = tbxSearchBox.Text
+        tbxSearchBox.Text = tbxSearchBox.Text.Replace("", "")
         lbOutput.Items.Clear()
 
         Debug.WriteLine("Scraping {3} from {0}-{1} with filter {2}", PageStart, PageEnd, FilterType, cbbSearchType.Text)
@@ -47,7 +49,7 @@ Public Class Form1
 
         Dim OriginalFilter As String = FilterType
         Dim ScrapeKanji As Boolean = False
-        If Strings.Left(FilterType, 1) = "k" Then
+        If Strings.Left(cbbSearchType.Text, 1) = "K" Then
             ScrapeKanji = True
         End If
 
@@ -105,15 +107,19 @@ Public Class Form1
             FilterType = FilterType.Replace("offset=", "order=reverse&offset=")
         End If
 
-        Dim NovelName As String = BaseURL
         Try
-            NovelName = NovelName.Replace("https://jpdb.io/visual-novel/", "").Replace("https://jpdb.io/anime/", "")
-            SnipIndex = NovelName.IndexOf("/") + 2
-            NovelName = Mid(NovelName, SnipIndex)
-            NovelName = NovelName.Replace("/vocabulary-list", "")
+            LastScrapeName = ContentList.Item(lbResults.SelectedIndex).Name
         Catch ex As Exception
-            MsgBox(ex.Message)
-            Exit Sub
+            Try
+                LastScrapeName = BaseURL
+                LastScrapeName = LastScrapeName.Replace("https://jpdb.io/visual-novel/", "").Replace("https://jpdb.io/anime/", "")
+                SnipIndex = LastScrapeName.IndexOf("/") + 2
+                LastScrapeName = Mid(LastScrapeName, SnipIndex)
+                LastScrapeName = LastScrapeName.Replace("/vocabulary-list", "")
+            Catch ex2 As Exception
+                MsgBox(ex2.Message)
+                Exit Sub
+            End Try
         End Try
 
         'lbResults.Items.Clear()
@@ -166,7 +172,9 @@ Public Class Form1
                 If WordTemp.Contains(">") = False And WordTemp.Contains("<") = False And WordTemp.Contains("=") = False And WordTemp.Contains("-") = False Then
                     Try
                         WordIDs.Add(WordTemp)
-                        lbOutput.Items.Add(WordTemp)
+                        If ScrapeKanji = False Then
+                            lbOutput.Items.Add(WordTemp)
+                        End If
                     Catch ex As Exception
                         Continue Do
                     End Try
@@ -180,7 +188,7 @@ Public Class Form1
         Loop
 
         If System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Contains("Debug") = True Then
-            SaveToTXT(WordIDs, "program", NovelName)
+            SaveToTXT(WordIDs, "program", LastScrapeName)
         End If
 
         pbProgress.Value = 50
@@ -197,15 +205,15 @@ Public Class Form1
                 'MsgBox("Successfully Scraped " & WordIDs.Count & " words from " & PageStart & "-" & PageInterval & " of deck " & NovelName & " with the " & FilterType.Replace("?sort_by=by-frequency-local&offset=", "frequency") & " filter")
             End If
         Else
-            Debug.WriteLine("Only scraped {3} words from {0}-{1} of {4} with the {2} filter", PageStart, PageInterval, FilterType.Replace("?sort_by=by-frequency-local&offset=", "frequency"), WordIDs.Count, NovelName)
+            Debug.WriteLine("Only scraped {3} words from {0}-{1} of {4} with the {2} filter", PageStart, PageInterval, FilterType.Replace("?sort_by=by-frequency-local&offset=", "frequency"), WordIDs.Count, LastScrapeName)
             MsgBox("Didn't scrape any words")
             Debug.WriteLine(URL)
             Return
         End If
 
-        Select Case MsgBox("Successfully Scraped " & WordIDs.Count & " words from " & PageStart & "-" & PageInterval & " of deck " & NovelName & " with the " & FilterType.Replace("?sort_by=by-frequency-local&offset=", "frequency") & " filter" & vbNewLine & vbNewLine & "Would you like to save the results to the downloads folder?", vbQuestion + vbYesNo + vbDefaultButton2, "Successful scraped words")
+        Select Case MsgBox("Successfully Scraped " & WordIDs.Count & " words from " & PageStart & "-" & PageInterval & " of deck " & LastScrapeName & " with the " & FilterType.Replace("?sort_by=by-frequency-local&offset=", "frequency") & " filter" & vbNewLine & vbNewLine & "Would you like to save the results to the downloads folder?", vbQuestion + vbYesNo + vbDefaultButton2, "Successful scraped words")
             Case vbYes
-                SaveToTXT(WordIDs, "downloads", NovelName)
+                SaveToTXT(WordIDs, "downloads", LastScrapeName)
         End Select
         pbProgress.Hide()
     End Sub
@@ -229,16 +237,29 @@ Public Class Form1
         Dim MediaType As String = "All"
         MediaType = cbbMediaType.Text.ToLower
         MediaType = MediaType.Replace("j-drama", "drama")
+        MediaType = "&show_only=" & MediaType.Replace(" ", "_").ToLower
+        If MediaType.Contains("all") Then
+            MediaType = ""
+        End If
 
-        Dim MediaTypeFilter As String = "&show_only=" & MediaType.Replace(" ", "_")
-        Dim URL As String = "https://jpdb.io/prebuilt_decks?q=" & tbxSearchBox.Text & MediaTypeFilter.ToLower ' & "#a"
+        Dim SearchOrdering As String = cbbSearchOrdering.Text.Replace(" ", "_")
+        If cbbMediaType.Text.ToLower = "textbook" Then
+            SearchOrdering = "name"
+        End If
+        SearchOrdering = "&sort_by=" & SearchOrdering.ToLower
+        If cbSearchReverse.Checked = True Then
+            SearchOrdering &= "&order=reverse"
+        End If
+
+        Dim URL As String = "https://jpdb.io/prebuilt_decks?q=" & tbxSearchBox.Text & MediaType & SearchOrdering
         Try
             HTML = Client.DownloadString(New Uri(URL))
             Debug.WriteLine("First client URL")
         Catch ex As Exception
             Try
-                URL = "https://jpdb.io/prebuilt_decks?q=" & tbxSearchBox.Text & "#a"
+                URL = "https://jpdb.io/prebuilt_decks?q=" & tbxSearchBox.Text & "&sort_by=difficulty"
                 HTML = Client.DownloadString(New Uri(URL))
+                Debug.WriteLine("Search filter failed")
             Catch ex2 As Exception
                 MsgBox(ex.Message & vbNewLine & vbNewLine & "Failed to process search URL")
                 Exit Sub
@@ -247,7 +268,7 @@ Public Class Form1
 
         Dim SnipTemp As String
 
-        Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 49
+        Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 50
             Dim NewContent As New Content
             Try
                 If HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") <> -1 Then
@@ -395,16 +416,13 @@ Public Class Form1
 
         Dim path As String = ""
         Dim prefix As String = "VocabOutput"
-        If DeckName = "kanji" Then
-            prefix = "KanjiOutput"
-        End If
 
         If SaveType = "downloads" Then
-            path = Environ("USERPROFILE") & "\Downloads\" & prefix & RanInt & ".txt"
+            path = Environ("USERPROFILE") & "\Downloads\" & DeckName & "_Scrape.txt"
         ElseIf SaveType = "program" Then
-            path = "VocabOutput.txt"
+            path = "Output.txt"
         Else
-            path = Environ("USERPROFILE") & "\Downloads\" & prefix & RanInt & ".txt"
+            path = Environ("USERPROFILE") & "\Downloads\" & DeckName & "_Scrape.txt"
         End If
 
         Try
@@ -464,11 +482,12 @@ Public Class Form1
         Dim KanjiIds As New List(Of String) From {}
         For Each Character In UniqueKanjiString
             KanjiIds.Add(Character)
+            lbOutput.Items.Add(Character)
         Next
 
         Select Case MsgBox("Successfully Scraped " & WordIDs.Count & " kanji with the " & cbbFilterType.Text & " filter" & vbNewLine & vbNewLine & "Would you like to save the results to the downloads folder?", vbQuestion + vbYesNo + vbDefaultButton2, "Successful scraped kanji")
             Case vbYes
-                SaveToTXT(KanjiIds, "downloads", "kanji")
+                SaveToTXT(KanjiIds, "downloads", LastScrapeName)
         End Select
     End Sub
     Private Sub lbResults_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbResults.SelectedIndexChanged
@@ -542,7 +561,6 @@ Public Class Form1
                 lblUsedOnce.ForeColor = Color.White
             End If
 
-
             CompareValue = ContentList.Item(lbResults.SelectedIndex).OncePercentage.Replace("%", "")
             If CompareValue < 40 Then 'green 0-40
                 lblUsedOncePcent.ForeColor = Color.FromArgb(0, 179, 0)
@@ -604,8 +622,26 @@ Public Class Form1
         Else
             lblResultCount.Show()
         End If
+        If Me.Height < 661 Then
+            pbContentImage.Height = Me.Height - 351
+            pbContentImage.Width = pbContentImage.Height / 1.29
+        Else
+            pbContentImage.Height = 309
+            pbContentImage.Width = 239
+        End If
+        If pbContentImage.Height < 2 Then
+            pbContentImage.Visible = False
+        Else
+            pbContentImage.Visible = True
+        End If
+        If Me.Width < 643 Then
+            cbSearchReverse.Visible = False
+        Else
+            cbSearchReverse.Visible = True
+        End If
     End Sub
-    Private Sub cbbMediaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbMediaType.SelectedIndexChanged
+
+    Private Sub cbbMediaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbMediaType.SelectedIndexChanged, cbbSearchOrdering.SelectedIndexChanged
         If tbxSearchBox.Text.Contains("https://") = True Then
             tbxSearchBox.Text = ""
         End If
@@ -626,7 +662,7 @@ Public Class Form1
                 SearchType = "Kanji"
         End Select
     End Sub
-    Private Sub cbbMediaType_TextUpdate(sender As Object, e As EventArgs) Handles cbbMediaType.TextUpdate
+    Private Sub cbbMediaType_TextUpdate(sender As Object, e As EventArgs) Handles cbbMediaType.TextUpdate, cbbSearchOrdering.TextUpdate
 
 
         If Strings.Left(cbbMediaType.Text.ToLower, 1) <> "a" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "v" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "l" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "w" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "j" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "t" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "n" Then
@@ -662,7 +698,7 @@ Public Class Form1
         End If
 
     End Sub
-    Private Sub cbbMediaType_Leave(sender As Object, e As EventArgs) Handles cbbMediaType.Leave
+    Private Sub cbbMediaType_Leave(sender As Object, e As EventArgs) Handles cbbMediaType.Leave, cbbSearchOrdering.Leave
         If cbbMediaType.Text.ToLower <> "anime" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "light novel" And cbbMediaType.Text.ToLower <> "web novel" And cbbMediaType.Text.ToLower <> "j-drama" And cbbMediaType.Text.ToLower <> "textbook" And cbbMediaType.Text.ToLower <> "vocabulary list" Then
             cbbMediaType.Text = "All"
         End If
@@ -704,5 +740,30 @@ Public Class Form1
         Catch ex As Exception
         End Try
 
+    End Sub
+    Private Sub btnSaveOutput_Click(sender As Object, e As EventArgs) Handles btnSaveOutput.Click
+        If lbOutput.Items.Count = 0 Then
+            MsgBox("There are no items to save" & vbNewLine & vbNewLine & "You must scrape a deck first", MsgBoxStyle.Critical)
+            Return
+        End If
+        Dim WordsIDS As New List(Of String) From {}
+        For Each Item In lbOutput.Items
+            WordsIDS.Add(Item)
+        Next
+        SaveToTXT(WordsIDS, "downloads", LastScrapeName)
+        MsgBox("Successfully saved " & WordsIDS.Count & " items of deck " & LastScrapeName & " into the downloads folder")
+    End Sub
+    Private Sub lbOutput_DoubleClick(sender As Object, e As EventArgs) Handles lbOutput.DoubleClick
+        Try
+            lbOutput.Items.RemoveAt(lbOutput.SelectedIndex)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub cbSearchReverse_CheckedChanged(sender As Object, e As EventArgs) Handles cbSearchReverse.CheckedChanged
+        If tbxSearchBox.Text.Contains("https://") = True Then
+            tbxSearchBox.Text = ""
+        End If
+        SearchDecks()
     End Sub
 End Class
