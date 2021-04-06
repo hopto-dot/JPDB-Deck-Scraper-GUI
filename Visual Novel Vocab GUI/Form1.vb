@@ -24,6 +24,7 @@ Public Class Form1
         lblResultCount.Text = ""
 
         lblContentName.Text = "Name: "
+        lblContentType.Text = "Type: "
         lblWordLength.Text = "Word Length: "
         lblUniqueWords.Text = "Unique Words: "
         lblUsedOnce.Text = "Used Once: "
@@ -36,6 +37,7 @@ Public Class Form1
         Dim PageEnd As Integer = nbPageEnd.Value
         Dim FilterType As String = cbbFilterType.Text
         Dim NovelLink As String = tbxSearchBox.Text
+        lbOutput.Items.Clear()
 
         Debug.WriteLine("Scraping {3} from {0}-{1} with filter {2}", PageStart, PageEnd, FilterType, cbbSearchType.Text)
         Dim Client As New WebClient
@@ -280,28 +282,44 @@ Public Class Form1
                 HTML = Mid(HTML, SnipIndex)
                 SnipTemp = HTML
                 SnipIndex = SnipTemp.IndexOf("<")
-                NewContent.WordLength = Strings.Left(HTML, SnipIndex)
+                SnipTemp = Strings.Left(HTML, SnipIndex)
+                If IsNumeric(SnipTemp) = True Then
+                    NewContent.WordLength = SnipTemp
+                End If
 
                 'snipping "Unique words":
                 SnipIndex = HTML.IndexOf("Unique words") + 22
                 HTML = Mid(HTML, SnipIndex)
                 SnipTemp = HTML
                 SnipIndex = SnipTemp.IndexOf("<")
-                NewContent.UniqueWords = Strings.Left(HTML, SnipIndex)
+                SnipTemp = Strings.Left(HTML, SnipIndex)
+                If IsNumeric(SnipTemp) = True Then
+                    NewContent.UniqueWords = SnipTemp
+                End If
 
                 'snipping "Unique words (used once)":
-                SnipIndex = HTML.IndexOf("(used once)") + 21
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("<")
-                NewContent.UniqueWordsOnce = Strings.Left(HTML, SnipIndex)
+                If HTML.IndexOf("(used once)") <> -1 Then
+                    SnipIndex = HTML.IndexOf("(used once)") + 21
+                    HTML = Mid(HTML, SnipIndex)
+                    SnipTemp = HTML
+                    SnipIndex = SnipTemp.IndexOf("<")
+                    SnipTemp = Strings.Left(HTML, SnipIndex)
+                    If IsNumeric(SnipTemp) = True Then
+                        NewContent.UniqueWordsOnce = SnipTemp
+                    End If
+                End If
 
-                'snipping "Unique kanji":
-                SnipIndex = HTML.IndexOf("(used once %)	") + 59
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("<")
-                NewContent.OncePercentage = Strings.Left(HTML, SnipIndex)
+                'snipping "Unique words (used once %)":
+                If HTML.IndexOf("(used once %)	") <> -1 Then
+                    SnipIndex = HTML.IndexOf("(used once %)	") + 59
+                    HTML = Mid(HTML, SnipIndex)
+                    SnipTemp = HTML
+                    SnipIndex = SnipTemp.IndexOf("<")
+                    SnipTemp = Strings.Left(HTML, SnipIndex)
+                    If IsNumeric(SnipTemp.Replace("%", "")) = True Then
+                        NewContent.OncePercentage = SnipTemp
+                    End If
+                End If
 
                 'snipping "Unique kanji":
                 SnipIndex = HTML.IndexOf("Unique kanji") + 22
@@ -311,11 +329,16 @@ Public Class Form1
                 NewContent.UniqueKanji = Strings.Left(HTML, SnipIndex)
 
                 'snipping "difficulty":
-                SnipIndex = HTML.IndexOf("Difficulty</th>") + 20
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("<")
-                NewContent.Difficulty = Strings.Left(HTML, SnipIndex)
+                If HTML.IndexOf("Difficulty</th>") <> -1 Then
+                    SnipIndex = HTML.IndexOf("Difficulty</th>") + 20
+                    HTML = Mid(HTML, SnipIndex)
+                    SnipTemp = HTML
+                    SnipIndex = SnipTemp.IndexOf("<")
+                    SnipTemp = Strings.Left(HTML, SnipIndex)
+                    If IsNumeric(SnipTemp.Replace("/10", "")) = True Then
+                        NewContent.Difficulty = SnipTemp
+                    End If
+                End If
 
                 'snipping vocab deck link:
                 SnipIndex = HTML.IndexOf("top: 0.5rem;") + 25
@@ -460,17 +483,103 @@ Public Class Form1
             End Try
 
             lblContentName.Text = ContentList.Item(lbResults.SelectedIndex).Name
+            lblContentType.Text = ContentList.Item(lbResults.SelectedIndex).ContentType
             lblWordLength.Text = "Word Length: " & ContentList.Item(lbResults.SelectedIndex).WordLength
             lblUniqueWords.Text = "Unique Words: " & ContentList.Item(lbResults.SelectedIndex).UniqueWords
             lblUsedOnce.Text = "Used Once: " & ContentList.Item(lbResults.SelectedIndex).UniqueWordsOnce
             lblUsedOncePcent.Text = "Used Once (%): " & ContentList.Item(lbResults.SelectedIndex).OncePercentage
             lblUniqueKanji.Text = "Unique Kanji: " & ContentList.Item(lbResults.SelectedIndex).UniqueKanji
             lblDifficulty.Text = "Difficulty: " & ContentList.Item(lbResults.SelectedIndex).Difficulty
+            btnCopy.Show()
 
             Dim CompareValue As Integer = ContentList.Item(lbResults.SelectedIndex).WordLength
-
-            If CompareValue < 35000 Then
+            If CompareValue < 20000 Then 'green 0-20,000
                 lblWordLength.ForeColor = Color.Lime
+            ElseIf CompareValue >= 20000 And CompareValue < 40000 Then 'light green 20,000-40,000
+                lblWordLength.ForeColor = Color.FromArgb(128, 255, 128)
+            ElseIf CompareValue >= 40000 And CompareValue < 70000 Then 'yellow 40,000-70,000
+                lblWordLength.ForeColor = Color.FromArgb(255, 255, 128)
+            ElseIf CompareValue >= 70000 And CompareValue < 150000 Then 'orange 70,000-150,000
+                lblWordLength.ForeColor = Color.FromArgb(255, 192, 128)
+            ElseIf CompareValue >= 150000 And CompareValue < 400000 Then 'red 150,000-400,000
+                lblWordLength.ForeColor = Color.FromArgb(255, 128, 128)
+            ElseIf CompareValue >= 400000 Then 'dark red 400,000+
+                lblWordLength.ForeColor = Color.Red
+            Else
+                lblWordLength.ForeColor = Color.White
+            End If
+
+            CompareValue = ContentList.Item(lbResults.SelectedIndex).UniqueWords
+            If CompareValue < 1500 Then 'green 0-1500
+                lblUniqueWords.ForeColor = Color.Lime
+            ElseIf CompareValue >= 1500 And CompareValue < 6500 Then 'light green 1500-6500
+                lblUniqueWords.ForeColor = Color.FromArgb(128, 255, 128)
+            ElseIf CompareValue >= 6500 And CompareValue < 8000 Then 'yellow 6500-8000
+                lblUniqueWords.ForeColor = Color.FromArgb(255, 255, 128)
+            ElseIf CompareValue >= 8000 And CompareValue < 10000 Then 'orange 8000-10,000
+                lblUniqueWords.ForeColor = Color.FromArgb(255, 192, 128)
+            ElseIf CompareValue >= 10000 And CompareValue < 15000 Then 'red 10,000-15,000
+                lblUniqueWords.ForeColor = Color.FromArgb(255, 128, 128)
+            ElseIf CompareValue >= 15000 Then 'dark red 15,000+
+                lblUniqueWords.ForeColor = Color.Red
+            Else
+                lblUniqueWords.ForeColor = Color.White
+            End If
+
+            CompareValue = ContentList.Item(lbResults.SelectedIndex).OncePercentage.Replace("%", "")
+            If CompareValue < 40 Then 'green 0-40
+                lblUsedOnce.ForeColor = Color.Lime
+                lblUsedOncePcent.ForeColor = Color.Lime
+            ElseIf CompareValue >= 40 And CompareValue < 55 Then 'light green 40-55
+                lblUsedOnce.ForeColor = Color.FromArgb(128, 255, 128)
+                lblUsedOncePcent.ForeColor = Color.FromArgb(128, 255, 128)
+            ElseIf CompareValue >= 55 And CompareValue < 58 Then 'yellow 55-58
+                lblUsedOnce.ForeColor = Color.FromArgb(255, 255, 128)
+                lblUsedOncePcent.ForeColor = Color.FromArgb(255, 255, 128)
+            ElseIf CompareValue >= 58 And CompareValue < 63 Then 'orange 58-63
+                lblUsedOnce.ForeColor = Color.FromArgb(255, 192, 128)
+                lblUsedOncePcent.ForeColor = Color.FromArgb(255, 192, 128)
+            ElseIf CompareValue >= 63 And CompareValue < 66 Then 'red 63-66
+                lblUsedOnce.ForeColor = Color.FromArgb(255, 128, 128)
+                lblUsedOncePcent.ForeColor = Color.FromArgb(255, 128, 128)
+            ElseIf CompareValue >= 66 Then '66+
+                lblUsedOncePcent.ForeColor = Color.Red
+            Else
+                lblUsedOncePcent.ForeColor = Color.White
+            End If
+
+            CompareValue = ContentList.Item(lbResults.SelectedIndex).UniqueKanji
+            If CompareValue < 1000 Then 'green 0-1000
+                lblUniqueKanji.ForeColor = Color.Lime
+            ElseIf CompareValue >= 1000 And CompareValue < 1500 Then 'light green 1000-1500
+                lblUniqueKanji.ForeColor = Color.FromArgb(128, 255, 128)
+            ElseIf CompareValue >= 1500 And CompareValue < 1700 Then 'yellow 1500-1700
+                lblUniqueKanji.ForeColor = Color.FromArgb(255, 255, 128)
+            ElseIf CompareValue >= 1700 And CompareValue < 2400 Then 'orange 1700-2400
+                lblUniqueKanji.ForeColor = Color.FromArgb(255, 192, 128)
+            ElseIf CompareValue >= 2400 And CompareValue < 2700 Then 'red 2400-2700
+                lblUniqueKanji.ForeColor = Color.FromArgb(255, 128, 128)
+            ElseIf CompareValue >= 2700 Then 'dark red 2700+
+                lblUniqueKanji.ForeColor = Color.Red
+            Else
+                lblUniqueWords.ForeColor = Color.White
+            End If
+
+            CompareValue = ContentList.Item(lbResults.SelectedIndex).Difficulty.Replace("/10", "")
+            If CompareValue < 3 Then 'green 1-2
+                lblDifficulty.ForeColor = Color.Lime
+            ElseIf CompareValue >= 3 And CompareValue < 5 Then 'light green 3-4
+                lblDifficulty.ForeColor = Color.FromArgb(128, 255, 128)
+            ElseIf CompareValue >= 5 And CompareValue < 6 Then 'yellow 5
+                lblDifficulty.ForeColor = Color.FromArgb(255, 255, 128)
+            ElseIf CompareValue >= 6 And CompareValue < 8 Then 'orange 6-7
+                lblDifficulty.ForeColor = Color.FromArgb(255, 192, 128)
+            ElseIf CompareValue >= 8 And CompareValue < 11 Then 'red 8-10
+                lblDifficulty.ForeColor = Color.FromArgb(255, 128, 128)
+            ElseIf CompareValue >= 11 Then 'dark red 11
+                lblDifficulty.ForeColor = Color.Red
+            Else
+                lblDifficulty.ForeColor = Color.White
             End If
 
         Catch ex As Exception
@@ -572,5 +681,12 @@ Public Class Form1
             Process.Start("https://www.google.co.jp/search?q=" & ContentList.Item(lbResults.SelectedIndex).Name)
         Catch ex As Exception
         End Try
+    End Sub
+    Private Sub btnCopy_Click(sender As Object, e As EventArgs) Handles btnCopy.Click
+        Try
+            Clipboard.SetText(ContentList.Item(lbResults.SelectedIndex).Name & vbNewLine & "Unique Words: " & ContentList.Item(lbResults.SelectedIndex).UniqueWords & vbNewLine & "Used Once (%): " & ContentList.Item(lbResults.SelectedIndex).OncePercentage & vbNewLine & "Difficulty: " & ContentList.Item(lbResults.SelectedIndex).Difficulty)
+        Catch ex As Exception
+        End Try
+
     End Sub
 End Class

@@ -51,6 +51,8 @@ Partial Class Form1
         Me.lblUsedOncePcent = New System.Windows.Forms.Label()
         Me.lblUniqueKanji = New System.Windows.Forms.Label()
         Me.lblDifficulty = New System.Windows.Forms.Label()
+        Me.btnCopy = New System.Windows.Forms.Button()
+        Me.lblContentType = New System.Windows.Forms.Label()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -252,6 +254,18 @@ Partial Class Form1
         resources.ApplyResources(Me.lblDifficulty, "lblDifficulty")
         Me.lblDifficulty.Name = "lblDifficulty"
         '
+        'btnCopy
+        '
+        resources.ApplyResources(Me.btnCopy, "btnCopy")
+        Me.btnCopy.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.btnCopy.Name = "btnCopy"
+        Me.btnCopy.UseVisualStyleBackColor = False
+        '
+        'lblContentType
+        '
+        resources.ApplyResources(Me.lblContentType, "lblContentType")
+        Me.lblContentType.Name = "lblContentType"
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -259,11 +273,13 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Controls.Add(Me.btnCopy)
         Me.Controls.Add(Me.lblDifficulty)
         Me.Controls.Add(Me.lblUniqueKanji)
         Me.Controls.Add(Me.lblUsedOncePcent)
         Me.Controls.Add(Me.lblUsedOnce)
         Me.Controls.Add(Me.lblUniqueWords)
+        Me.Controls.Add(Me.lblContentType)
         Me.Controls.Add(Me.lblWordLength)
         Me.Controls.Add(Me.lblContentName)
         Me.Controls.Add(Me.pbContentImage)
@@ -321,4 +337,6 @@ Partial Class Form1
     Friend WithEvents lblUsedOncePcent As Label
     Friend WithEvents lblUniqueKanji As Label
     Friend WithEvents lblDifficulty As Label
+    Friend WithEvents btnCopy As Button
+    Friend WithEvents lblContentType As Label
 End Class
