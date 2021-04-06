@@ -217,8 +217,6 @@ Public Class Form1
         Dim HTML As String = ""
         Dim SnipIndex As Integer = -1
 
-
-
         cbbMediaType.Text = Strings.Left(cbbMediaType.Text, 1) & Strings.Mid(cbbMediaType.Text, 2)
 
         ContentList.Clear()
@@ -229,9 +227,10 @@ Public Class Form1
         End If
 
         Dim MediaType As String = "All"
-        MediaType = cbbMediaType.Text.Replace(" ", "-").ToLower.Replace("j-drama", "drama")
+        MediaType = cbbMediaType.Text.ToLower
+        MediaType = MediaType.Replace("j-drama", "drama")
 
-        Dim MediaTypeFilter As String = "&show_only=" & cbbMediaType.Text.Replace(" ", "_")
+        Dim MediaTypeFilter As String = "&show_only=" & MediaType.Replace(" ", "_")
         Dim URL As String = "https://jpdb.io/prebuilt_decks?q=" & tbxSearchBox.Text & MediaTypeFilter.ToLower ' & "#a"
         Try
             HTML = Client.DownloadString(New Uri(URL))
@@ -607,6 +606,9 @@ Public Class Form1
         End If
     End Sub
     Private Sub cbbMediaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbMediaType.SelectedIndexChanged
+        If tbxSearchBox.Text.Contains("https://") = True Then
+            tbxSearchBox.Text = ""
+        End If
         SearchDecks()
     End Sub
     Private Sub tbxSearchBox_TextChanged(sender As Object, e As EventArgs) Handles tbxSearchBox.TextChanged
@@ -625,6 +627,8 @@ Public Class Form1
         End Select
     End Sub
     Private Sub cbbMediaType_TextUpdate(sender As Object, e As EventArgs) Handles cbbMediaType.TextUpdate
+
+
         If Strings.Left(cbbMediaType.Text.ToLower, 1) <> "a" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "v" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "l" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "w" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "j" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "t" And Strings.Left(cbbMediaType.Text.ToLower, 1) <> "n" Then
             cbbMediaType.Text = ""
         End If
