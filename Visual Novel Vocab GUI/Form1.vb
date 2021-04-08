@@ -5,16 +5,16 @@ Public Class Form1
     Dim SearchType As String = "Words"
     Dim Reverse As Boolean = False
     Class Content
-        Public Name As String = ""
+        Public Name As String = "?"
         Public ContentType As String = "?"
-        Public WordLength As Integer = 0
-        Public UniqueWords As Integer = 0
-        Public UniqueWordsOnce As Integer = 0
+        Public WordLength As Integer = -1
+        Public UniqueWords As Integer = -1
+        Public UniqueWordsOnce As Integer = -1
         Public OncePercentage As String = "?"
-        Public UniqueKanji As Integer = 0
+        Public UniqueKanji As Integer = -1
         Public Difficulty As String = "?"
-        Public DeckLink As String = ""
-        Public ImageURL As String = ""
+        Public DeckLink As String = "?"
+        Public ImageURL As String = "?"
     End Class
 
     Dim ContentList As New List(Of Content) From {}
@@ -103,6 +103,11 @@ Public Class Form1
                 FilterType = "?sort_by=by-frequency-local&offset="
 
         End Select
+        If cbSearchReverse.Checked = True Then
+            Reverse = True
+        Else
+            Reverse = False
+        End If
         If Reverse = True Then
             FilterType = FilterType.Replace("offset=", "order=reverse&offset=")
         End If
@@ -331,13 +336,18 @@ Public Class Form1
 
                 'snipping "Unique words (used once %)":
                 If HTML.IndexOf("(used once %)") <> -1 Then
-                    SnipIndex = HTML.IndexOf("(used once %)	") + 59
+                    SnipIndex = HTML.IndexOf("(used once %)	") + 58
                     HTML = Mid(HTML, SnipIndex)
                     SnipTemp = HTML
                     SnipIndex = SnipTemp.IndexOf("<")
                     SnipTemp = Strings.Left(HTML, SnipIndex)
+                    SnipTemp = SnipTemp.Replace(">", "").Replace("d", "")
                     If IsNumeric(SnipTemp.Replace("%", "")) = True Then
-                        NewContent.OncePercentage = SnipTemp
+                        If SnipTemp.Replace("%", "") < 10 Then
+                            NewContent.OncePercentage = "?%"
+                        Else
+                            NewContent.OncePercentage = SnipTemp
+                        End If
                     End If
                 End If
 
@@ -368,8 +378,8 @@ Public Class Form1
                 SnipTemp = Strings.Left(HTML, SnipIndex)
                 NewContent.DeckLink = "https://jpdb.io/" & SnipTemp
             Catch ex As Exception
-                MsgBox("Something went wrong with getting information for some content, however the program will try to continue as normal" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical)
-                Continue Do
+                MsgBox("Something went wrong with getting information for some content" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical)
+                Return
             End Try
 
             If ContentList.Count = 0 Then
@@ -413,6 +423,7 @@ Public Class Form1
         SaveType = SaveType.trim.tolower
         Randomize()
         Dim RanInt As Integer = Int((1000) * Rnd())
+        DeckName = DeckName.replace("?", "").replace("*", "").replace("/", "").replace("|", "").replace("\", "").replace("<", "").replace(">", "").replace(":", "").replace("""", "")
 
         Dim path As String = ""
         Dim prefix As String = "VocabOutput"
@@ -428,7 +439,7 @@ Public Class Form1
         Try
             File.Create(path).Dispose()
         Catch ex As Exception
-            MsgBox(ex.Message & vbNewLine & vbNewLine & "The program needs privilages to create files", MsgBoxStyle.Critical, "Couldn't create file")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Couldn't create file")
             Exit Sub
         End Try
 
@@ -562,17 +573,19 @@ Public Class Form1
             End If
 
             CompareValue = ContentList.Item(lbResults.SelectedIndex).OncePercentage.Replace("%", "")
-            If CompareValue < 40 Then 'green 0-40
+            If CompareValue = 0 Then
+                lblUsedOncePcent.ForeColor = Color.White
+            ElseIf CompareValue < 50 Then 'green 0-50
                 lblUsedOncePcent.ForeColor = Color.FromArgb(0, 179, 0)
-            ElseIf CompareValue >= 40 And CompareValue < 55 Then 'light green 40-55
+            ElseIf CompareValue >= 50 And CompareValue < 64 Then 'light green 50-64
                 lblUsedOncePcent.ForeColor = Color.FromArgb(153, 255, 102)
-            ElseIf CompareValue >= 55 And CompareValue < 58 Then 'yellow 55-58
+            ElseIf CompareValue >= 64 And CompareValue < 66 Then 'yellow 64-66
                 lblUsedOncePcent.ForeColor = Color.FromArgb(255, 255, 128)
-            ElseIf CompareValue >= 58 And CompareValue < 63 Then 'orange 58-63
+            ElseIf CompareValue >= 66 And CompareValue < 68 Then 'orange 66-68
                 lblUsedOncePcent.ForeColor = Color.FromArgb(255, 128, 0)
-            ElseIf CompareValue >= 63 And CompareValue < 66 Then 'red 63-66
+            ElseIf CompareValue >= 68 And CompareValue < 70 Then 'red 68-70
                 lblUsedOncePcent.ForeColor = Color.FromArgb(255, 128, 128)
-            ElseIf CompareValue >= 66 Then '66+
+            ElseIf CompareValue >= 70 Then '70+
                 lblUsedOncePcent.ForeColor = Color.Red
             Else
                 lblUsedOncePcent.ForeColor = Color.White
@@ -743,7 +756,7 @@ Public Class Form1
     End Sub
     Private Sub btnSaveOutput_Click(sender As Object, e As EventArgs) Handles btnSaveOutput.Click
         If lbOutput.Items.Count = 0 Then
-            MsgBox("There are no items to save" & vbNewLine & vbNewLine & "You must scrape a deck first", MsgBoxStyle.Critical)
+            MsgBox("There are no items to save" & vbNewLine & vbNewLine & "You must scrape a deck first")
             Return
         End If
         Dim WordsIDS As New List(Of String) From {}
@@ -761,9 +774,5 @@ Public Class Form1
         End Try
     End Sub
     Private Sub cbSearchReverse_CheckedChanged(sender As Object, e As EventArgs) Handles cbSearchReverse.CheckedChanged
-        If tbxSearchBox.Text.Contains("https://") = True Then
-            tbxSearchBox.Text = ""
-        End If
-        SearchDecks()
     End Sub
 End Class
