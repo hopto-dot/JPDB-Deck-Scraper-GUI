@@ -53,8 +53,6 @@ Partial Class Form1
         Me.lblContentType = New System.Windows.Forms.Label()
         Me.cbbSearchOrdering = New System.Windows.Forms.ComboBox()
         Me.cbSearchReverse = New System.Windows.Forms.CheckBox()
-        Me.lbJobs = New System.Windows.Forms.ListBox()
-        Me.btnAddJob = New System.Windows.Forms.Button()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -272,24 +270,6 @@ Partial Class Form1
         Me.cbSearchReverse.Name = "cbSearchReverse"
         Me.cbSearchReverse.UseVisualStyleBackColor = True
         '
-        'lbJobs
-        '
-        resources.ApplyResources(Me.lbJobs, "lbJobs")
-        Me.lbJobs.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.lbJobs.Cursor = System.Windows.Forms.Cursors.Default
-        Me.lbJobs.ForeColor = System.Drawing.SystemColors.InactiveBorder
-        Me.lbJobs.FormattingEnabled = True
-        Me.lbJobs.Name = "lbJobs"
-        '
-        'btnAddJob
-        '
-        Me.btnAddJob.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        resources.ApplyResources(Me.btnAddJob, "btnAddJob")
-        Me.btnAddJob.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAddJob.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnAddJob.Name = "btnAddJob"
-        Me.btnAddJob.UseVisualStyleBackColor = False
-        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -297,8 +277,6 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.Controls.Add(Me.lbJobs)
-        Me.Controls.Add(Me.cbSearchReverse)
         Me.Controls.Add(Me.btnCopy)
         Me.Controls.Add(Me.lblDifficulty)
         Me.Controls.Add(Me.lblUniqueKanji)
@@ -320,10 +298,10 @@ Partial Class Form1
         Me.Controls.Add(Me.lblTo)
         Me.Controls.Add(Me.nbPageStart)
         Me.Controls.Add(Me.lbResults)
-        Me.Controls.Add(Me.btnAddJob)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.cbbSearchType)
         Me.Controls.Add(Me.tbxSearchBox)
+        Me.Controls.Add(Me.cbSearchReverse)
         Me.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Name = "Form1"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
@@ -365,6 +343,4 @@ Partial Class Form1
     Friend WithEvents lblContentType As Label
     Friend WithEvents cbbSearchOrdering As ComboBox
     Friend WithEvents cbSearchReverse As CheckBox
-    Friend WithEvents lbJobs As ListBox
-    Friend WithEvents btnAddJob As Button
 End Class

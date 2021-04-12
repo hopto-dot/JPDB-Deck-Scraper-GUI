@@ -262,8 +262,8 @@ Public Class Form1
                 HTML = Client.DownloadString(New Uri(URL))
                 Debug.WriteLine("Search filter failed")
             Catch ex2 As Exception
-                MsgBox(ex.Message & vbNewLine & vbNewLine & "Failed to process search URL")
-                Exit Sub
+                MsgBox(ex.Message & vbNewLine & vbNewLine & "Failed to process search URL" & vbNewLine & "Check your internet connection")
+                Return
             End Try
         End Try
 
@@ -643,9 +643,14 @@ Public Class Form1
             pbContentImage.Visible = True
         End If
         If Me.Width < 643 Then
-            cbSearchReverse.Visible = False
+            'cbSearchReverse.Visible = False
         Else
-            cbSearchReverse.Visible = True
+            'cbSearchReverse.Visible = True
+        End If
+        If pbContentImage.Size.Height < 30 Then
+            pbContentImage.Visible = False
+        Else
+            pbContentImage.Visible = True
         End If
     End Sub
 
@@ -747,13 +752,6 @@ Public Class Form1
             Clipboard.SetText(ContentList.Item(lbResults.SelectedIndex).Name & vbNewLine & "Unique Words: " & ContentList.Item(lbResults.SelectedIndex).UniqueWords & vbNewLine & "Used Once (%): " & ContentList.Item(lbResults.SelectedIndex).OncePercentage & vbNewLine & "Difficulty: " & ContentList.Item(lbResults.SelectedIndex).Difficulty)
         Catch ex As Exception
         End Try
-
-    End Sub
-
-    Private Sub btnAddJob_Click(sender As Object, e As EventArgs) Handles btnAddJob.Click
-        If lbResults.SelectedItem <> "" Then
-            lbJobs.Items.Add(lbResults.SelectedItem & ": " & cbbSearchType.Text)
-        End If
 
     End Sub
 End Class
