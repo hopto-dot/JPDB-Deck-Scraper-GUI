@@ -41,7 +41,6 @@ Partial Class Form1
         Me.RightToolStripPanel = New System.Windows.Forms.ToolStripPanel()
         Me.LeftToolStripPanel = New System.Windows.Forms.ToolStripPanel()
         Me.ContentPanel = New System.Windows.Forms.ToolStripContentPanel()
-        Me.lbOutput = New System.Windows.Forms.ListBox()
         Me.pbContentImage = New System.Windows.Forms.PictureBox()
         Me.lblContentName = New System.Windows.Forms.Label()
         Me.lblWordLength = New System.Windows.Forms.Label()
@@ -54,7 +53,8 @@ Partial Class Form1
         Me.lblContentType = New System.Windows.Forms.Label()
         Me.cbbSearchOrdering = New System.Windows.Forms.ComboBox()
         Me.cbSearchReverse = New System.Windows.Forms.CheckBox()
-        Me.btnSaveOutput = New System.Windows.Forms.Button()
+        Me.lbJobs = New System.Windows.Forms.ListBox()
+        Me.btnAddJob = New System.Windows.Forms.Button()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,15 +201,6 @@ Partial Class Form1
         '
         resources.ApplyResources(Me.ContentPanel, "ContentPanel")
         '
-        'lbOutput
-        '
-        resources.ApplyResources(Me.lbOutput, "lbOutput")
-        Me.lbOutput.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.lbOutput.Cursor = System.Windows.Forms.Cursors.Default
-        Me.lbOutput.ForeColor = System.Drawing.SystemColors.InactiveBorder
-        Me.lbOutput.FormattingEnabled = True
-        Me.lbOutput.Name = "lbOutput"
-        '
         'pbContentImage
         '
         resources.ApplyResources(Me.pbContentImage, "pbContentImage")
@@ -281,14 +272,23 @@ Partial Class Form1
         Me.cbSearchReverse.Name = "cbSearchReverse"
         Me.cbSearchReverse.UseVisualStyleBackColor = True
         '
-        'btnSaveOutput
+        'lbJobs
         '
-        resources.ApplyResources(Me.btnSaveOutput, "btnSaveOutput")
-        Me.btnSaveOutput.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.btnSaveOutput.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSaveOutput.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnSaveOutput.Name = "btnSaveOutput"
-        Me.btnSaveOutput.UseVisualStyleBackColor = False
+        resources.ApplyResources(Me.lbJobs, "lbJobs")
+        Me.lbJobs.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.lbJobs.Cursor = System.Windows.Forms.Cursors.Default
+        Me.lbJobs.ForeColor = System.Drawing.SystemColors.InactiveBorder
+        Me.lbJobs.FormattingEnabled = True
+        Me.lbJobs.Name = "lbJobs"
+        '
+        'btnAddJob
+        '
+        Me.btnAddJob.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        resources.ApplyResources(Me.btnAddJob, "btnAddJob")
+        Me.btnAddJob.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAddJob.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnAddJob.Name = "btnAddJob"
+        Me.btnAddJob.UseVisualStyleBackColor = False
         '
         'Form1
         '
@@ -297,7 +297,7 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.Controls.Add(Me.btnSaveOutput)
+        Me.Controls.Add(Me.lbJobs)
         Me.Controls.Add(Me.cbSearchReverse)
         Me.Controls.Add(Me.btnCopy)
         Me.Controls.Add(Me.lblDifficulty)
@@ -310,7 +310,6 @@ Partial Class Form1
         Me.Controls.Add(Me.lblContentName)
         Me.Controls.Add(Me.pbContentImage)
         Me.Controls.Add(Me.pbProgress)
-        Me.Controls.Add(Me.lbOutput)
         Me.Controls.Add(Me.lblResultCount)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cbbSearchOrdering)
@@ -321,6 +320,7 @@ Partial Class Form1
         Me.Controls.Add(Me.lblTo)
         Me.Controls.Add(Me.nbPageStart)
         Me.Controls.Add(Me.lbResults)
+        Me.Controls.Add(Me.btnAddJob)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.cbbSearchType)
         Me.Controls.Add(Me.tbxSearchBox)
@@ -353,7 +353,6 @@ Partial Class Form1
     Friend WithEvents RightToolStripPanel As ToolStripPanel
     Friend WithEvents LeftToolStripPanel As ToolStripPanel
     Friend WithEvents ContentPanel As ToolStripContentPanel
-    Friend WithEvents lbOutput As ListBox
     Friend WithEvents pbContentImage As PictureBox
     Friend WithEvents lblContentName As Label
     Friend WithEvents lblWordLength As Label
@@ -366,5 +365,6 @@ Partial Class Form1
     Friend WithEvents lblContentType As Label
     Friend WithEvents cbbSearchOrdering As ComboBox
     Friend WithEvents cbSearchReverse As CheckBox
-    Friend WithEvents btnSaveOutput As Button
+    Friend WithEvents lbJobs As ListBox
+    Friend WithEvents btnAddJob As Button
 End Class

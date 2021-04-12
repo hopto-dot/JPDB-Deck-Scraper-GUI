@@ -39,7 +39,6 @@ Public Class Form1
         Dim FilterType As String = cbbFilterType.Text
         Dim NovelLink As String = tbxSearchBox.Text
         tbxSearchBox.Text = tbxSearchBox.Text.Replace("", "")
-        lbOutput.Items.Clear()
 
         Debug.WriteLine("Scraping {3} from {0}-{1} with filter {2}", PageStart, PageEnd, FilterType, cbbSearchType.Text)
         Dim Client As New WebClient
@@ -177,9 +176,6 @@ Public Class Form1
                 If WordTemp.Contains(">") = False And WordTemp.Contains("<") = False And WordTemp.Contains("=") = False And WordTemp.Contains("-") = False Then
                     Try
                         WordIDs.Add(WordTemp)
-                        If ScrapeKanji = False Then
-                            lbOutput.Items.Add(WordTemp)
-                        End If
                     Catch ex As Exception
                         Continue Do
                     End Try
@@ -493,7 +489,6 @@ Public Class Form1
         Dim KanjiIds As New List(Of String) From {}
         For Each Character In UniqueKanjiString
             KanjiIds.Add(Character)
-            lbOutput.Items.Add(Character)
         Next
 
         Select Case MsgBox("Successfully Scraped " & WordIDs.Count & " kanji with the " & cbbFilterType.Text & " filter" & vbNewLine & vbNewLine & "Would you like to save the results to the downloads folder?", vbQuestion + vbYesNo + vbDefaultButton2, "Successful scraped kanji")
@@ -754,25 +749,11 @@ Public Class Form1
         End Try
 
     End Sub
-    Private Sub btnSaveOutput_Click(sender As Object, e As EventArgs) Handles btnSaveOutput.Click
-        If lbOutput.Items.Count = 0 Then
-            MsgBox("There are no items to save" & vbNewLine & vbNewLine & "You must scrape a deck first")
-            Return
-        End If
-        Dim WordsIDS As New List(Of String) From {}
-        For Each Item In lbOutput.Items
-            WordsIDS.Add(Item)
-        Next
-        SaveToTXT(WordsIDS, "downloads", LastScrapeName)
-        MsgBox("Successfully saved " & WordsIDS.Count & " items of deck " & LastScrapeName & " into the downloads folder")
-    End Sub
-    Private Sub lbOutput_DoubleClick(sender As Object, e As EventArgs) Handles lbOutput.DoubleClick
-        Try
-            lbOutput.Items.RemoveAt(lbOutput.SelectedIndex)
-        Catch ex As Exception
 
-        End Try
-    End Sub
-    Private Sub cbSearchReverse_CheckedChanged(sender As Object, e As EventArgs) Handles cbSearchReverse.CheckedChanged
+    Private Sub btnAddJob_Click(sender As Object, e As EventArgs) Handles btnAddJob.Click
+        If lbResults.SelectedItem <> "" Then
+            lbJobs.Items.Add(lbResults.SelectedItem & ": " & cbbSearchType.Text)
+        End If
+
     End Sub
 End Class
