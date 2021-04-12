@@ -30,7 +30,6 @@ Partial Class Form1
         Me.nbPageStart = New System.Windows.Forms.NumericUpDown()
         Me.lblTo = New System.Windows.Forms.Label()
         Me.nbPageEnd = New System.Windows.Forms.NumericUpDown()
-        Me.pbProgress = New System.Windows.Forms.ProgressBar()
         Me.cbbFilterType = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -119,15 +118,6 @@ Partial Class Form1
         Me.nbPageEnd.Minimum = New Decimal(New Integer() {50, 0, 0, 0})
         Me.nbPageEnd.Name = "nbPageEnd"
         Me.nbPageEnd.Value = New Decimal(New Integer() {1000, 0, 0, 0})
-        '
-        'pbProgress
-        '
-        Me.pbProgress.ForeColor = System.Drawing.SystemColors.Control
-        resources.ApplyResources(Me.pbProgress, "pbProgress")
-        Me.pbProgress.MarqueeAnimationSpeed = 0
-        Me.pbProgress.Maximum = 50
-        Me.pbProgress.Name = "pbProgress"
-        Me.pbProgress.Step = 1
         '
         'cbbFilterType
         '
@@ -287,7 +277,6 @@ Partial Class Form1
         Me.Controls.Add(Me.lblWordLength)
         Me.Controls.Add(Me.lblContentName)
         Me.Controls.Add(Me.pbContentImage)
-        Me.Controls.Add(Me.pbProgress)
         Me.Controls.Add(Me.lblResultCount)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cbbSearchOrdering)
@@ -320,7 +309,6 @@ Partial Class Form1
     Friend WithEvents nbPageStart As NumericUpDown
     Friend WithEvents lblTo As Label
     Friend WithEvents nbPageEnd As NumericUpDown
-    Friend WithEvents pbProgress As ProgressBar
     Friend WithEvents cbbFilterType As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label3 As Label

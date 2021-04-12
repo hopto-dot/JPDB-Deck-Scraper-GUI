@@ -19,8 +19,8 @@ Public Class Form1
 
     Dim ContentList As New List(Of Content) From {}
     Dim LastScrapeName As String = ""
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        pbProgress.Hide()
         lblResultCount.Hide()
         lblResultCount.Text = ""
 
@@ -40,7 +40,6 @@ Public Class Form1
         Dim NovelLink As String = tbxSearchBox.Text
         tbxSearchBox.Text = tbxSearchBox.Text.Replace("", "")
 
-        Debug.WriteLine("Scraping {3} from {0}-{1} with filter {2}", PageStart, PageEnd, FilterType, cbbSearchType.Text)
         Dim Client As New WebClient
         Client.Encoding = System.Text.Encoding.UTF8
         Dim HTML As String = ""
@@ -79,8 +78,6 @@ Public Class Form1
 
         Dim SnipIndex2 As Integer = -1
         Dim BaseURL As String = HTML
-
-        pbProgress.Visible = True
 
         Dim PageDone As Boolean = False
         Dim PageInterval As Integer = PageStart
@@ -126,14 +123,34 @@ Public Class Form1
             End Try
         End Try
 
-        'lbResults.Items.Clear()
-        'lbResults.Items.Add(BaseURL)
+        Try
+            If PageEnd > ContentList(lbResults.SelectedIndex).UniqueWords Then
+                PageEnd = ContentList(lbResults.SelectedIndex).UniqueWords + 50
+            End If
+        Catch ex As Exception
+        End Try
 
-        Dim BarInteval As Integer = (PageEnd - PageStart) / 50
-        Dim BarProgress As Integer = -1
+        Debug.WriteLine("Scraping {3} from {0}-{1} with filter {2}", PageStart, PageEnd, FilterType, cbbSearchType.Text)
+        Dim LoadingScreen As New FormScraping
+        LoadingScreen.lblScraping.Text = "Scraping " & cbbSearchType.Text & " using the " & cbbFilterType.Text & " filter"
+        LoadingScreen.lblContextName.Text = LastScrapeName
+        LoadingScreen.pbProgress.Maximum = PageEnd
+        LoadingScreen.pbProgress.Minimum = PageStart
+        LoadingScreen.Show()
+        LoadingScreen.Refresh()
 
         Do Until PageDone = True Or PageInterval >= PageEnd
+            Threading.Thread.Sleep(300)
+
+            Try
+                LoadingScreen.pbProgress.Value = PageInterval + 40
+            Catch ex As Exception
+                LoadingScreen.pbProgress.Value = PageEnd
+            End Try
+
             URL = BaseURL & FilterType & PageInterval & "#a"
+            LoadingScreen.lblExtra.Text = "https://..." & FilterType & PageInterval & "#a"
+            LoadingScreen.Refresh()
             Try
                 HTML = Client.DownloadString(New Uri(URL))
             Catch ex As Exception
@@ -146,14 +163,6 @@ Public Class Form1
             End If
 
             'debug.WriteLine("-- " & PageInterval & " --")
-            BarProgress = PageInterval - PageStart + 50
-            'debug.WriteLine(BarProgress / BarInteval)
-
-            Try
-                pbProgress.Value = Math.Floor((BarProgress / BarInteval) + 2)
-            Catch ex As Exception
-                pbProgress.Value = 50
-            End Try
 
             SnipIndex = HTML.IndexOf("#a") + 2
             HTML = Mid(HTML, SnipIndex)
@@ -188,16 +197,16 @@ Public Class Form1
             PageInterval += 50
         Loop
 
+        LoadingScreen.Refresh()
+        LoadingScreen.Hide()
+
         If System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Contains("Debug") = True Then
             SaveToTXT(WordIDs, "program", LastScrapeName)
         End If
 
-        pbProgress.Value = 50
-
         Debug.WriteLine("Unique Words: " & WordIDs.Count)
         If cbbSearchType.Text = "Kanji" Then
             ExtractKanji(WordIDs)
-            pbProgress.Hide()
             Return
         End If
 
@@ -216,10 +225,8 @@ Public Class Form1
             Case vbYes
                 SaveToTXT(WordIDs, "downloads", LastScrapeName)
         End Select
-        pbProgress.Hide()
     End Sub
     Sub SearchDecks()
-        pbProgress.Hide()
         Const QUOTE = """"
         Dim Client As New WebClient
         Client.Encoding = System.Text.Encoding.UTF8
@@ -262,12 +269,12 @@ Public Class Form1
                 HTML = Client.DownloadString(New Uri(URL))
                 Debug.WriteLine("Search filter failed")
             Catch ex2 As Exception
-                MsgBox(ex.Message & vbNewLine & vbNewLine & "Failed to process search URL" & vbNewLine & "Check your internet connection")
+                MsgBox(ex.Message & vbNewLine & vbNewLine & "You were either temporarily IP banned from using jpdb.io or aren't connected to the internet")
                 Return
             End Try
         End Try
 
-        Dim SnipTemp As String
+        Dim SnipTemp As String = ""
 
         Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 50
             Dim NewContent As New Content
@@ -501,10 +508,7 @@ Public Class Form1
             lblContentName.Cursor = Cursors.Hand
             pbContentImage.Cursor = Cursors.Hand
             tbxSearchBox.Text = ContentList.Item(lbResults.SelectedIndex).DeckLink
-            Try
-                pbContentImage.Load(ContentList.Item(lbResults.SelectedIndex).ImageURL)
-            Catch ex As Exception
-            End Try
+
 
             lblContentName.Text = ContentList.Item(lbResults.SelectedIndex).Name
             lblContentType.Text = ContentList.Item(lbResults.SelectedIndex).ContentType
@@ -515,6 +519,15 @@ Public Class Form1
             lblUniqueKanji.Text = "Unique Kanji: " & ContentList.Item(lbResults.SelectedIndex).UniqueKanji
             lblDifficulty.Text = "Difficulty: " & ContentList.Item(lbResults.SelectedIndex).Difficulty
             btnCopy.Show()
+            Me.Refresh()
+
+            Try
+                pbContentImage.Load(ContentList.Item(lbResults.SelectedIndex).ImageURL)
+                pbContentImage.Visible = True
+            Catch ex As Exception
+                pbContentImage.Visible = False
+            End Try
+            Me.Refresh()
 
             Dim CompareValue As Integer = ContentList.Item(lbResults.SelectedIndex).WordLength
             If CompareValue < 20000 Then 'green 0-20,000
@@ -642,11 +655,6 @@ Public Class Form1
         Else
             pbContentImage.Visible = True
         End If
-        If Me.Width < 643 Then
-            'cbSearchReverse.Visible = False
-        Else
-            'cbSearchReverse.Visible = True
-        End If
         If pbContentImage.Size.Height < 30 Then
             pbContentImage.Visible = False
         Else
@@ -684,28 +692,28 @@ Public Class Form1
 
         If cbbMediaType.Text.ToLower = "n" Then
             cbbMediaType.Text = "Visual Novel"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbMediaType.Text.ToLower = "vi" Then
             cbbMediaType.Text = "Visual Novel"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbMediaType.Text.ToLower = "an" Then
             cbbMediaType.Text = "Anime"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbMediaType.Text.ToLower = "l" Then
             cbbMediaType.Text = "Light Novel"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbMediaType.Text.ToLower = "w" Then
             cbbMediaType.Text = "web novel"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbMediaType.Text.ToLower = "j" Then
             cbbMediaType.Text = "J-Drama"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbMediaType.Text.ToLower = "t" Then
             cbbMediaType.Text = "Textbook"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbMediaType.Text.ToLower = "vo" Then
             cbbMediaType.Text = "Vocabulary List"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbMediaType.Text.Length = 5 Then
             cbbMediaType.Text = ""
         End If
@@ -719,7 +727,7 @@ Public Class Form1
     Private Sub cbbSearchType_TextUpdate(sender As Object, e As EventArgs) Handles cbbSearchType.TextUpdate
         If cbbSearchType.Text.ToLower.Contains("k") Then
             cbbSearchType.Text = "Kanji"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         Else
             cbbSearchType.Text = "Words"
         End If
@@ -727,10 +735,10 @@ Public Class Form1
     Private Sub cbbFilterType_TextUpdate(sender As Object, e As EventArgs) Handles cbbFilterType.TextUpdate
         If cbbFilterType.Text.ToLower.Contains("g") Then
             cbbFilterType.Text = "DeckGlobal"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         ElseIf cbbFilterType.Text.ToLower.Contains("t") Then
             cbbFilterType.Text = "Time"
-            Me.lbResults.Focus()
+            Me.lblContentName.Focus()
         Else
             cbbFilterType.Text = "DeckFreq"
         End If
@@ -753,5 +761,12 @@ Public Class Form1
         Catch ex As Exception
         End Try
 
+    End Sub
+
+    Private Sub cbSearchReverse_CheckedChanged(sender As Object, e As EventArgs) Handles cbSearchReverse.CheckedChanged
+        If tbxSearchBox.Text.Contains("https://") = True Then
+            tbxSearchBox.Text = ""
+        End If
+        SearchDecks()
     End Sub
 End Class
