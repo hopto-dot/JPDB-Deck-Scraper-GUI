@@ -769,4 +769,8 @@ Public Class Form1
         End If
         SearchDecks()
     End Sub
+    Private Sub btnOwnDeck_Click(sender As Object, e As EventArgs) Handles btnOwnDeck.Click
+        Dim ScrapeOwnDeck As New FormOwnDeck
+        ScrapeOwnDeck.Show()
+    End Sub
 End Class

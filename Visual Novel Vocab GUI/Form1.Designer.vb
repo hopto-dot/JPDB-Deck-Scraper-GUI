@@ -52,6 +52,7 @@ Partial Class Form1
         Me.lblContentType = New System.Windows.Forms.Label()
         Me.cbbSearchOrdering = New System.Windows.Forms.ComboBox()
         Me.cbSearchReverse = New System.Windows.Forms.CheckBox()
+        Me.btnOwnDeck = New System.Windows.Forms.Button()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -260,6 +261,15 @@ Partial Class Form1
         Me.cbSearchReverse.Name = "cbSearchReverse"
         Me.cbSearchReverse.UseVisualStyleBackColor = True
         '
+        'btnOwnDeck
+        '
+        Me.btnOwnDeck.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        resources.ApplyResources(Me.btnOwnDeck, "btnOwnDeck")
+        Me.btnOwnDeck.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnOwnDeck.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnOwnDeck.Name = "btnOwnDeck"
+        Me.btnOwnDeck.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -287,6 +297,7 @@ Partial Class Form1
         Me.Controls.Add(Me.lblTo)
         Me.Controls.Add(Me.nbPageStart)
         Me.Controls.Add(Me.lbResults)
+        Me.Controls.Add(Me.btnOwnDeck)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.cbbSearchType)
         Me.Controls.Add(Me.tbxSearchBox)
@@ -331,4 +342,5 @@ Partial Class Form1
     Friend WithEvents lblContentType As Label
     Friend WithEvents cbbSearchOrdering As ComboBox
     Friend WithEvents cbSearchReverse As CheckBox
+    Friend WithEvents btnOwnDeck As Button
 End Class

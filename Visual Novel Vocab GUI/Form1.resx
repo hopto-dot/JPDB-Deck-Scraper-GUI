@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tbxSearchBox.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="cbbSearchType.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -166,13 +166,13 @@
     <value>Kanji</value>
   </data>
   <data name="cbbSearchType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 72</value>
+    <value>9, 72</value>
   </data>
   <data name="cbbSearchType.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="cbbSearchType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 28</value>
+    <value>109, 28</value>
   </data>
   <data name="cbbSearchType.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -190,7 +190,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbSearchType.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="btnSearch.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -229,7 +229,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="lbResults.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -244,10 +244,10 @@
     <value>20</value>
   </data>
   <data name="lbResults.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 141</value>
+    <value>9, 181</value>
   </data>
   <data name="lbResults.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 474</value>
+    <value>608, 434</value>
   </data>
   <data name="lbResults.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -379,7 +379,7 @@
     <value>Time</value>
   </data>
   <data name="cbbFilterType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 104</value>
+    <value>9, 104</value>
   </data>
   <data name="cbbFilterType.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -415,7 +415,7 @@
     <value>NoControl</value>
   </data>
   <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 47</value>
+    <value>8, 47</value>
   </data>
   <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 18</value>
@@ -1027,7 +1027,46 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbSearchReverse.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
+  </data>
+  <data name="btnOwnDeck.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="btnOwnDeck.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnOwnDeck.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="btnOwnDeck.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOwnDeck.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 146</value>
+  </data>
+  <data name="btnOwnDeck.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btnOwnDeck.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 30</value>
+  </data>
+  <data name="btnOwnDeck.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnOwnDeck.Text" xml:space="preserve">
+    <value>Scrape Own Deck</value>
+  </data>
+  <data name="&gt;&gt;btnOwnDeck.Name" xml:space="preserve">
+    <value>btnOwnDeck</value>
+  </data>
+  <data name="&gt;&gt;btnOwnDeck.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOwnDeck.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnOwnDeck.ZOrder" xml:space="preserve">
+    <value>20</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
