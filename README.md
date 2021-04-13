@@ -9,4 +9,5 @@ If you want to delete words from the deck before saving the file, double click w
 
 Download the latest version [here](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
 
-![image](https://user-images.githubusercontent.com/66906618/113778200-07c68680-9724-11eb-8c59-43b33b0c897c.png)
+![image](https://user-images.githubusercontent.com/66906618/114516729-9744cb80-9c35-11eb-8243-6c4a0dc9597c.png)
+
