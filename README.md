@@ -1,5 +1,5 @@
 # JPDB-Deck-Scraper-GUI
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/hopto-dot/JPDB-Deck-Scraper-GUI?color=light%20green&label=Latest)](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/hopto-dot/JPDB-Deck-Scraper-GUI?color=light%20green&label=Latest)](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
 
 Search for content in the box at the top, press enter, select a from the results box then enter again!
 
