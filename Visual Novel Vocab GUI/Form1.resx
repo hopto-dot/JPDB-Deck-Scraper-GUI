@@ -136,7 +136,7 @@
     <value>300</value>
   </data>
   <data name="tbxSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>649, 26</value>
+    <value>620, 26</value>
   </data>
   <data name="tbxSearchBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -247,7 +247,7 @@
     <value>9, 141</value>
   </data>
   <data name="lbResults.Size" type="System.Drawing.Size, System.Drawing">
-    <value>637, 472</value>
+    <value>608, 474</value>
   </data>
   <data name="lbResults.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -271,7 +271,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="nbPageStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>736, 10</value>
+    <value>707, 10</value>
   </data>
   <data name="nbPageStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -307,7 +307,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>804, 13</value>
+    <value>775, 13</value>
   </data>
   <data name="lblTo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -340,7 +340,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="nbPageEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>830, 10</value>
+    <value>801, 10</value>
   </data>
   <data name="nbPageEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -625,7 +625,7 @@
     <value>NoControl</value>
   </data>
   <data name="pbContentImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 305</value>
+    <value>623, 305</value>
   </data>
   <data name="pbContentImage.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1, 1</value>
@@ -664,7 +664,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblContentName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 39</value>
+    <value>622, 39</value>
   </data>
   <data name="lblContentName.Size" type="System.Drawing.Size, System.Drawing">
     <value>249, 93</value>
@@ -700,7 +700,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblWordLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 164</value>
+    <value>623, 164</value>
   </data>
   <data name="lblWordLength.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -733,7 +733,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUniqueWords.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 187</value>
+    <value>623, 187</value>
   </data>
   <data name="lblUniqueWords.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 23</value>
@@ -766,7 +766,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUsedOnce.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 210</value>
+    <value>623, 210</value>
   </data>
   <data name="lblUsedOnce.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -799,7 +799,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUsedOncePcent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 233</value>
+    <value>623, 233</value>
   </data>
   <data name="lblUsedOncePcent.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 23</value>
@@ -832,7 +832,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUniqueKanji.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 256</value>
+    <value>623, 256</value>
   </data>
   <data name="lblUniqueKanji.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 23</value>
@@ -865,7 +865,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDifficulty.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 279</value>
+    <value>623, 279</value>
   </data>
   <data name="lblDifficulty.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 23</value>
@@ -895,10 +895,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1060, 283</value>
+    <value>819, 279</value>
   </data>
   <data name="btnCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 22</value>
+    <value>43, 22</value>
   </data>
   <data name="btnCopy.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -931,7 +931,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblContentType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 141</value>
+    <value>623, 141</value>
   </data>
   <data name="lblContentType.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -1036,7 +1036,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>902, 621</value>
+    <value>873, 623</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -39,10 +39,10 @@ Partial Class FormScraping
         'lblScraping
         '
         Me.lblScraping.AutoSize = True
-        Me.lblScraping.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblScraping.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblScraping.Location = New System.Drawing.Point(12, 9)
         Me.lblScraping.Name = "lblScraping"
-        Me.lblScraping.Size = New System.Drawing.Size(303, 24)
+        Me.lblScraping.Size = New System.Drawing.Size(356, 25)
         Me.lblScraping.TabIndex = 1
         Me.lblScraping.Text = "Scraping [type] using the [filter] filter"
         '
@@ -54,13 +54,12 @@ Partial Class FormScraping
         Me.lblContextName.Size = New System.Drawing.Size(435, 89)
         Me.lblContextName.TabIndex = 2
         Me.lblContextName.Text = "[name of content]"
-        Me.lblContextName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblExtra
         '
         Me.lblExtra.AutoSize = True
         Me.lblExtra.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblExtra.Location = New System.Drawing.Point(12, 140)
+        Me.lblExtra.Location = New System.Drawing.Point(12, 144)
         Me.lblExtra.Name = "lblExtra"
         Me.lblExtra.Size = New System.Drawing.Size(45, 16)
         Me.lblExtra.TabIndex = 1

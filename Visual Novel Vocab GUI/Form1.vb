@@ -140,7 +140,7 @@ Public Class Form1
         LoadingScreen.Refresh()
 
         Do Until PageDone = True Or PageInterval >= PageEnd
-            Threading.Thread.Sleep(300)
+            Threading.Thread.Sleep(100)
 
             Try
                 LoadingScreen.pbProgress.Value = PageInterval + 40
@@ -519,15 +519,6 @@ Public Class Form1
             lblUniqueKanji.Text = "Unique Kanji: " & ContentList.Item(lbResults.SelectedIndex).UniqueKanji
             lblDifficulty.Text = "Difficulty: " & ContentList.Item(lbResults.SelectedIndex).Difficulty
             btnCopy.Show()
-            Me.Refresh()
-
-            Try
-                pbContentImage.Load(ContentList.Item(lbResults.SelectedIndex).ImageURL)
-                pbContentImage.Visible = True
-            Catch ex As Exception
-                pbContentImage.Visible = False
-            End Try
-            Me.Refresh()
 
             Dim CompareValue As Integer = ContentList.Item(lbResults.SelectedIndex).WordLength
             If CompareValue < 20000 Then 'green 0-20,000
@@ -636,6 +627,15 @@ Public Class Form1
         Catch ex As Exception
             Debug.WriteLine("Selected nothing")
         End Try
+
+        Me.Refresh()
+        Try
+            pbContentImage.Load(ContentList.Item(lbResults.SelectedIndex).ImageURL)
+            pbContentImage.Visible = True
+        Catch ex As Exception
+            pbContentImage.Visible = False
+        End Try
+        Me.Refresh()
     End Sub
     Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Me.Size.Width < 500 Then
@@ -655,7 +655,7 @@ Public Class Form1
         Else
             pbContentImage.Visible = True
         End If
-        If pbContentImage.Size.Height < 30 Then
+        If pbContentImage.Size.Height < 10 Then
             pbContentImage.Visible = False
         Else
             pbContentImage.Visible = True
