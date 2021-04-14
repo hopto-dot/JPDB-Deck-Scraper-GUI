@@ -1,9 +1,11 @@
 # JPDB-Deck-Scraper-GUI
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/hopto-dot/JPDB-Deck-Scraper-GUI?color=light%20green&label=Latest)](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
 
-If you want to filter which words you want to scrape, change the [scrape options](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI#scrape-options).
+If you want to filter which words you want to scrape, change the [scrape options](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI#scrape-options), change [search result filters](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI#search-result-filters) to change how and which decks are shown when you search for one.
 
 ## Download the latest version [here](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
+![image](https://user-images.githubusercontent.com/66906618/114770465-64005a80-9d63-11eb-8502-25597ceb7ef9.png)
+
 
 # Parameters
 
@@ -32,14 +34,14 @@ You can how the filter which changes the order in which words are scraped.
 
 ![image](https://user-images.githubusercontent.com/66906618/114759320-ebdf6800-9d55-11eb-864e-baac497024bd.png)
 
-### Search Result Filters
+## Search Result Filters
 
-## Content Type
+### Content Type
 Narrow down the search results to a specific type of content when searching for content to scrape.
 
 ![image](https://user-images.githubusercontent.com/66906618/114759669-614b3880-9d56-11eb-9569-e6af069b24c5.png)
 
-## Result Ordering
+### Result Ordering
 Change the order in which results are shown when searching for content to scrape.
 
 ![image](https://user-images.githubusercontent.com/66906618/114760640-6fe61f80-9d57-11eb-8878-cc1b6190fb60.png)
