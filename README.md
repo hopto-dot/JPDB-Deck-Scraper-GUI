@@ -1,11 +1,9 @@
 # JPDB-Deck-Scraper-GUI
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/hopto-dot/JPDB-Deck-Scraper-GUI?color=light%20green&label=Latest)](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
 
-If you want to filter which words you want to scrape, change the scrape options or the start to finish boxes at the top right.
+If you want to filter which words you want to scrape, change the [scrape options](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI#scrape-options).
 
-[Wiki](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/wiki) (not yet finished)
-
-Download the latest version [here](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
+## Download the latest version [here](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
 
 # Parameters
 
