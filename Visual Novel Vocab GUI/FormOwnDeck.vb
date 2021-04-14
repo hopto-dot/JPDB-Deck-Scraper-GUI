@@ -83,16 +83,24 @@ Public Class FormOwnDeck
             lblMessage.Text = "Pick one of your decks to scrape"
             lblSignedIn.Text = "Signed in"
             Me.Refresh()
-            If WebBrowser1.Url.ToString <> "https://jpdb.io/learn" And WebBrowser1.Url.ToString.Contains("jpdb.io/deck?id=") = False Then
-                WebBrowser1.Navigate("https://jpdb.io/learn")
-                BrowserStatus = 0
-                Me.Refresh()
-            ElseIf WebBrowser1.Url.ToString.Contains("jpdb.io/deck?id=") = True Then
-                lblMessage.Text = "Scraping Deck " & WebBrowser1.Url.ToString
-                BrowserStatus = 1
-                Me.Refresh()
-                WebBrowser1.Navigate("https://jpdb.io/deck?id=1&sort_by=by-frequency-global&offset=0#a")
-            End If
+
+            Try
+                If WebBrowser1.Url.ToString = "https://jpdb.io/" Then
+                    Me.Close()
+                End If
+                If WebBrowser1.Url.ToString <> "https://jpdb.io/learn" And WebBrowser1.Url.ToString.Contains("jpdb.io/deck?id=") = False Then
+                    WebBrowser1.Navigate("https://jpdb.io/learn")
+                    BrowserStatus = 0
+                    Me.Refresh()
+                ElseIf WebBrowser1.Url.ToString.Contains("jpdb.io/deck?id=") = True Then
+                    lblMessage.Text = "Scraping Deck " & WebBrowser1.Url.ToString
+                    BrowserStatus = 1
+                    Me.Refresh()
+                    WebBrowser1.Navigate("https://jpdb.io/deck?id=1&sort_by=by-frequency-global&offset=0#a")
+                End If
+            Catch ex As Exception
+                Return
+            End Try
         ElseIf BrowserStatus = 1 Then
             If WebBrowser1.Url.ToString.Contains("jpdb.io/deck?id=") = False Then
                 Me.Close()

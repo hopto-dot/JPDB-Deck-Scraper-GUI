@@ -94,9 +94,9 @@ Partial Class Form1
         '
         'nbPageStart
         '
-        resources.ApplyResources(Me.nbPageStart, "nbPageStart")
         Me.nbPageStart.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.nbPageStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        resources.ApplyResources(Me.nbPageStart, "nbPageStart")
         Me.nbPageStart.ForeColor = System.Drawing.SystemColors.InactiveBorder
         Me.nbPageStart.Increment = New Decimal(New Integer() {100, 0, 0, 0})
         Me.nbPageStart.Maximum = New Decimal(New Integer() {40000, 0, 0, 0})
@@ -110,9 +110,9 @@ Partial Class Form1
         '
         'nbPageEnd
         '
-        resources.ApplyResources(Me.nbPageEnd, "nbPageEnd")
         Me.nbPageEnd.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.nbPageEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        resources.ApplyResources(Me.nbPageEnd, "nbPageEnd")
         Me.nbPageEnd.ForeColor = System.Drawing.SystemColors.InactiveBorder
         Me.nbPageEnd.Increment = New Decimal(New Integer() {100, 0, 0, 0})
         Me.nbPageEnd.Maximum = New Decimal(New Integer() {40000, 0, 0, 0})
@@ -258,13 +258,14 @@ Partial Class Form1
         'cbSearchReverse
         '
         resources.ApplyResources(Me.cbSearchReverse, "cbSearchReverse")
+        Me.cbSearchReverse.Cursor = System.Windows.Forms.Cursors.Default
         Me.cbSearchReverse.Name = "cbSearchReverse"
         Me.cbSearchReverse.UseVisualStyleBackColor = True
         '
         'btnOwnDeck
         '
-        Me.btnOwnDeck.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         resources.ApplyResources(Me.btnOwnDeck, "btnOwnDeck")
+        Me.btnOwnDeck.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.btnOwnDeck.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnOwnDeck.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btnOwnDeck.Name = "btnOwnDeck"

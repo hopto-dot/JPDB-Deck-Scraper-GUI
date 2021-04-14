@@ -136,7 +136,7 @@
     <value>300</value>
   </data>
   <data name="tbxSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>620, 26</value>
+    <value>754, 26</value>
   </data>
   <data name="tbxSearchBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -172,7 +172,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="cbbSearchType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 28</value>
+    <value>160, 28</value>
   </data>
   <data name="cbbSearchType.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -244,10 +244,10 @@
     <value>20</value>
   </data>
   <data name="lbResults.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 181</value>
+    <value>9, 176</value>
   </data>
   <data name="lbResults.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 434</value>
+    <value>536, 495</value>
   </data>
   <data name="lbResults.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -264,14 +264,11 @@
   <data name="&gt;&gt;lbResults.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="nbPageStart.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
   <data name="nbPageStart.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="nbPageStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>707, 10</value>
+    <value>9, 138</value>
   </data>
   <data name="nbPageStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -297,9 +294,6 @@
   <data name="&gt;&gt;nbPageStart.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
-  <data name="lblTo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
   <data name="lblTo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
@@ -307,7 +301,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>775, 13</value>
+    <value>77, 141</value>
   </data>
   <data name="lblTo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -333,14 +327,11 @@
   <data name="&gt;&gt;lblTo.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="nbPageEnd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
   <data name="nbPageEnd.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="nbPageEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>801, 10</value>
+    <value>103, 138</value>
   </data>
   <data name="nbPageEnd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -385,7 +376,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="cbbFilterType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 28</value>
+    <value>160, 28</value>
   </data>
   <data name="cbbFilterType.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -448,7 +439,7 @@
     <value>NoControl</value>
   </data>
   <data name="Label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 47</value>
+    <value>183, 47</value>
   </data>
   <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 18</value>
@@ -502,7 +493,7 @@
     <value>Vocabulary List</value>
   </data>
   <data name="cbbMediaType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 72</value>
+    <value>186, 72</value>
   </data>
   <data name="cbbMediaType.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -535,7 +526,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblResultCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 110</value>
+    <value>268, 142</value>
   </data>
   <data name="lblResultCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 18</value>
@@ -619,19 +610,22 @@
     <value>System.Windows.Forms.ToolStripContentPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="pbContentImage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="pbContentImage.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
   </data>
   <data name="pbContentImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="pbContentImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 305</value>
+    <value>551, 305</value>
   </data>
   <data name="pbContentImage.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1, 1</value>
   </data>
   <data name="pbContentImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 309</value>
+    <value>286, 366</value>
   </data>
   <data name="pbContentImage.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -655,7 +649,7 @@
     <value>Top, Right</value>
   </data>
   <data name="lblContentName.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15.75pt, style=Bold</value>
+    <value>Microsoft Sans Serif, 14.25pt, style=Bold</value>
   </data>
   <data name="lblContentName.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -664,10 +658,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblContentName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>622, 39</value>
+    <value>550, 39</value>
   </data>
   <data name="lblContentName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 93</value>
+    <value>287, 93</value>
   </data>
   <data name="lblContentName.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -700,7 +694,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblWordLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 164</value>
+    <value>551, 164</value>
   </data>
   <data name="lblWordLength.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -733,7 +727,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUniqueWords.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 187</value>
+    <value>551, 187</value>
   </data>
   <data name="lblUniqueWords.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 23</value>
@@ -766,7 +760,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUsedOnce.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 210</value>
+    <value>551, 210</value>
   </data>
   <data name="lblUsedOnce.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -799,7 +793,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUsedOncePcent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 233</value>
+    <value>551, 233</value>
   </data>
   <data name="lblUsedOncePcent.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 23</value>
@@ -832,7 +826,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUniqueKanji.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 256</value>
+    <value>551, 256</value>
   </data>
   <data name="lblUniqueKanji.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 23</value>
@@ -865,7 +859,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDifficulty.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 279</value>
+    <value>551, 279</value>
   </data>
   <data name="lblDifficulty.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 23</value>
@@ -895,7 +889,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>819, 279</value>
+    <value>794, 279</value>
   </data>
   <data name="btnCopy.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 22</value>
@@ -931,7 +925,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblContentType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 141</value>
+    <value>551, 141</value>
   </data>
   <data name="lblContentType.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -976,7 +970,7 @@
     <value>Unique Kanji</value>
   </data>
   <data name="cbbSearchOrdering.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 104</value>
+    <value>186, 104</value>
   </data>
   <data name="cbbSearchOrdering.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1006,7 +1000,7 @@
     <value>True</value>
   </data>
   <data name="cbSearchReverse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 111</value>
+    <value>186, 144</value>
   </data>
   <data name="cbSearchReverse.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 17</value>
@@ -1029,6 +1023,9 @@
   <data name="&gt;&gt;cbSearchReverse.ZOrder" xml:space="preserve">
     <value>24</value>
   </data>
+  <data name="btnOwnDeck.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
   <data name="btnOwnDeck.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
   </data>
@@ -1042,13 +1039,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnOwnDeck.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 146</value>
+    <value>440, 139</value>
   </data>
   <data name="btnOwnDeck.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnOwnDeck.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 30</value>
+    <value>105, 26</value>
   </data>
   <data name="btnOwnDeck.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1075,7 +1072,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>873, 623</value>
+    <value>845, 679</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5416,7 +5413,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>579, 348</value>
+    <value>786, 348</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>

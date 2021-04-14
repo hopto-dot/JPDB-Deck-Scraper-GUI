@@ -506,8 +506,38 @@ Public Class Form1
     Private Sub lbResults_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbResults.SelectedIndexChanged
         Try
             lblContentName.Cursor = Cursors.Hand
-            pbContentImage.Cursor = Cursors.Hand
             tbxSearchBox.Text = ContentList.Item(lbResults.SelectedIndex).DeckLink
+
+            Debug.WriteLine(ContentList.Item(lbResults.SelectedIndex).Name.Length)
+            If ContentList.Item(lbResults.SelectedIndex).ContentType <> "Web novel" Then
+                If ContentList.Item(lbResults.SelectedIndex).Name.Length <= 30 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 21, FontStyle.Regular)
+                ElseIf ContentList.Item(lbResults.SelectedIndex).Name.Length <= 53 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 18, FontStyle.Regular)
+                ElseIf ContentList.Item(lbResults.SelectedIndex).Name.Length <= 62 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 16, FontStyle.Regular)
+                ElseIf ContentList.Item(lbResults.SelectedIndex).Name.Length <= 70 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 14, FontStyle.Regular)
+                Else
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 11, FontStyle.Regular)
+                End If
+            Else
+                If ContentList.Item(lbResults.SelectedIndex).Name.Length <= 15 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 21, FontStyle.Regular)
+                ElseIf ContentList.Item(lbResults.SelectedIndex).Name.Length <= 30 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 18, FontStyle.Regular)
+                ElseIf ContentList.Item(lbResults.SelectedIndex).Name.Length <= 40 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 16, FontStyle.Regular)
+                ElseIf ContentList.Item(lbResults.SelectedIndex).Name.Length <= 50 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 14, FontStyle.Regular)
+                ElseIf ContentList.Item(lbResults.SelectedIndex).Name.Length <= 65 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 11, FontStyle.Regular)
+                ElseIf ContentList.Item(lbResults.SelectedIndex).Name.Length <= 75 Then
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Regular)
+                Else
+                    lblContentName.Font = New Font("Microsoft Sans Serif", 9, FontStyle.Regular)
+                End If
+            End If
 
 
             lblContentName.Text = ContentList.Item(lbResults.SelectedIndex).Name
@@ -643,22 +673,16 @@ Public Class Form1
         Else
             lblResultCount.Show()
         End If
-        If Me.Height < 661 Then
-            pbContentImage.Height = Me.Height - 351
+        If Me.Height < 362 Then
+            pbContentImage.Visible = False
+        Else
+            pbContentImage.Visible = True
+        End If
+        If Me.Height < 718 Then
             pbContentImage.Width = pbContentImage.Height / 1.29
         Else
-            pbContentImage.Height = 309
-            pbContentImage.Width = 239
-        End If
-        If pbContentImage.Height < 2 Then
-            pbContentImage.Visible = False
-        Else
-            pbContentImage.Visible = True
-        End If
-        If pbContentImage.Size.Height < 10 Then
-            pbContentImage.Visible = False
-        Else
-            pbContentImage.Visible = True
+            pbContentImage.Width = 286
+            pbContentImage.Height = 366
         End If
     End Sub
 
@@ -749,12 +773,6 @@ Public Class Form1
         Catch ex As Exception
         End Try
     End Sub
-    Private Sub pbContentImage_Click(sender As Object, e As EventArgs) Handles pbContentImage.Click
-        Try
-            Process.Start("https://www.google.co.jp/search?q=" & ContentList.Item(lbResults.SelectedIndex).Name)
-        Catch ex As Exception
-        End Try
-    End Sub
     Private Sub btnCopy_Click(sender As Object, e As EventArgs) Handles btnCopy.Click
         Try
             Clipboard.SetText(ContentList.Item(lbResults.SelectedIndex).Name & vbNewLine & "Unique Words: " & ContentList.Item(lbResults.SelectedIndex).UniqueWords & vbNewLine & "Used Once (%): " & ContentList.Item(lbResults.SelectedIndex).OncePercentage & vbNewLine & "Difficulty: " & ContentList.Item(lbResults.SelectedIndex).Difficulty)
@@ -767,6 +785,7 @@ Public Class Form1
         If tbxSearchBox.Text.Contains("https://") = True Then
             tbxSearchBox.Text = ""
         End If
+
         SearchDecks()
     End Sub
     Private Sub btnOwnDeck_Click(sender As Object, e As EventArgs) Handles btnOwnDeck.Click
