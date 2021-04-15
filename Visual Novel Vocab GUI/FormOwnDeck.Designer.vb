@@ -22,6 +22,7 @@ Partial Class FormOwnDeck
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOwnDeck))
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.lblMessage = New System.Windows.Forms.Label()
         Me.lblSignedIn = New System.Windows.Forms.Label()
@@ -109,7 +110,8 @@ Partial Class FormOwnDeck
         Me.Controls.Add(Me.lblScraped)
         Me.Controls.Add(Me.lblMessage)
         Me.Controls.Add(Me.WebBrowser1)
-        Me.MinimumSize = New System.Drawing.Size(637, 469)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MinimumSize = New System.Drawing.Size(750, 470)
         Me.Name = "FormOwnDeck"
         Me.Text = "Scrape Own Deck"
         Me.ResumeLayout(False)

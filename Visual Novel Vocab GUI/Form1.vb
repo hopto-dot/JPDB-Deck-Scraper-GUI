@@ -680,6 +680,9 @@ Public Class Form1
         End If
         If Me.Height < 718 Then
             pbContentImage.Width = pbContentImage.Height / 1.29
+        ElseIf Me.Height = 718 Then
+            pbContentImage.Width = 286
+            pbContentImage.Height = 366
         Else
             pbContentImage.Width = 286
             pbContentImage.Height = 366
