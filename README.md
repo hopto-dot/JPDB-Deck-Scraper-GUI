@@ -47,5 +47,7 @@ Change the order in which results are shown when searching for content to scrape
 ![image](https://user-images.githubusercontent.com/66906618/114760640-6fe61f80-9d57-11eb-8878-cc1b6190fb60.png)
 
 ***
+This image is of an older version, things have been moved around a little since:
+
 ![image](https://user-images.githubusercontent.com/66906618/114516729-9744cb80-9c35-11eb-8243-6c4a0dc9597c.png)
 
