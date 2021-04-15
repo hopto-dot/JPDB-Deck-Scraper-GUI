@@ -12,12 +12,12 @@ If you want to filter which words you want to scrape, change the [scrape options
 ## Scrape Options
 
 ### Start And End
-The two boxes at the top right change which word you will start and end scraping. If you have these values as 300 and 1000 and leave the other parameters as default, it will get from the 300th most common word to 1000th that appears in that deck.
+The two boxes at the top right change which word you will start and end scraping. If you have these values as 300 to 1000 and leave the other parameters as default, it will get from the 300th most common word to 1000th that appears in that deck.
 
 ![image](https://user-images.githubusercontent.com/66906618/114902736-05dc8180-9e0e-11eb-9d8b-dbdf7c975973.png)
 
 ### Reverse
-If you tick the "Reverse" box, it will scrape from the last word. This means if enabled with the scrape 0 and 500, it will scrape the 500 least frequent words in that deck.
+If you tick the "Reverse" box, it will scrape from the last word. This means if enabled with the scrape 0 to 500, it will scrape the 500 least frequent words in that deck.
 
 ![image](https://user-images.githubusercontent.com/66906618/114758918-6c519900-9d55-11eb-869b-31dd28037a42.png)
 
