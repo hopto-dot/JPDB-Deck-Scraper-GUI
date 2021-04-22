@@ -136,7 +136,7 @@
     <value>300</value>
   </data>
   <data name="tbxSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>754, 26</value>
+    <value>741, 26</value>
   </data>
   <data name="tbxSearchBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tbxSearchBox.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="cbbSearchType.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -190,7 +190,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbSearchType.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="btnSearch.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -229,7 +229,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="lbResults.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -244,10 +244,10 @@
     <value>20</value>
   </data>
   <data name="lbResults.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 176</value>
+    <value>9, 202</value>
   </data>
   <data name="lbResults.Size" type="System.Drawing.Size, System.Drawing">
-    <value>536, 495</value>
+    <value>523, 468</value>
   </data>
   <data name="lbResults.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -619,13 +619,13 @@
     <value>NoControl</value>
   </data>
   <data name="pbContentImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 305</value>
+    <value>538, 305</value>
   </data>
   <data name="pbContentImage.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1, 1</value>
   </data>
   <data name="pbContentImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>286, 366</value>
+    <value>286, 365</value>
   </data>
   <data name="pbContentImage.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -658,7 +658,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblContentName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>550, 39</value>
+    <value>537, 39</value>
   </data>
   <data name="lblContentName.Size" type="System.Drawing.Size, System.Drawing">
     <value>287, 93</value>
@@ -694,7 +694,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblWordLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 164</value>
+    <value>538, 164</value>
   </data>
   <data name="lblWordLength.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -727,7 +727,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUniqueWords.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 187</value>
+    <value>538, 187</value>
   </data>
   <data name="lblUniqueWords.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 23</value>
@@ -760,7 +760,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUsedOnce.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 210</value>
+    <value>538, 210</value>
   </data>
   <data name="lblUsedOnce.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -793,7 +793,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUsedOncePcent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 233</value>
+    <value>538, 233</value>
   </data>
   <data name="lblUsedOncePcent.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 23</value>
@@ -826,7 +826,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblUniqueKanji.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 256</value>
+    <value>538, 256</value>
   </data>
   <data name="lblUniqueKanji.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 23</value>
@@ -859,7 +859,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDifficulty.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 279</value>
+    <value>538, 279</value>
   </data>
   <data name="lblDifficulty.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 23</value>
@@ -889,7 +889,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>794, 279</value>
+    <value>781, 279</value>
   </data>
   <data name="btnCopy.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 22</value>
@@ -925,7 +925,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblContentType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 141</value>
+    <value>538, 141</value>
   </data>
   <data name="lblContentType.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 23</value>
@@ -1021,7 +1021,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbSearchReverse.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="btnOwnDeck.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1039,7 +1039,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnOwnDeck.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 139</value>
+    <value>427, 171</value>
   </data>
   <data name="btnOwnDeck.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -1063,6 +1063,45 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOwnDeck.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="btnOutput.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="btnOutput.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnOutput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="btnOutput.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOutput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 171</value>
+  </data>
+  <data name="btnOutput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="btnOutput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 26</value>
+  </data>
+  <data name="btnOutput.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnOutput.Text" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="&gt;&gt;btnOutput.Name" xml:space="preserve">
+    <value>btnOutput</value>
+  </data>
+  <data name="&gt;&gt;btnOutput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOutput.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnOutput.ZOrder" xml:space="preserve">
     <value>20</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1072,7 +1111,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>845, 679</value>
+    <value>832, 678</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5409,14 +5448,11 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>786, 348</value>
+    <value>670, 345</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>

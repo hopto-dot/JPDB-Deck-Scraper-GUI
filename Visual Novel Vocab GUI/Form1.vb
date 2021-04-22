@@ -687,6 +687,11 @@ Public Class Form1
             pbContentImage.Width = 286
             pbContentImage.Height = 366
         End If
+        Try
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub cbbMediaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbMediaType.SelectedIndexChanged, cbbSearchOrdering.SelectedIndexChanged
