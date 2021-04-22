@@ -12,12 +12,12 @@ If you want to filter which words you want to scrape, change the [scrape options
 ## Scrape Options
 
 ### Start And End
-The two boxes at the top right change which word you will start and end scraping. If you have these values as 300 and 1000 and leave the other parameters as default, it will get from the 300th most common word to 1000th that appears in that deck.
+The two boxes at the top right change which word you will start and end scraping. If you have these values as 300 to 1000 and leave the other parameters as default, it will get from the 300th most common word to 1000th that appears in that deck.
 
-![image](https://user-images.githubusercontent.com/66906618/114760932-cc493f00-9d57-11eb-9cf4-b4c0756cafab.png)
+![image](https://user-images.githubusercontent.com/66906618/114902736-05dc8180-9e0e-11eb-9d8b-dbdf7c975973.png)
 
 ### Reverse
-If you tick the "Reverse" box, it will scrape from the last word. This means if enabled with the scrape 0 and 500, it will scrape the 500 least frequent words in that deck.
+If you tick the "Reverse" box, it will scrape from the last word. This means if enabled with the scrape 0 to 500, it will scrape the 500 least frequent words in that deck.
 
 ![image](https://user-images.githubusercontent.com/66906618/114758918-6c519900-9d55-11eb-869b-31dd28037a42.png)
 
@@ -47,5 +47,7 @@ Change the order in which results are shown when searching for content to scrape
 ![image](https://user-images.githubusercontent.com/66906618/114760640-6fe61f80-9d57-11eb-8878-cc1b6190fb60.png)
 
 ***
+This image is of an older version, things have been moved around a little since:
+
 ![image](https://user-images.githubusercontent.com/66906618/114516729-9744cb80-9c35-11eb-8243-6c4a0dc9597c.png)
 
