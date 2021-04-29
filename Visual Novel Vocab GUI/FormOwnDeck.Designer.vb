@@ -91,11 +91,11 @@ Partial Class FormOwnDeck
         Me.lblScraped.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblScraped.AutoSize = True
         Me.lblScraped.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblScraped.Location = New System.Drawing.Point(732, 15)
+        Me.lblScraped.Location = New System.Drawing.Point(724, 15)
         Me.lblScraped.Name = "lblScraped"
-        Me.lblScraped.Size = New System.Drawing.Size(91, 18)
+        Me.lblScraped.Size = New System.Drawing.Size(99, 18)
         Me.lblScraped.TabIndex = 1
-        Me.lblScraped.Text = "Scraped [    ]"
+        Me.lblScraped.Text = "Scraped [      ]"
         '
         'FormOwnDeck
         '

@@ -151,4 +151,8 @@ Public Class FormOwnDeck
 
         MsgBox("Saved " & WordIDs.Count & " items to 'DeckScrape" & RanInt & ".txt' in the downloads folder!")
     End Sub
+
+    Private Sub FormOwnDeck_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Form1.OwnOpen = False
+    End Sub
 End Class
