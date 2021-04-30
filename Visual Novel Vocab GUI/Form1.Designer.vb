@@ -53,7 +53,6 @@ Partial Class Form1
         Me.cbbSearchOrdering = New System.Windows.Forms.ComboBox()
         Me.cbSearchReverse = New System.Windows.Forms.CheckBox()
         Me.btnOwnDeck = New System.Windows.Forms.Button()
-        Me.btnOutput = New System.Windows.Forms.Button()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -272,15 +271,6 @@ Partial Class Form1
         Me.btnOwnDeck.Name = "btnOwnDeck"
         Me.btnOwnDeck.UseVisualStyleBackColor = False
         '
-        'btnOutput
-        '
-        Me.btnOutput.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        resources.ApplyResources(Me.btnOutput, "btnOutput")
-        Me.btnOutput.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnOutput.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnOutput.Name = "btnOutput"
-        Me.btnOutput.UseVisualStyleBackColor = False
-        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -298,7 +288,6 @@ Partial Class Form1
         Me.Controls.Add(Me.lblWordLength)
         Me.Controls.Add(Me.lblContentName)
         Me.Controls.Add(Me.pbContentImage)
-        Me.Controls.Add(Me.lblResultCount)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cbbSearchOrdering)
         Me.Controls.Add(Me.cbbMediaType)
@@ -308,12 +297,12 @@ Partial Class Form1
         Me.Controls.Add(Me.lblTo)
         Me.Controls.Add(Me.nbPageStart)
         Me.Controls.Add(Me.lbResults)
-        Me.Controls.Add(Me.btnOutput)
         Me.Controls.Add(Me.btnOwnDeck)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.cbbSearchType)
         Me.Controls.Add(Me.tbxSearchBox)
         Me.Controls.Add(Me.cbSearchReverse)
+        Me.Controls.Add(Me.lblResultCount)
         Me.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Name = "Form1"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
@@ -355,5 +344,4 @@ Partial Class Form1
     Friend WithEvents cbbSearchOrdering As ComboBox
     Friend WithEvents cbSearchReverse As CheckBox
     Friend WithEvents btnOwnDeck As Button
-    Friend WithEvents btnOutput As Button
 End Class

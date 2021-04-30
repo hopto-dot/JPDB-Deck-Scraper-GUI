@@ -7,6 +7,8 @@ Public Class Form1
 
     Public LastScrapeName As String = ""
     Dim ContentList As New List(Of Content) From {}
+    Dim LastScrapeName As String = ""
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblResultCount.Hide()
         lblResultCount.Text = ""
@@ -473,6 +475,11 @@ Public Class Form1
             pbContentImage.Width = 286
             pbContentImage.Height = 366
         End If
+        If Me.Width < 771 Then
+            lblResultCount.Hide()
+        Else
+            lblResultCount.Show()
+        End If
     End Sub
 
     Private Sub cbbMediaType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbbMediaType.SelectedIndexChanged, cbbSearchOrdering.SelectedIndexChanged
@@ -569,7 +576,6 @@ Public Class Form1
         End Try
 
     End Sub
-
     Private Sub cbSearchReverse_CheckedChanged(sender As Object, e As EventArgs) Handles cbSearchReverse.CheckedChanged
         If tbxSearchBox.Text.Contains("https://") = True Then
             tbxSearchBox.Text = ""
@@ -578,7 +584,10 @@ Public Class Form1
         SearchDecks()
     End Sub
     Private Sub btnOwnDeck_Click(sender As Object, e As EventArgs) Handles btnOwnDeck.Click
-        Dim ScrapeOwnDeck As New FormOwnDeck
-        ScrapeOwnDeck.Show()
+        If OwnOpen = False Then
+            Dim ScrapeOwnDeck As New FormOwnDeck
+            ScrapeOwnDeck.Show()
+            OwnOpen = True
+        End If
     End Sub
 End Class
