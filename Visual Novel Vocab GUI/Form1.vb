@@ -7,26 +7,28 @@ Public Class Form1
 
     Public LastScrapeName As String = ""
     Dim ContentList As New List(Of Content) From {}
-    Dim LastScrapeName As String = ""
+    Public OwnOpen As Boolean = False
 
+    'Function ContentList = SearchDecks(MediaType, SearchOrdering, SearchReverse, SearchBoxText)  ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, Reverse, tbxSearchBox.Text)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblResultCount.Hide()
         lblResultCount.Text = ""
-        SearchDecks()
+        ContentList = SearchDecks("All", "Difficulty", False, tbxSearchBox.Text)
+        RefreshResults()
         Try
             lbResults.SelectedIndex = 0
         Catch ex As Exception
+            lblContentName.Text = "Name: "
+            lblContentType.Text = "Type: "
+            lblWordLength.Text = "Word Length: "
+            lblUniqueWords.Text = "Unique Words: "
+            lblUsedOnce.Text = "Used Once: "
+            lblUsedOncePcent.Text = "Used Once (%): "
+            lblUniqueKanji.Text = "Unique Kanji: "
+            lblDifficulty.Text = "Difficulty: "
         End Try
         tbxSearchBox.Text = ""
-
-        lblContentName.Text = "Name: "
-        lblContentType.Text = "Type: "
-        lblWordLength.Text = "Word Length: "
-        lblUniqueWords.Text = "Unique Words: "
-        lblUsedOnce.Text = "Used Once: "
-        lblUsedOncePcent.Text = "Used Once (%): "
-        lblUniqueKanji.Text = "Unique Kanji: "
-        lblDifficulty.Text = "Difficulty: "
+        nbPageEnd.Value = 3000
     End Sub
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim SnipIndex As Integer = -1
@@ -46,6 +48,9 @@ Public Class Form1
         End Try
 
         Try
+            If nbPageStart.Value > nbPageEnd.Value Then
+                nbPageStart.Value = nbPageEnd.Value
+            End If
             If nbPageEnd.Value > ContentList(lbResults.SelectedIndex).UniqueWords Then
                 nbPageEnd.Value = ContentList(lbResults.SelectedIndex).UniqueWords
             End If
@@ -53,176 +58,20 @@ Public Class Form1
         End Try
 
         'PageStart, PageEnd, FilterType, NovelLink
-        SaveToTXT(ScrapeCode.ScrapeDeck(nbPageStart.Value, nbPageEnd.Value, cbbFilterType.Text, tbxSearchBox.Text), "downloads", LastScrapeName)
-    End Sub
-    Sub SearchDecks()
-        Const QUOTE = """"
-        Dim Client As New WebClient
-        Client.Encoding = System.Text.Encoding.UTF8
-        Dim HTML As String = ""
-        Dim SnipIndex As Integer = -1
-
-        cbbMediaType.Text = Strings.Left(cbbMediaType.Text, 1) & Strings.Mid(cbbMediaType.Text, 2)
-
-        ContentList.Clear()
-        lbResults.Items.Clear()
-
-        If cbbMediaType.Text.ToLower <> "anime" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "light novel" And cbbMediaType.Text.ToLower <> "web novel" And cbbMediaType.Text.ToLower <> "j-drama" And cbbMediaType.Text.ToLower <> "textbook" And cbbMediaType.Text.ToLower <> "vocabulary list" Then
-            cbbMediaType.Text = "All"
-        End If
-
-        Dim MediaType As String = "All"
-        MediaType = cbbMediaType.Text.ToLower
-        MediaType = MediaType.Replace("j-drama", "drama")
-        MediaType = "&show_only=" & MediaType.Replace(" ", "_").ToLower
-        If MediaType.Contains("all") Then
-            MediaType = ""
-        End If
-
-        Dim SearchOrdering As String = cbbSearchOrdering.Text.Replace(" ", "_")
-        If cbbMediaType.Text.ToLower = "textbook" Then
-            SearchOrdering = "name"
-        End If
-        SearchOrdering = "&sort_by=" & SearchOrdering.ToLower
-        If cbSearchReverse.Checked = True Then
-            SearchOrdering &= "&order=reverse"
-        End If
-
-        Dim URL As String = "https://jpdb.io/prebuilt_decks?q=" & tbxSearchBox.Text & MediaType & SearchOrdering
-        Try
-            HTML = Client.DownloadString(New Uri(URL))
-            Debug.WriteLine("First client URL")
-        Catch ex As Exception
+        If tbxSearchBox.Text.Contains("https://") Then
             Try
-                URL = "https://jpdb.io/prebuilt_decks?q=" & tbxSearchBox.Text & "&sort_by=difficulty"
-                HTML = Client.DownloadString(New Uri(URL))
-                Debug.WriteLine("Search filter failed")
-            Catch ex2 As Exception
-                MsgBox(ex.Message & vbNewLine & vbNewLine & "You were either temporarily IP banned from using jpdb.io or aren't connected to the internet")
-                Return
-            End Try
-        End Try
-
-        Dim SnipTemp As String = ""
-
-        Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 50
-            Dim NewContent As New Content
-            Try
-                If HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") <> -1 Then
-                    'snipping image url:
-                    SnipIndex = HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") + 12
-                    HTML = Mid(HTML, SnipIndex)
-                    SnipTemp = HTML
-                    SnipIndex = SnipTemp.IndexOf(QUOTE)
-                    SnipTemp = "https://jpdb.io" & Strings.Left(HTML, SnipIndex)
-                    NewContent.ImageURL = SnipTemp
+                If nbPageEnd.Value > ContentList(lbResults.SelectedIndex).UniqueWords Then
+                    nbPageEnd.Value = ContentList(lbResults.SelectedIndex).UniqueWords + 50
                 End If
-
-                'snipping content type:
-                SnipIndex = HTML.IndexOf("<div style=" & QUOTE & "opacity: 0.5" & QUOTE & ">") + 27
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("<")
-                NewContent.ContentType = Strings.Left(HTML, SnipIndex)
-
-                'snipping content name:
-                SnipIndex = HTML.IndexOf("max-width: 30rem;" & QUOTE & ">") + 20
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("<")
-                SnipTemp = Strings.Left(SnipTemp, SnipIndex)
-                SnipTemp = SnipTemp.Replace("&#39;", "'").Replace("&quot;", QUOTE)
-                NewContent.Name = SnipTemp
-
-                'snipping "length (in words)":
-                SnipIndex = HTML.IndexOf("Length (in words)") + 27
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("<")
-                SnipTemp = Strings.Left(HTML, SnipIndex)
-                If IsNumeric(SnipTemp) = True Then
-                    NewContent.WordLength = SnipTemp
-                End If
-
-                'snipping "Unique words":
-                SnipIndex = HTML.IndexOf("Unique words") + 22
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("<")
-                SnipTemp = Strings.Left(HTML, SnipIndex)
-                If IsNumeric(SnipTemp) = True Then
-                    NewContent.UniqueWords = SnipTemp
-                End If
-
-                'snipping "Unique words (used once)":
-                If HTML.IndexOf("(used once)") <> -1 Then
-                    SnipIndex = HTML.IndexOf("(used once)") + 21
-                    HTML = Mid(HTML, SnipIndex)
-                    SnipTemp = HTML
-                    SnipIndex = SnipTemp.IndexOf("<")
-                    SnipTemp = Strings.Left(HTML, SnipIndex)
-                    If IsNumeric(SnipTemp) = True Then
-                        NewContent.UniqueWordsOnce = SnipTemp
-                    End If
-                End If
-
-                'snipping "Unique words (used once %)":
-                If HTML.IndexOf("(used once %)") <> -1 Then
-                    SnipIndex = HTML.IndexOf("(used once %)	") + 58
-                    HTML = Mid(HTML, SnipIndex)
-                    SnipTemp = HTML
-                    SnipIndex = SnipTemp.IndexOf("<")
-                    SnipTemp = Strings.Left(HTML, SnipIndex)
-                    SnipTemp = SnipTemp.Replace(">", "").Replace("d", "")
-                    If IsNumeric(SnipTemp.Replace("%", "")) = True Then
-                        If SnipTemp.Replace("%", "") < 10 Then
-                            NewContent.OncePercentage = "?%"
-                        Else
-                            NewContent.OncePercentage = SnipTemp
-                        End If
-                    End If
-                End If
-
-                'snipping "Unique kanji":
-                SnipIndex = HTML.IndexOf("Unique kanji") + 22
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("<")
-                NewContent.UniqueKanji = Strings.Left(HTML, SnipIndex)
-
-                'snipping "difficulty":
-                If HTML.IndexOf("Difficulty</th>") <> -1 Then
-                    SnipIndex = HTML.IndexOf("Difficulty</th>") + 20
-                    HTML = Mid(HTML, SnipIndex)
-                    SnipTemp = HTML
-                    SnipIndex = SnipTemp.IndexOf("<")
-                    SnipTemp = Strings.Left(HTML, SnipIndex)
-                    If IsNumeric(SnipTemp.Replace("/10", "")) = True Then
-                        NewContent.Difficulty = SnipTemp
-                    End If
-                End If
-
-                'snipping vocab deck link:
-                SnipIndex = HTML.IndexOf("top: 0.5rem;") + 25
-                HTML = Mid(HTML, SnipIndex)
-                SnipTemp = HTML
-                SnipIndex = SnipTemp.IndexOf("""")
-                SnipTemp = Strings.Left(HTML, SnipIndex)
-                NewContent.DeckLink = "https://jpdb.io/" & SnipTemp
             Catch ex As Exception
-                MsgBox("Something went wrong with getting information for some content" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical)
-                Return
+                Exit Sub
             End Try
+            SaveToTXT(ScrapeDeck(nbPageStart.Value, nbPageEnd.Value, cbbFilterType.Text, tbxSearchBox.Text), "downloads", LastScrapeName)
+        Else
+            ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, Reverse, tbxSearchBox.Text)
+            RefreshResults()
+        End If
 
-            If ContentList.Count = 0 Then
-                lbResults.Items.Clear()
-            End If
-
-            lbResults.Items.Add(NewContent.Name)
-            ContentList.Add(NewContent)
-        Loop
-        lblResultCount.Show()
-        lblResultCount.Text = "Results: " & lbResults.Items.Count
     End Sub
     Function LinkGet(ByVal NovelLink)
         Dim Client As New WebClient
@@ -233,7 +82,8 @@ Public Class Form1
         Try
             HTML = Client.DownloadString(New Uri(NovelLink))
         Catch ex As Exception
-            SearchDecks()
+            ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, Reverse, tbxSearchBox.Text)
+            RefreshResults()
             Return ("")
         End Try
 
@@ -292,6 +142,9 @@ Public Class Form1
         End Select
     End Sub
     Private Sub lbResults_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbResults.SelectedIndexChanged
+
+        nbPageEnd.Value = ContentList(lbResults.SelectedIndex).UniqueWords
+
         Try
             lblContentName.Cursor = Cursors.Hand
             tbxSearchBox.Text = ContentList.Item(lbResults.SelectedIndex).DeckLink
@@ -486,7 +339,8 @@ Public Class Form1
         If tbxSearchBox.Text.Contains("https://") = True Then
             tbxSearchBox.Text = ""
         End If
-        SearchDecks()
+        ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, Reverse, tbxSearchBox.Text)
+        RefreshResults()
     End Sub
     Private Sub tbxSearchBox_TextChanged(sender As Object, e As EventArgs) Handles tbxSearchBox.TextChanged
         If tbxSearchBox.Text.Contains("https://") Then
@@ -581,7 +435,8 @@ Public Class Form1
             tbxSearchBox.Text = ""
         End If
 
-        SearchDecks()
+        ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, Reverse, tbxSearchBox.Text)
+        RefreshResults()
     End Sub
     Private Sub btnOwnDeck_Click(sender As Object, e As EventArgs) Handles btnOwnDeck.Click
         If OwnOpen = False Then
@@ -589,5 +444,23 @@ Public Class Form1
             ScrapeOwnDeck.Show()
             OwnOpen = True
         End If
+    End Sub
+
+    Sub RefreshResults()
+        lbResults.Items.Clear()
+        For Each Cont In ContentList
+            lbResults.Items.Add(Cont.Name)
+        Next
+        lblResultCount.Show()
+        lblResultCount.Text = "Results: " & lbResults.Items.Count
+    End Sub
+
+    Private Sub nbPageEnd_ValueChanged(sender As Object, e As EventArgs) Handles nbPageEnd.ValueChanged
+        Try
+            If nbPageEnd.Value > ContentList(lbResults.SelectedIndex).UniqueWords Then
+                nbPageEnd.Value = ContentList(lbResults.SelectedIndex).UniqueWords
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

@@ -1,6 +1,5 @@
 ﻿Imports System.IO
 Imports System.Net
-
 Module ScrapeCode
     Public Class Content
         Public Name As String = "?"
@@ -28,7 +27,6 @@ Module ScrapeCode
 
         If CInt(PageStart) > CInt(PageEnd) Then
             PageEnd = PageStart + 50
-            Form1.nbPageEnd.Value = PageStart + 50
         End If
 
         If PageEnd > 32650 Then
@@ -36,7 +34,7 @@ Module ScrapeCode
         End If
 
         If NovelLink.Contains("https://") = False Then
-            Form1.SearchDecks()
+            SearchDecks("All", "Difficulty", False, "")
             Exit Function
         End If
 
@@ -182,8 +180,177 @@ Module ScrapeCode
                 Return (WordIDs)
         End Select
         Exit Function
+#Disable Warning BC42105 ' Function doesn't return a value on all code paths
     End Function
+#Enable Warning BC42105 ' Function doesn't return a value on all code paths
+    Function SearchDecks(MediaType, SearchOrdering, SearchReverse, SearchBoxText)
+        Const QUOTE = """"
+        Dim Client As New WebClient
+        Client.Encoding = System.Text.Encoding.UTF8
+        Dim HTML As String = ""
+        Dim SnipIndex As Integer = -1
 
+        MediaType = Strings.Left(MediaType, 1) & Strings.Mid(MediaType, 2)
+
+        'ContentList.Clear()
+        'lbResults.Items.Clear()
+
+        'If MediaTypw.Text.ToLower <> "anime" And MediaTypw.Text.ToLower <> "visual novel" And MediaTypw.Text.ToLower <> "visual novel" And cbbMediaType.Text.ToLower <> "light novel" And cbbMediaType.Text.ToLower <> "web novel" And cbbMediaType.Text.ToLower <> "j-drama" And cbbMediaType.Text.ToLower <> "textbook" And cbbMediaType.Text.ToLower <> "vocabulary list" Then
+        '    MediaType.Text = "All"
+        'End If
+
+        MediaType = MediaType.ToLower
+        MediaType = MediaType.Replace("j-drama", "drama")
+        MediaType = "&show_only=" & MediaType.Replace(" ", "_").ToLower
+        If MediaType.Contains("all") Then
+            MediaType = ""
+        End If
+
+        SearchOrdering = SearchOrdering.Replace(" ", "_")
+        If MediaType.ToLower = "textbook" Then
+            SearchOrdering = "name"
+        End If
+        SearchOrdering = "&sort_by=" & SearchOrdering.ToLower
+        If SearchReverse = True Then
+            SearchOrdering &= "&order=reverse"
+        End If
+
+        Dim URL As String = "https://jpdb.io/prebuilt_decks?q=" & SearchBoxText & MediaType & SearchOrdering
+        Try
+            HTML = Client.DownloadString(New Uri(URL))
+            Debug.WriteLine("First client URL")
+        Catch ex As Exception
+            Try
+                URL = "https://jpdb.io/prebuilt_decks?q=" & SearchBoxText & "&sort_by=difficulty"
+                HTML = Client.DownloadString(New Uri(URL))
+                Debug.WriteLine("Search filter failed")
+            Catch ex2 As Exception
+                MsgBox(ex.Message & vbNewLine & vbNewLine & "You were either temporarily IP banned from using jpdb.io or aren't connected to the internet")
+                Exit Function
+            End Try
+        End Try
+
+        Dim SnipTemp As String = ""
+        Dim ContentList As New List(Of Content) From {}
+        Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 50
+            Dim NewContent As New Content
+            Try
+                If HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") <> -1 Then
+                    'snipping image url:
+                    SnipIndex = HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") + 12
+                    HTML = Mid(HTML, SnipIndex)
+                    SnipTemp = HTML
+                    SnipIndex = SnipTemp.IndexOf(QUOTE)
+                    SnipTemp = "https://jpdb.io" & Strings.Left(HTML, SnipIndex)
+                    NewContent.ImageURL = SnipTemp
+                End If
+
+                'snipping content type:
+                SnipIndex = HTML.IndexOf("<div style=" & QUOTE & "opacity: 0.5" & QUOTE & ">") + 27
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.ContentType = Strings.Left(HTML, SnipIndex)
+
+                'snipping content name:
+                SnipIndex = HTML.IndexOf("max-width: 30rem;" & QUOTE & ">") + 20
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                SnipTemp = Strings.Left(SnipTemp, SnipIndex)
+                SnipTemp = SnipTemp.Replace("&#39;", "'").Replace("&quot;", QUOTE)
+                NewContent.Name = SnipTemp
+
+                'snipping "length (in words)":
+                SnipIndex = HTML.IndexOf("Length (in words)") + 27
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                SnipTemp = Strings.Left(HTML, SnipIndex)
+                If IsNumeric(SnipTemp) = True Then
+                    NewContent.WordLength = SnipTemp
+                End If
+
+                'snipping "Unique words":
+                SnipIndex = HTML.IndexOf("Unique words") + 22
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                SnipTemp = Strings.Left(HTML, SnipIndex)
+                If IsNumeric(SnipTemp) = True Then
+                    NewContent.UniqueWords = SnipTemp
+                End If
+
+                'snipping "Unique words (used once)":
+                If HTML.IndexOf("(used once)") <> -1 Then
+                    SnipIndex = HTML.IndexOf("(used once)") + 21
+                    HTML = Mid(HTML, SnipIndex)
+                    SnipTemp = HTML
+                    SnipIndex = SnipTemp.IndexOf("<")
+                    SnipTemp = Strings.Left(HTML, SnipIndex)
+                    If IsNumeric(SnipTemp) = True Then
+                        NewContent.UniqueWordsOnce = SnipTemp
+                    End If
+                End If
+
+                'snipping "Unique words (used once %)":
+                If HTML.IndexOf("(used once %)") <> -1 Then
+                    SnipIndex = HTML.IndexOf("(used once %)	") + 58
+                    HTML = Mid(HTML, SnipIndex)
+                    SnipTemp = HTML
+                    SnipIndex = SnipTemp.IndexOf("<")
+                    SnipTemp = Strings.Left(HTML, SnipIndex)
+                    SnipTemp = SnipTemp.Replace(">", "").Replace("d", "")
+                    If IsNumeric(SnipTemp.Replace("%", "")) = True Then
+                        If SnipTemp.Replace("%", "") < 10 Then
+                            NewContent.OncePercentage = "?%"
+                        Else
+                            NewContent.OncePercentage = SnipTemp
+                        End If
+                    End If
+                End If
+
+                'snipping "Unique kanji":
+                SnipIndex = HTML.IndexOf("Unique kanji") + 22
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("<")
+                NewContent.UniqueKanji = Strings.Left(HTML, SnipIndex)
+
+                'snipping "difficulty":
+                If HTML.IndexOf("Difficulty</th>") <> -1 Then
+                    SnipIndex = HTML.IndexOf("Difficulty</th>") + 20
+                    HTML = Mid(HTML, SnipIndex)
+                    SnipTemp = HTML
+                    SnipIndex = SnipTemp.IndexOf("<")
+                    SnipTemp = Strings.Left(HTML, SnipIndex)
+                    If IsNumeric(SnipTemp.Replace("/10", "")) = True Then
+                        NewContent.Difficulty = SnipTemp
+                    End If
+                End If
+
+                'snipping vocab deck link:
+                SnipIndex = HTML.IndexOf("top: 0.5rem;") + 25
+                HTML = Mid(HTML, SnipIndex)
+                SnipTemp = HTML
+                SnipIndex = SnipTemp.IndexOf("""")
+                SnipTemp = Strings.Left(HTML, SnipIndex)
+                NewContent.DeckLink = "https://jpdb.io/" & SnipTemp
+            Catch ex As Exception
+                MsgBox("Something went wrong with getting information for some content" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical)
+                Exit Function
+            End Try
+
+            'If ContentList.Count = 0 Then
+            '    lbResults.Items.Clear()
+            'End If
+
+            ContentList.Add(NewContent)
+        Loop
+
+        Return (ContentList)
+#Disable Warning BC42105 ' Function doesn't return a value on all code paths
+    End Function
     Public Sub SaveToTXT(WordIDs, SaveType, DeckName)
         SaveType = SaveType.trim.tolower
         Randomize()
@@ -226,7 +393,7 @@ Module ScrapeCode
                 TextWriter.WriteLine(Word)
             Next
         Catch ex As Exception
-            MsgBox("No content selected" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical)
+            'MsgBox("No content selected or there is no vocabulary to scrape" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical)
             TextWriter.Close()
             Exit Sub
         End Try

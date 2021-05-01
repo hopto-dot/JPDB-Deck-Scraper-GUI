@@ -118,7 +118,7 @@ Partial Class Form1
         Me.nbPageEnd.Maximum = New Decimal(New Integer() {40000, 0, 0, 0})
         Me.nbPageEnd.Minimum = New Decimal(New Integer() {50, 0, 0, 0})
         Me.nbPageEnd.Name = "nbPageEnd"
-        Me.nbPageEnd.Value = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nbPageEnd.Value = New Decimal(New Integer() {3000, 0, 0, 0})
         '
         'cbbFilterType
         '
