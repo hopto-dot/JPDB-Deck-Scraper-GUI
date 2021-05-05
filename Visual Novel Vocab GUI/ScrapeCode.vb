@@ -12,8 +12,12 @@ Module ScrapeCode
         Public Difficulty As String = "?"
         Public DeckLink As String = "?"
         Public ImageURL As String = "?"
+
+        Public PageStart As Integer = 0
+        Public PageEnd As Integer = 3000
+        Public FilterType As String = "deckfrequency"
     End Class
-    Function ScrapeDeck(PageStart, PageEnd, FilterType, NovelLink)
+    Function ScrapeDeck(PageStart, PageEnd, FilterType, NovelLink, IgnoreMsgBox, PageDelay)
         Dim Client As New WebClient
         Client.Encoding = System.Text.Encoding.UTF8
         Dim HTML As String = ""
@@ -34,7 +38,7 @@ Module ScrapeCode
         End If
 
         If NovelLink.Contains("https://") = False Then
-            SearchDecks("All", "Difficulty", False, "")
+            SearchDecks("All", "Difficulty", Form1.cbSearchReverse.Checked, "")
             Exit Function
         End If
 
@@ -93,7 +97,10 @@ Module ScrapeCode
         LoadingScreen.Refresh()
 
         Do Until PageDone = True Or PageInterval >= PageEnd
-            Threading.Thread.Sleep(100)
+            Try
+                Threading.Thread.Sleep(PageDelay)
+            Catch ex As Exception
+            End Try
 
             Try
                 LoadingScreen.pbProgress.Value = PageInterval + 40
@@ -174,11 +181,16 @@ Module ScrapeCode
             Exit Function
         End If
 
-        Select Case MsgBox("Successfully Scraped " & WordIDs.Count & " words from " & PageStart & "-" & PageInterval & " of deck " & Form1.LastScrapeName & " with the " & FilterType.Replace("?sort_by=by-frequency-local&offset=", "frequency") & " filter" & vbNewLine & vbNewLine & "Would you like to save the results to the downloads folder?", vbQuestion + vbYesNo + vbDefaultButton2, "Successful scraped words")
-            Case vbYes
-                'Form1.SaveToTXT(WordIDs, "downloads", Form1.LastScrapeName)
-                Return (WordIDs)
-        End Select
+        If IgnoreMsgBox = False Then
+            Select Case MsgBox("Successfully Scraped " & WordIDs.Count & " words from " & PageStart & "-" & PageInterval & " of deck " & Form1.LastScrapeName & " with the " & FilterType.Replace("?sort_by=by-frequency-local&offset=", "frequency") & " filter" & vbNewLine & vbNewLine & "Would you like to save the results to the downloads folder?", vbQuestion + vbYesNo + vbDefaultButton2, "Successful scraped words")
+                Case vbYes
+                    'Form1.SaveToTXT(WordIDs, "downloads", Form1.LastScrapeName)
+                    Return (WordIDs)
+            End Select
+        Else
+            Return (WordIDs)
+        End If
+
         Exit Function
 #Disable Warning BC42105 ' Function doesn't return a value on all code paths
     End Function

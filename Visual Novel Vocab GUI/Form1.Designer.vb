@@ -26,7 +26,6 @@ Partial Class Form1
         Me.tbxSearchBox = New System.Windows.Forms.TextBox()
         Me.cbbSearchType = New System.Windows.Forms.ComboBox()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.lbResults = New System.Windows.Forms.ListBox()
         Me.nbPageStart = New System.Windows.Forms.NumericUpDown()
         Me.lblTo = New System.Windows.Forms.Label()
         Me.nbPageEnd = New System.Windows.Forms.NumericUpDown()
@@ -53,6 +52,9 @@ Partial Class Form1
         Me.cbbSearchOrdering = New System.Windows.Forms.ComboBox()
         Me.cbSearchReverse = New System.Windows.Forms.CheckBox()
         Me.btnOwnDeck = New System.Windows.Forms.Button()
+        Me.fpResults = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnScrapeDecks = New System.Windows.Forms.Button()
+        Me.btnSelectAll = New System.Windows.Forms.Button()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,15 +84,6 @@ Partial Class Form1
         Me.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.UseVisualStyleBackColor = False
-        '
-        'lbResults
-        '
-        resources.ApplyResources(Me.lbResults, "lbResults")
-        Me.lbResults.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.lbResults.Cursor = System.Windows.Forms.Cursors.Default
-        Me.lbResults.ForeColor = System.Drawing.SystemColors.InactiveBorder
-        Me.lbResults.FormattingEnabled = True
-        Me.lbResults.Name = "lbResults"
         '
         'nbPageStart
         '
@@ -271,6 +264,29 @@ Partial Class Form1
         Me.btnOwnDeck.Name = "btnOwnDeck"
         Me.btnOwnDeck.UseVisualStyleBackColor = False
         '
+        'fpResults
+        '
+        resources.ApplyResources(Me.fpResults, "fpResults")
+        Me.fpResults.Name = "fpResults"
+        '
+        'btnScrapeDecks
+        '
+        Me.btnScrapeDecks.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        resources.ApplyResources(Me.btnScrapeDecks, "btnScrapeDecks")
+        Me.btnScrapeDecks.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnScrapeDecks.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnScrapeDecks.Name = "btnScrapeDecks"
+        Me.btnScrapeDecks.UseVisualStyleBackColor = False
+        '
+        'btnSelectAll
+        '
+        Me.btnSelectAll.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+        resources.ApplyResources(Me.btnSelectAll, "btnSelectAll")
+        Me.btnSelectAll.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSelectAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnSelectAll.Name = "btnSelectAll"
+        Me.btnSelectAll.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -278,6 +294,9 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Controls.Add(Me.btnSelectAll)
+        Me.Controls.Add(Me.btnScrapeDecks)
+        Me.Controls.Add(Me.fpResults)
         Me.Controls.Add(Me.btnCopy)
         Me.Controls.Add(Me.lblDifficulty)
         Me.Controls.Add(Me.lblUniqueKanji)
@@ -296,7 +315,6 @@ Partial Class Form1
         Me.Controls.Add(Me.nbPageEnd)
         Me.Controls.Add(Me.lblTo)
         Me.Controls.Add(Me.nbPageStart)
-        Me.Controls.Add(Me.lbResults)
         Me.Controls.Add(Me.btnOwnDeck)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.cbbSearchType)
@@ -317,7 +335,6 @@ Partial Class Form1
     Friend WithEvents tbxSearchBox As TextBox
     Friend WithEvents cbbSearchType As ComboBox
     Friend WithEvents btnSearch As Button
-    Friend WithEvents lbResults As ListBox
     Friend WithEvents nbPageStart As NumericUpDown
     Friend WithEvents lblTo As Label
     Friend WithEvents nbPageEnd As NumericUpDown
@@ -344,4 +361,7 @@ Partial Class Form1
     Friend WithEvents cbbSearchOrdering As ComboBox
     Friend WithEvents cbSearchReverse As CheckBox
     Friend WithEvents btnOwnDeck As Button
+    Friend WithEvents fpResults As FlowLayoutPanel
+    Friend WithEvents btnScrapeDecks As Button
+    Friend WithEvents btnSelectAll As Button
 End Class

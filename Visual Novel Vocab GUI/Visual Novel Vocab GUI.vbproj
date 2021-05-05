@@ -110,6 +110,16 @@
     <Compile Include="FormScraping.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="JobControl.Designer.vb">
+      <DependentUpon>JobControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="JobControl.vb" />
+    <Compile Include="JobsWindow.Designer.vb">
+      <DependentUpon>JobsWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="JobsWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ScrapeCode.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -140,6 +150,12 @@
     <EmbeddedResource Include="FormScraping.resx">
       <DependentUpon>FormScraping.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JobControl.resx">
+      <DependentUpon>JobControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobsWindow.resx">
+      <DependentUpon>JobsWindow.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -161,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mashiro.ico" />
+    <None Include="Resources\remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
