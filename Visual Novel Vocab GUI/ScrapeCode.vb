@@ -17,7 +17,9 @@ Module ScrapeCode
         Public PageEnd As Integer = 3000
         Public FilterType As String = "deckfrequency"
     End Class
-    Function ScrapeDeck(PageStart, PageEnd, FilterType, NovelLink, IgnoreMsgBox, PageDelay)
+
+    Public ContentJobs As New List(Of Content) From {}
+    Function ScrapeDeck(PageStart, PageEnd, FilterType, NovelLink, IgnoreMsgBox, PageDelay, ContentName)
         Dim Client As New WebClient
         Client.Encoding = System.Text.Encoding.UTF8
         Dim HTML As String = ""
@@ -90,7 +92,7 @@ Module ScrapeCode
         Debug.WriteLine("Scraping {3} from {0}-{1} with filter {2}", PageStart, PageEnd, FilterType, Form1.cbbSearchType.Text)
         Dim LoadingScreen As New FormScraping
         LoadingScreen.lblScraping.Text = "Scraping " & Form1.cbbSearchType.Text & " using the " & Form1.cbbFilterType.Text & " filter"
-        LoadingScreen.lblContextName.Text = Form1.LastScrapeName
+        LoadingScreen.lblContextName.Text = ContentName
         LoadingScreen.pbProgress.Maximum = PageEnd
         LoadingScreen.pbProgress.Minimum = PageStart
         LoadingScreen.Show()

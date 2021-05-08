@@ -32,23 +32,23 @@ Partial Class ContentControl
         Me.btnAdd.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAdd.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAdd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btnAdd.Location = New System.Drawing.Point(0, 3)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(57, 33)
+        Me.btnAdd.Size = New System.Drawing.Size(57, 24)
         Me.btnAdd.TabIndex = 0
-        Me.btnAdd.Text = "Add"
+        Me.btnAdd.Text = "Add Job"
         Me.btnAdd.UseVisualStyleBackColor = False
         '
         'lblContentName
         '
         Me.lblContentName.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblContentName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblContentName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContentName.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblContentName.Location = New System.Drawing.Point(66, 3)
+        Me.lblContentName.Location = New System.Drawing.Point(66, 1)
         Me.lblContentName.Name = "lblContentName"
-        Me.lblContentName.Size = New System.Drawing.Size(472, 33)
+        Me.lblContentName.Size = New System.Drawing.Size(521, 24)
         Me.lblContentName.TabIndex = 1
         Me.lblContentName.Text = "[name of content]"
         Me.lblContentName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -57,7 +57,7 @@ Partial Class ContentControl
         '
         Me.lblIndex.AutoSize = True
         Me.lblIndex.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.lblIndex.Location = New System.Drawing.Point(522, 23)
+        Me.lblIndex.Location = New System.Drawing.Point(571, 17)
         Me.lblIndex.Name = "lblIndex"
         Me.lblIndex.Size = New System.Drawing.Size(16, 13)
         Me.lblIndex.TabIndex = 3
@@ -72,7 +72,7 @@ Partial Class ContentControl
         Me.Controls.Add(Me.lblContentName)
         Me.Controls.Add(Me.btnAdd)
         Me.Name = "ContentControl"
-        Me.Size = New System.Drawing.Size(541, 39)
+        Me.Size = New System.Drawing.Size(586, 30)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

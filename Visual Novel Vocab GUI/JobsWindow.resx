@@ -117,4 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblWarn.Text" xml:space="preserve">
+    <value>The feature is not fully finished, only the main functionality works.
+ * You cannot scrape kanji yet
+ * You cannot delete one job, only clear them all
+ * Once the jobs are running you cannot stop even if you close the windows
+ * There may be bugs</value>
+  </data>
 </root>

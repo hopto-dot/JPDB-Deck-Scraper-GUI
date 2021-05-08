@@ -51,7 +51,7 @@ Partial Class FormScraping
         Me.lblContextName.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContextName.Location = New System.Drawing.Point(11, 38)
         Me.lblContextName.Name = "lblContextName"
-        Me.lblContextName.Size = New System.Drawing.Size(435, 89)
+        Me.lblContextName.Size = New System.Drawing.Size(435, 98)
         Me.lblContextName.TabIndex = 2
         Me.lblContextName.Text = "[name of content]"
         '

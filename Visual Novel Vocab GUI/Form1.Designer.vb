@@ -55,6 +55,7 @@ Partial Class Form1
         Me.fpResults = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnScrapeDecks = New System.Windows.Forms.Button()
         Me.btnSelectAll = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,6 +187,7 @@ Partial Class Form1
         'pbContentImage
         '
         resources.ApplyResources(Me.pbContentImage, "pbContentImage")
+        Me.pbContentImage.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.pbContentImage.Name = "pbContentImage"
         Me.pbContentImage.TabStop = False
         '
@@ -287,6 +289,15 @@ Partial Class Form1
         Me.btnSelectAll.Name = "btnSelectAll"
         Me.btnSelectAll.UseVisualStyleBackColor = False
         '
+        'Button1
+        '
+        resources.ApplyResources(Me.Button1, "Button1")
+        Me.Button1.BackColor = System.Drawing.Color.Green
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Button1.Name = "Button1"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -295,6 +306,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
         Me.Controls.Add(Me.btnSelectAll)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnScrapeDecks)
         Me.Controls.Add(Me.fpResults)
         Me.Controls.Add(Me.btnCopy)
@@ -364,4 +376,5 @@ Partial Class Form1
     Friend WithEvents fpResults As FlowLayoutPanel
     Friend WithEvents btnScrapeDecks As Button
     Friend WithEvents btnSelectAll As Button
+    Friend WithEvents Button1 As Button
 End Class

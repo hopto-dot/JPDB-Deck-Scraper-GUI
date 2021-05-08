@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tbxSearchBox.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="cbbSearchType.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -190,7 +190,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbSearchType.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="btnSearch.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -229,7 +229,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="nbPageStart.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -259,7 +259,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nbPageStart.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="lblTo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -292,7 +292,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblTo.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="nbPageEnd.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -319,7 +319,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nbPageEnd.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="cbbFilterType.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -361,7 +361,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbFilterType.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -394,7 +394,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="Label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -427,7 +427,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Label3.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="cbbMediaType.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -484,7 +484,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbMediaType.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="lblResultCount.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 11.25pt</value>
@@ -517,7 +517,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblResultCount.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="BottomToolStripPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -610,7 +610,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbContentImage.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="lblContentName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -649,7 +649,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblContentName.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="lblWordLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -682,7 +682,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblWordLength.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="lblUniqueWords.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -715,7 +715,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblUniqueWords.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="lblUsedOnce.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -748,7 +748,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblUsedOnce.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lblUsedOncePcent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -781,7 +781,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblUsedOncePcent.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="lblUniqueKanji.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -814,7 +814,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblUniqueKanji.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblDifficulty.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -847,7 +847,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblDifficulty.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnCopy.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -880,7 +880,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCopy.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="lblContentType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -913,7 +913,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblContentType.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="cbbSearchOrdering.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -961,7 +961,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbbSearchOrdering.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="cbSearchReverse.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -988,7 +988,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbSearchReverse.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="btnOwnDeck.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1006,13 +1006,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnOwnDeck.Location" type="System.Drawing.Point, System.Drawing">
-    <value>427, 182</value>
+    <value>421, 144</value>
   </data>
   <data name="btnOwnDeck.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnOwnDeck.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 26</value>
+    <value>112, 26</value>
   </data>
   <data name="btnOwnDeck.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1030,7 +1030,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOwnDeck.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="fpResults.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1063,7 +1063,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;fpResults.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnScrapeDecks.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -1078,19 +1078,19 @@
     <value>NoControl</value>
   </data>
   <data name="btnScrapeDecks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 178</value>
+    <value>8, 178</value>
   </data>
   <data name="btnScrapeDecks.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnScrapeDecks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 30</value>
+    <value>53, 30</value>
   </data>
   <data name="btnScrapeDecks.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="btnScrapeDecks.Text" xml:space="preserve">
-    <value>Scrape Deck</value>
+    <value>Jobs</value>
   </data>
   <data name="&gt;&gt;btnScrapeDecks.Name" xml:space="preserve">
     <value>btnScrapeDecks</value>
@@ -1102,7 +1102,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnScrapeDecks.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnSelectAll.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -1111,25 +1111,25 @@
     <value>Flat</value>
   </data>
   <data name="btnSelectAll.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 10.875pt</value>
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="btnSelectAll.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnSelectAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 178</value>
+    <value>65, 178</value>
   </data>
   <data name="btnSelectAll.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnSelectAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 30</value>
+    <value>110, 30</value>
   </data>
   <data name="btnSelectAll.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
   <data name="btnSelectAll.Text" xml:space="preserve">
-    <value>Add All</value>
+    <value>Add All To Jobs</value>
   </data>
   <data name="&gt;&gt;btnSelectAll.Name" xml:space="preserve">
     <value>btnSelectAll</value>
@@ -1142,6 +1142,48 @@
   </data>
   <data name="&gt;&gt;btnSelectAll.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="Button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="Button1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="Button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="Button1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="Button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>421, 178</value>
+  </data>
+  <data name="Button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="Button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 30</value>
+  </data>
+  <data name="Button1.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="Button1.Text" xml:space="preserve">
+    <value>Scrape Selected</value>
+  </data>
+  <data name="&gt;&gt;Button1.Name" xml:space="preserve">
+    <value>Button1</value>
+  </data>
+  <data name="&gt;&gt;Button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Button1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -5491,7 +5533,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>668, 345</value>
+    <value>680, 345</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>

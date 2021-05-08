@@ -6,30 +6,29 @@ Public Class Form1
     Public Reverse As Boolean = False
 
     Public LastScrapeName As String = ""
+    Public SelectedLink As String = ""
     Dim ContentList As New List(Of Content) From {}
     Public OwnOpen As Boolean = False
     Public JobOpen As Boolean = False
     Public SelectedContentIndex As Integer = -1
-    Dim ContentJobs As New List(Of Content) From {}
+
 
     'Function ContentList = SearchDecks(MediaType, SearchOrdering, SearchReverse, SearchBoxText)  ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, Reverse, tbxSearchBox.Text)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblResultCount.Hide()
         lblResultCount.Text = ""
-        ContentList = SearchDecks("All", "Difficulty", cbSearchReverse.Checked, tbxSearchBox.Text)
-        RefreshResults()
-        Try
-            SelectedContentIndex = 0
-        Catch ex As Exception
-            lblContentName.Text = "Name: "
-            lblContentType.Text = "Type: "
-            lblWordLength.Text = "Word Length: "
-            lblUniqueWords.Text = "Unique Words: "
-            lblUsedOnce.Text = "Used Once: "
-            lblUsedOncePcent.Text = "Used Once (%): "
-            lblUniqueKanji.Text = "Unique Kanji: "
-            lblDifficulty.Text = "Difficulty: "
-        End Try
+        'ContentList = SearchDecks("All", "Difficulty", cbSearchReverse.Checked, tbxSearchBox.Text)
+        'RefreshResults()
+
+        lblContentName.Text = "Name: "
+        lblContentType.Text = "Type: "
+        lblWordLength.Text = "Word Length: "
+        lblUniqueWords.Text = "Unique Words: "
+        lblUsedOnce.Text = "Used Once: "
+        lblUsedOncePcent.Text = "Used Once (%): "
+        lblUniqueKanji.Text = "Unique Kanji: "
+        lblDifficulty.Text = "Difficulty: "
+
         tbxSearchBox.Text = ""
         nbPageEnd.Value = 3000
     End Sub
@@ -69,7 +68,7 @@ Public Class Form1
             Catch ex As Exception
                 Exit Sub
             End Try
-            SaveToTXT(ScrapeDeck(nbPageStart.Value, nbPageEnd.Value, cbbFilterType.Text, tbxSearchBox.Text, False, 250), "downloads", LastScrapeName)
+            SaveToTXT(ScrapeDeck(nbPageStart.Value, nbPageEnd.Value, cbbFilterType.Text, tbxSearchBox.Text, False, 250, LastScrapeName), "downloads", LastScrapeName)
         Else
             ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, cbSearchReverse.Checked, tbxSearchBox.Text)
             RefreshResults()
@@ -311,7 +310,8 @@ Public Class Form1
     Public Sub RefreshInfo()
         Try
             lblContentName.Cursor = Cursors.Hand
-            tbxSearchBox.Text = ContentList.Item(SelectedContentIndex).DeckLink
+            'tbxSearchBox.Text = ContentList.Item(SelectedContentIndex).DeckLink
+            SelectedLink = ContentList.Item(SelectedContentIndex).DeckLink
 
             Debug.WriteLine(ContentList.Item(SelectedContentIndex).Name.Length)
             If ContentList.Item(SelectedContentIndex).ContentType <> "Web novel" Then
@@ -516,9 +516,6 @@ Public Class Form1
         ContentList(AddContentIndex).FilterType = cbbFilterType.Text
         ContentJobs.Add(ContentList(AddContentIndex))
     End Sub
-    Public Function Getjobs()
-        Return (ContentJobs)
-    End Function
     Private Sub btnSelectAll_Click(sender As Object, e As EventArgs) Handles btnSelectAll.Click
         For a = 0 To ContentList.Count - 1
             ContentList(a).PageStart = nbPageStart.Value
@@ -528,18 +525,13 @@ Public Class Form1
         Next
         ChangeColours("add all")
     End Sub
-    Public Sub RemoveJob(RemoveContentIndex)
-        If RemoveContentIndex <> -1 Then
-            Try
-                ContentJobs.RemoveAt(RemoveContentIndex)
-            Catch ex As Exception
-            End Try
-        Else
-            Try
-                ContentJobs.Clear()
-            Catch ex As Exception
-            End Try
-        End If
-    End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            LastScrapeName = ContentList.Item(SelectedContentIndex).Name
+        Catch ex As Exception
+            'MsgBox("Couldn't get name")
+        End Try
 
+        SaveToTXT(ScrapeDeck(nbPageStart.Value, nbPageEnd.Value, cbbFilterType.Text, SelectedLink, False, 200, LastScrapeName), "downloads", LastScrapeName)
+    End Sub
 End Class

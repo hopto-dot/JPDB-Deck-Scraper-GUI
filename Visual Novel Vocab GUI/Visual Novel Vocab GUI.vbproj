@@ -113,7 +113,9 @@
     <Compile Include="JobControl.Designer.vb">
       <DependentUpon>JobControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="JobControl.vb" />
+    <Compile Include="JobControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="JobsWindow.Designer.vb">
       <DependentUpon>JobsWindow.vb</DependentUpon>
     </Compile>

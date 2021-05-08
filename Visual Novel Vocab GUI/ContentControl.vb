@@ -21,4 +21,5 @@
         Form1.ChangeColours("add")
         Form1.AddJob(lblIndex.Text)
     End Sub
+
 End Class
