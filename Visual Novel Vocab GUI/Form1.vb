@@ -11,6 +11,7 @@ Public Class Form1
     Public OwnOpen As Boolean = False
     Public JobOpen As Boolean = False
     Public SelectedContentIndex As Integer = -1
+    Public SearchPageIndex As Integer = 0
 
 
     'Function ContentList = SearchDecks(MediaType, SearchOrdering, SearchReverse, SearchBoxText)  ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, Reverse, tbxSearchBox.Text)
@@ -33,6 +34,7 @@ Public Class Form1
         nbPageEnd.Value = 3000
     End Sub
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        ResetSearchPage()
         Dim SnipIndex As Integer = -1
         Try
             LastScrapeName = ContentList.Item(SelectedContentIndex).Name
@@ -70,8 +72,7 @@ Public Class Form1
             End Try
             SaveToTXT(ScrapeDeck(nbPageStart.Value, nbPageEnd.Value, cbbFilterType.Text, tbxSearchBox.Text, False, 250, LastScrapeName), "downloads", LastScrapeName)
         Else
-            ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, cbSearchReverse.Checked, tbxSearchBox.Text)
-            RefreshResults()
+            UpdateSearch()
         End If
 
     End Sub
@@ -84,8 +85,7 @@ Public Class Form1
         Try
             HTML = Client.DownloadString(New Uri(NovelLink))
         Catch ex As Exception
-            ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, cbSearchReverse.Checked, tbxSearchBox.Text)
-            RefreshResults()
+            UpdateSearch()
             Return ("")
         End Try
 
@@ -174,8 +174,7 @@ Public Class Form1
         If tbxSearchBox.Text.Contains("https://") = True Then
             tbxSearchBox.Text = ""
         End If
-        ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, cbSearchReverse.Checked, tbxSearchBox.Text)
-        RefreshResults()
+        UpdateSearch()
     End Sub
     Private Sub tbxSearchBox_TextChanged(sender As Object, e As EventArgs) Handles tbxSearchBox.TextChanged
         If tbxSearchBox.Text.Contains("https://") Then
@@ -270,8 +269,7 @@ Public Class Form1
             tbxSearchBox.Text = ""
         End If
 
-        ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, cbSearchReverse.Checked, tbxSearchBox.Text)
-        RefreshResults()
+        UpdateSearch()
     End Sub
     Private Sub btnOwnDeck_Click(sender As Object, e As EventArgs) Handles btnOwnDeck.Click
         If OwnOpen = False Then
@@ -468,7 +466,9 @@ Public Class Form1
             pbContentImage.Load(ContentList.Item(SelectedContentIndex).ImageURL)
             pbContentImage.Visible = True
         Catch ex As Exception
-            pbContentImage.Visible = False
+            pbContentImage.Image = Nothing
+            fpResults.BackColor = Color.FromArgb(30, 30, 30)
+            'pbContentImage.Visible = False
         End Try
         Me.Refresh()
     End Sub
@@ -533,5 +533,38 @@ Public Class Form1
         End Try
 
         SaveToTXT(ScrapeDeck(nbPageStart.Value, nbPageEnd.Value, cbbFilterType.Text, SelectedLink, False, 200, LastScrapeName), "downloads", LastScrapeName)
+    End Sub
+    Public Sub ChangeSearchPage(PageChange)
+        If fpResults.Controls.Count < 10 And PageChange > 0 Then
+            Return
+        End If
+        SearchPageIndex += PageChange
+        If SearchPageIndex < 0 Then
+            lblPageNumber.Text = "Page 1"
+            SearchPageIndex = 0
+            Return
+        End If
+        lblPageNumber.Text = "Page " & SearchPageIndex / 50 + 1
+        UpdateSearch()
+    End Sub
+    Public Sub ResetSearchPage()
+        SearchPageIndex = 0
+        lblPageNumber.Text = "Page 1"
+    End Sub
+
+    Private Sub btnPageRight_Click(sender As Object, e As EventArgs) Handles btnPageRight.Click
+        ChangeSearchPage(50)
+    End Sub
+
+    Private Sub btnPageLeft_Click(sender As Object, e As EventArgs) Handles btnPageLeft.Click
+        ChangeSearchPage(-50)
+    End Sub
+    Public Sub UpdateSearch()
+        ContentList = SearchDecks(cbbMediaType.Text, cbbSearchOrdering.Text, cbSearchReverse.Checked, tbxSearchBox.Text, SearchPageIndex)
+        RefreshResults()
+    End Sub
+
+    Private Sub btnPage1_Click(sender As Object, e As EventArgs) Handles btnPage1.Click
+        ChangeSearchPage(-SearchPageIndex)
     End Sub
 End Class

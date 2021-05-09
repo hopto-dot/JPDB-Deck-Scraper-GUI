@@ -56,6 +56,10 @@ Partial Class Form1
         Me.btnScrapeDecks = New System.Windows.Forms.Button()
         Me.btnSelectAll = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnPageLeft = New System.Windows.Forms.Button()
+        Me.btnPageRight = New System.Windows.Forms.Button()
+        Me.lblPageNumber = New System.Windows.Forms.Label()
+        Me.btnPage1 = New System.Windows.Forms.Button()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,6 +273,7 @@ Partial Class Form1
         'fpResults
         '
         resources.ApplyResources(Me.fpResults, "fpResults")
+        Me.fpResults.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.fpResults.Name = "fpResults"
         '
         'btnScrapeDecks
@@ -298,6 +303,29 @@ Partial Class Form1
         Me.Button1.Name = "Button1"
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'btnPageLeft
+        '
+        resources.ApplyResources(Me.btnPageLeft, "btnPageLeft")
+        Me.btnPageLeft.Name = "btnPageLeft"
+        Me.btnPageLeft.UseVisualStyleBackColor = True
+        '
+        'btnPageRight
+        '
+        resources.ApplyResources(Me.btnPageRight, "btnPageRight")
+        Me.btnPageRight.Name = "btnPageRight"
+        Me.btnPageRight.UseVisualStyleBackColor = True
+        '
+        'lblPageNumber
+        '
+        resources.ApplyResources(Me.lblPageNumber, "lblPageNumber")
+        Me.lblPageNumber.Name = "lblPageNumber"
+        '
+        'btnPage1
+        '
+        resources.ApplyResources(Me.btnPage1, "btnPage1")
+        Me.btnPage1.Name = "btnPage1"
+        Me.btnPage1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -305,6 +333,10 @@ Partial Class Form1
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.Controls.Add(Me.btnPageLeft)
+        Me.Controls.Add(Me.btnPage1)
+        Me.Controls.Add(Me.btnPageRight)
+        Me.Controls.Add(Me.lblPageNumber)
         Me.Controls.Add(Me.btnSelectAll)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnScrapeDecks)
@@ -377,4 +409,8 @@ Partial Class Form1
     Friend WithEvents btnScrapeDecks As Button
     Friend WithEvents btnSelectAll As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents btnPageLeft As Button
+    Friend WithEvents btnPageRight As Button
+    Friend WithEvents lblPageNumber As Label
+    Friend WithEvents btnPage1 As Button
 End Class

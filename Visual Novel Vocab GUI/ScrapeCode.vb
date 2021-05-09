@@ -40,7 +40,7 @@ Module ScrapeCode
         End If
 
         If NovelLink.Contains("https://") = False Then
-            SearchDecks("All", "Difficulty", Form1.cbSearchReverse.Checked, "")
+            SearchDecks("All", "Difficulty", Form1.cbSearchReverse.Checked, "", Form1.SearchPageIndex)
             Exit Function
         End If
 
@@ -197,7 +197,8 @@ Module ScrapeCode
 #Disable Warning BC42105 ' Function doesn't return a value on all code paths
     End Function
 #Enable Warning BC42105 ' Function doesn't return a value on all code paths
-    Function SearchDecks(MediaType, SearchOrdering, SearchReverse, SearchBoxText)
+    Function SearchDecks(MediaType, SearchOrdering, SearchReverse, SearchBoxText, PageStart)
+        'Form1.SearchPageIndex = 0
         Const QUOTE = """"
         Dim Client As New WebClient
         Client.Encoding = System.Text.Encoding.UTF8
@@ -229,15 +230,23 @@ Module ScrapeCode
             SearchOrdering &= "&order=reverse"
         End If
 
-        Dim URL As String = "https://jpdb.io/prebuilt_decks?q=" & SearchBoxText & MediaType & SearchOrdering
+        If IsNumeric(PageStart) = True Then
+            PageStart = "&offset=" & PageStart & "#a"
+        Else
+            PageStart = ""
+        End If
+
+        Dim URL As String = "https://jpdb.io/prebuilt_decks?q=" & SearchBoxText & MediaType & SearchOrdering & PageStart
+        'URL = "https://jpdb.io/prebuilt_decks?q=&sort_by=difficulty&offset=1700#a"
+        Debug.WriteLine(URL)
         Try
             HTML = Client.DownloadString(New Uri(URL))
-            Debug.WriteLine("First client URL")
+            'Debug.WriteLine("First client URL")
         Catch ex As Exception
             Try
                 URL = "https://jpdb.io/prebuilt_decks?q=" & SearchBoxText & "&sort_by=difficulty"
                 HTML = Client.DownloadString(New Uri(URL))
-                Debug.WriteLine("Search filter failed")
+                'Debug.WriteLine("Search filter failed")
             Catch ex2 As Exception
                 MsgBox(ex.Message & vbNewLine & vbNewLine & "You were either temporarily IP banned from using jpdb.io or aren't connected to the internet")
                 Exit Function
@@ -246,10 +255,10 @@ Module ScrapeCode
 
         Dim SnipTemp As String = ""
         Dim ContentList As New List(Of Content) From {}
-        Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 50
+        Do Until HTML.Contains("margin-top: 0.5rem;") = False Or ContentList.Count > 49
             Dim NewContent As New Content
             Try
-                If HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") <> -1 Then
+                If (HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") <> -1) And (HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") < HTML.IndexOf("<div style=" & QUOTE & "opacity: 0.5" & QUOTE & ">")) Then
                     'snipping image url:
                     SnipIndex = HTML.IndexOf("lazy" & QUOTE & " src=" & QUOTE & "/") + 12
                     HTML = Mid(HTML, SnipIndex)
@@ -257,6 +266,8 @@ Module ScrapeCode
                     SnipIndex = SnipTemp.IndexOf(QUOTE)
                     SnipTemp = "https://jpdb.io" & Strings.Left(HTML, SnipIndex)
                     NewContent.ImageURL = SnipTemp
+                Else
+                    NewContent.ImageURL = "None"
                 End If
 
                 'snipping content type:
@@ -360,6 +371,7 @@ Module ScrapeCode
             'End If
 
             ContentList.Add(NewContent)
+            Form1.fpResults.BackColor = Color.FromArgb(20, 20, 20)
         Loop
 
         Return (ContentList)
