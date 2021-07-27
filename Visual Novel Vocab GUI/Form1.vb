@@ -567,4 +567,13 @@ Public Class Form1
     Private Sub btnPage1_Click(sender As Object, e As EventArgs) Handles btnPage1.Click
         ChangeSearchPage(-SearchPageIndex)
     End Sub
+
+    Public PreserveFreq As Boolean = False
+    Private Sub cbPresFreq_CheckedChanged(sender As Object, e As EventArgs) Handles cbPresFreq.CheckedChanged
+        If cbPresFreq.Checked = True Then
+            PreserveFreq = True
+        Else
+            PreserveFreq = False
+        End If
+    End Sub
 End Class

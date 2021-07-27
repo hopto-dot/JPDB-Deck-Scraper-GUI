@@ -60,6 +60,7 @@ Partial Class Form1
         Me.btnPageRight = New System.Windows.Forms.Button()
         Me.lblPageNumber = New System.Windows.Forms.Label()
         Me.btnPage1 = New System.Windows.Forms.Button()
+        Me.cbPresFreq = New System.Windows.Forms.CheckBox()
         CType(Me.nbPageStart, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nbPageEnd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbContentImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -326,6 +327,13 @@ Partial Class Form1
         Me.btnPage1.Name = "btnPage1"
         Me.btnPage1.UseVisualStyleBackColor = True
         '
+        'cbPresFreq
+        '
+        resources.ApplyResources(Me.cbPresFreq, "cbPresFreq")
+        Me.cbPresFreq.Cursor = System.Windows.Forms.Cursors.Default
+        Me.cbPresFreq.Name = "cbPresFreq"
+        Me.cbPresFreq.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AcceptButton = Me.btnSearch
@@ -363,6 +371,7 @@ Partial Class Form1
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.cbbSearchType)
         Me.Controls.Add(Me.tbxSearchBox)
+        Me.Controls.Add(Me.cbPresFreq)
         Me.Controls.Add(Me.cbSearchReverse)
         Me.Controls.Add(Me.lblResultCount)
         Me.ForeColor = System.Drawing.SystemColors.ButtonHighlight
@@ -413,4 +422,5 @@ Partial Class Form1
     Friend WithEvents btnPageRight As Button
     Friend WithEvents lblPageNumber As Label
     Friend WithEvents btnPage1 As Button
+    Friend WithEvents cbPresFreq As CheckBox
 End Class

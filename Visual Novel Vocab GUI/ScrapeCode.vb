@@ -144,9 +144,30 @@ Module ScrapeCode
                 SnipIndex = HTML.IndexOf("#a") + 3
                 HTML = Mid(HTML, SnipIndex)
 
+                Dim Frequency As Integer = 1
+                If Form1.PreserveFreq = True Then
+                    'snipping to start of frequency
+                    SnipIndex = HTML.IndexOf("opacity: 0.5; margin-top: 1rem") + 34
+                    If SnipIndex = 33 Then
+                        GoTo SkipFreq
+                    End If
+                    HTML = Strings.Mid(HTML, SnipIndex)
+
+                    'getting frequency
+                    SnipIndex = HTML.IndexOf("<")
+                    Frequency = Strings.Left(HTML, SnipIndex)
+
+                    HTML = Mid(HTML, SnipIndex)
+                End If
+
+SkipFreq:
+
                 If WordTemp.Contains(">") = False And WordTemp.Contains("<") = False And WordTemp.Contains("=") = False And WordTemp.Contains("-") = False Then
                     Try
-                        WordIDs.Add(WordTemp)
+                        For I = 1 To Frequency
+                            WordIDs.Add(WordTemp)
+                        Next
+
                     Catch ex As Exception
                         Continue Do
                     End Try
@@ -397,7 +418,7 @@ Module ScrapeCode
         Try
             File.Create(path).Dispose()
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Couldn't create file")
+            MsgBox("Didn't have access to file" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical, "Couldn't create file")
             Exit Sub
         End Try
 
@@ -416,7 +437,12 @@ Module ScrapeCode
 
         Try
             For Each Word In WordIDs
-                TextWriter.WriteLine(Word)
+                If Form1.PreserveFreq = False Then
+                    TextWriter.WriteLine(Word)
+                Else
+                    TextWriter.Write(Word & ", ")
+                End If
+
             Next
         Catch ex As Exception
             'MsgBox("No content selected or there is no vocabulary to scrape" & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Critical)

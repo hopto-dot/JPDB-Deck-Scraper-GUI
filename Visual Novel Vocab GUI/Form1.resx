@@ -493,7 +493,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblResultCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 142</value>
+    <value>284, 142</value>
   </data>
   <data name="lblResultCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 18</value>
@@ -517,7 +517,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblResultCount.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>32</value>
   </data>
   <data name="BottomToolStripPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -967,7 +967,7 @@
     <value>True</value>
   </data>
   <data name="cbSearchReverse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 144</value>
+    <value>290, 50</value>
   </data>
   <data name="cbSearchReverse.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 17</value>
@@ -988,7 +988,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbSearchReverse.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>31</value>
   </data>
   <data name="btnOwnDeck.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1310,6 +1310,36 @@
   </data>
   <data name="&gt;&gt;btnPage1.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="cbPresFreq.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbPresFreq.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbPresFreq.Location" type="System.Drawing.Point, System.Drawing">
+    <value>186, 143</value>
+  </data>
+  <data name="cbPresFreq.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="cbPresFreq.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="cbPresFreq.Text" xml:space="preserve">
+    <value>Preserve Freq</value>
+  </data>
+  <data name="&gt;&gt;cbPresFreq.Name" xml:space="preserve">
+    <value>cbPresFreq</value>
+  </data>
+  <data name="&gt;&gt;cbPresFreq.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbPresFreq.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbPresFreq.ZOrder" xml:space="preserve">
+    <value>30</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -5659,7 +5689,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>788, 345</value>
+    <value>795, 345</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
