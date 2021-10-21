@@ -1,5 +1,5 @@
 # JPDB-Deck-Scraper-GUI
-
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/hopto-dot/JPDB-Deck-Scraper-GUI?color=light%20green&label=Latest)](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
 
 If you want to filter which words you want to scrape, change the [scrape options](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI#scrape-options), change [search result filters](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI#search-result-filters) to change how and which decks are shown when you search for one.
 
