@@ -4,7 +4,6 @@ This project has been abandoned
 
 If you want to filter which words you want to scrape, change the [scrape options](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI#scrape-options), change [search result filters](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI#search-result-filters) to change how and which decks are shown when you search for one.
 
-## Download the latest version [here](https://github.com/hopto-dot/JPDB-Deck-Scraper-GUI/releases/latest)
 ![image](https://user-images.githubusercontent.com/66906618/114770465-64005a80-9d63-11eb-8502-25597ceb7ef9.png)
 
 
